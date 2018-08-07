@@ -38,6 +38,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+  private
+
+  def user_params
+    params.require(:user).permit(:name, :email, :password, :password_confirmation, :current_password, :deleted_at, :accepted)
+  end
+
   # protected
 
   # If you have extra params to permit, append them to the sanitizer.

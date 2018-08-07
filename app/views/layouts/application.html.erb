@@ -10,6 +10,96 @@
   </head>
 
   <body>
+    <!-- 管理者ヘッダー -->
+    <% if administrator_signed_in? %>
+      <header class="header clearfix">
+        <div class="header-container">
+          <!-- 検索フォーム -->
+          <div class="header-search">
+            <%= form_tag spots_path, :method => 'get', :id => "search-form" do %>
+                <%= text_field_tag :search, params[:search], :placeholder => "国名を入力", :id => "search-box" %>
+                <%= submit_tag "検索", :station => nil, :id => "search-btn" %>
+            <% end %>
+          </div>
+          <div class="app-title">
+            <% if user_signed_in? %>
+              <%= link_to 'アプリタイトル', root_path %>
+            <% else %>
+              <%= link_to 'アプリタイトル', root_path %>
+            <% end %>
+          </div>
+          <!-- ナビゲーション -->
+          <div id="gnavi" class="header-menus">
+            <ul class="header-menus">
+              <li><%= link_to '新規投稿', new_post_path, class: "" %></li>
+              <li><%= link_to '投稿一覧', spots_path, class: "" %></li>
+              <li><%= link_to 'ユーザー一覧', users_path, class: "" %></li>
+              <li><%= link_to '口コミ一覧', spot_like_comments_path, class: "" %></li>
+              <li><%= link_to '管理者ログアウト', destroy_administrator_session_path, method: :delete,
+                   "data-confirm" => "本当にログアウトしますか？", class: "" %>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </header>
+
+    <% else %>
+    <!-- ユーザーヘッダー -->
+    <!-- ユーザーのみサインインもしくはサインインしていない場合 -->
+      <header class="header clearfix">
+        <div class="header-container">
+          <!-- 検索フォーム -->
+          <div class="header-search">
+            <%= form_tag spots_path, :method => 'get', :id => "search-form" do %>
+                <%= text_field_tag :search, params[:search], :placeholder => "国名を入力", :id => "search-box" %>
+                <%= submit_tag "検索", :station => nil, :id => "search-btn" %>
+            <% end %>
+          </div>
+          <div class="app-title">
+            <% if user_signed_in? %>
+              <%= link_to 'アプリタイトル', root_path %>
+            <% else %>
+              <%= link_to 'アプリタイトル', root_path %>
+            <% end %>
+          </div>
+          <!-- ナビゲーション -->
+          <div id="gnavi" class="header-menus">
+            <ul class="header-menus">
+              <% if user_signed_in? %>
+                <li><%= link_to '新規投稿', new_spot_path, class: "" %></li>
+                <li><%= link_to 'マイページ', user_path(current_user.id), class: "" %></li>
+                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
+                     "data-confirm" => "本当にログアウトしますか？", class: "" %></li>
+              <% else %>
+                <li><%= link_to 'ログイン', new_user_session_path, class: "" %></li>
+                <li><%= link_to '会員登録', new_user_registration_path, class: "" %></li>
+              <% end %>
+            </ul>
+          </div>
+        </div>
+      </header>
+    <% end %>
+
     <%= yield %>
+
+    <% if @greed_flag != true %>
+    <!-- フッター -->
+    <div class="clearfix"></div>
+      <footer class="clearfix">
+        <div class="footer-contents">
+          <%= link_to '利用規約', root_path, class: "service-info" %>
+          <%= link_to 'プライバシーポリシー', root_path, class: "privacy-info" %>
+          <%= link_to 'お問い合わせ先', root_path, class: "contact-info" %>
+          <%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
+                       "data-confirm" => "本当にログアウトしますか？", class: "footer-sign-out" %>
+        <% if user_signed_in? %>
+          <%= link_to '退会', user_path(current_user.id), class: "unsubscribe" %>
+        <% end %>
+        </div>
+        <div class="copyright">
+           <p>©︎ 2018 Infratop.inc</p>
+        </div>
+      </footer>
+    <% end %>
   </body>
 </html>

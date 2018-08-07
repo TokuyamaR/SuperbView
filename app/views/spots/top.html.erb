@@ -1,0 +1,19 @@
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "spots/top", :media => "all" %>
+
+<main class="main">
+	<div class="for-background">
+		<div class="container-wrapper">
+			<div class="containers">
+				<p class="page-title">Let's travel！</p>
+				<p class="page-text">世界の絶景を旅しよう</p>
+				<!-- 検索フォーム -->
+		        <div class="header-search">
+		            <%= form_tag spots_path, :method => 'get', :id => "search-form" do %>
+		                <%= text_field_tag :search, params[:search], :placeholder => "国名を入力", :id => "search-box", :size =>"30" %>
+		                <%= submit_tag "検索", :station => nil, :id => "search-btn" %>
+		            <% end %>
+	        </div>
+		</div>
+	</div>
+</main>

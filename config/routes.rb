@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  get 'likes/:update'
-  get 'likes/:destroy'
+  root "spots#top"
+
+  get "spots/top" => "spots#top", as: "top"
+  get 'likes/update'
+  get 'likes/destroy'
   devise_for :administrators, controllers: {
     sessions:      'administrators/sessions',
     passwords:     'administrators/passwords',

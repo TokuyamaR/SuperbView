@@ -10,6 +10,85 @@
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require_tree .
  *= require_self
  */
+
+@import "bootstrap-sprockets";
+@import "bootstrap";
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.clearfix::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/*ヘッダー*/
+
+.header {
+	height: 100px;
+	border-bottom: solid 1px;
+	max-width: 1280px;
+}
+.header-container {
+	display: flex;
+	line-height: 100px;
+	justify-content: space-around;
+}
+
+.header-menus {
+	display: flex;
+	list-style-type: none;
+	justify-content: space-around;
+	width:150px;
+}
+
+.app-title {
+	text-align: center;
+}
+
+
+
+/*ページネーション*/
+.paginate {
+	margin: 10px 0;
+	text-align: center;
+}
+.pagination {
+	margin: 0 auto;
+}
+.item-total {
+	padding-left: 600px;
+}
+
+body {
+	 display: flex;
+	 flex-direction: column;
+	 min-height: 100vh;
+}
+
+/*フッター*/
+footer {
+	height: 100px;
+	margin-top: auto;
+	border-top: solid 1px;
+}
+.service-info, .privacy-info, .contact-info, .footer-sign-out, .unsubscribe, .copy {
+	max-width: 90%;
+}
+.footer-contents {
+	display: flex;
+	justify-content: space-around;
+	height: 50px;
+	line-height: 50px;
+}
+
+.copyright {
+	text-align: center;
+}

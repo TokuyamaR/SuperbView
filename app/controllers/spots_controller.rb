@@ -1,5 +1,12 @@
 class SpotsController < ApplicationController
 
+  def top
+  end
+
+  def search
+    @spots = Spot.search(params[:search])
+  end
+
   def index
   end
 
