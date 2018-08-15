@@ -6,6 +6,9 @@
     <div class="container-wrapper">
         <div class="containers">
           <div class="top-container">
+            <div class="spot-name">
+              <h2>国名</h2> <!-- どの国に対する口コミかわかるようにするため、マップの左上に表示 -->
+            </div>
             <div class="country-map">
               検索した国名のマップ
             </div>
@@ -17,7 +20,8 @@
             </div>
             <div class="search-result">
               <% if @spots.empty? %>
-                <%= 該当する該当する絶景はありません。 %>
+                <p>該当する絶景はまだありません。</p>
+                <p>最初の<%= link_to "絶景を投稿", new_spot_path %>しませんか？</p>
               <% else %>
                 <%= @spots.first(5).each do |spot| %>
                   <ul>
