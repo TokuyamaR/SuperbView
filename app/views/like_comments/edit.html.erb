@@ -1,2 +1,30 @@
-<h1>LikeComments#edit</h1>
-<p>Find me in app/views/like_comments/edit.html.erb</p>
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "like_comments/edit", :media => "all" %>
+
+<main class="main">
+  <div class="for-background">
+    <div class="container-wrapper">
+      <%= form_for @like_comment do |f| %>
+        <div class="containers">
+          <div class="form-title">
+            <h1>口コミ　編集画面</h1>
+          </div>
+          <div class="field">
+            <%= f.label :title, "タイトル" %><span>※</span><br />
+            <%= f.text_field :title, autofocus: true, autocomplete: false, placeholder: "30文字以内で入力してください。", size: "30" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :text, "内容" %><span>※</span><br />
+            <%= f.text_area :spot_pros, autofocus: true, autocomplete: false, placeholder: "200文字以内で入力してください", size: "30x7" %>
+          </div>
+
+          <div type="submit" id="submit">
+            <%= f.submit "編集する" %>
+            <%= link_to "前に戻る" :back %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>

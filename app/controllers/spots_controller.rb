@@ -50,8 +50,8 @@ class SpotsController < ApplicationController
 
   # 管理者側のみ実装
   def destroy
-    @spot = Spot.find(params[:id])
-    @spot.destroy
+    spot = Spot.find(params[:id])
+    spot.destroy
 
     redirect_to root_path
   end
