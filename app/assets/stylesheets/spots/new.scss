@@ -1,0 +1,30 @@
+/* 交通手段向けCSS */
+.trans_radio {
+	display: none;
+}
+.trans_radio + img {
+	border: 1px #bebebe solid;
+	border-radius: 50%;
+	opacity: 0.2;
+}
+.trans_radio:checked + img {
+	opacity: 1;
+}
+
+/* 観光難易度向けCSS */
+.level_radio {
+	display: none;
+}
+.level_radio + img {
+	border: 1px #bebebe solid;
+	border-radius: 50%;
+	opacity: 0.2;
+}
+.level_radio:checked + img {
+	opacity: 1;
+}
+
+.field > span {
+	font-size: 5px;
+	color: red;
+}

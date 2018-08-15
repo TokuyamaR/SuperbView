@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_07_115313) do
+ActiveRecord::Schema.define(version: 2018_08_09_101420) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -45,9 +45,17 @@ ActiveRecord::Schema.define(version: 2018_08_07_115313) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "spot_images", force: :cascade do |t|
+    t.string "spot_image"
+    t.integer "spot_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["spot_id"], name: "index_spot_images_on_spot_id"
+  end
+
   create_table "spots", force: :cascade do |t|
     t.string "spot_name", null: false
-    t.string "spot_image_id", null: false
+    t.json "spot_image_id", null: false
     t.text "spot_introduce", null: false
     t.text "spot_pros", null: false
     t.text "spot_cons", null: false

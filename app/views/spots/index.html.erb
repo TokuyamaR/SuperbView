@@ -1,2 +1,60 @@
-<h1>Spots#index</h1>
-<p>Find me in app/views/spots/index.html.erb</p>
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "spots/index", :media => "all" %>
+
+<main class="main">
+  <div class="for-background">
+    <div class="container-wrapper">
+        <div class="containers">
+          <div class="top-container">
+            <div class="country-map">
+              検索した国名のマップ
+            </div>
+          </div>
+          <div class="main-container">
+            <div class="page-title">
+            	<h2>検索結果</h2>
+            	<hr class="hr">
+            </div>
+            <div class="search-result">
+              <% if @spots.empty? %>
+                <%= 該当する該当する絶景はありません。 %>
+              <% else %>
+                <%= @spots.first(5).each do |spot| %>
+                  <ul>
+                    <li class="spot-container">
+                    	<div class="left-contents">
+                    		<div class="spot-image">スポット画像</div> <!-- 登録されている画像の１枚目のみを抜き出す -->
+                    	</div>
+                    	<div class="right-contents">
+                    		<div class="up-contents">
+                    			<p class="spot-name">スポット名</p>
+                    		</div>
+                    		<div class="down-contents">
+                    			<div class="transportation">
+                    				交通手段
+                    			</div>
+                    			<div class="transportation">
+                    				観光難易度
+                    			</div>
+                    			<div class="transportation">
+                    				オススメ時期
+                    			</div>
+                    			<div class="transportation">
+                    				<i class="fa fa-commenting-o" aria-hidden="true"></i>(口コミ:◯◯件) <!-- 口コミ数を数字のみで表示 -->
+                    			</div>
+                    		</div>
+                    	</div>
+                    </li>
+                  </ul>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="pagination">
+            	<%= paginate @spots %>
+            	<%= @spots.total_count %>件中<%= @spots.offset_value %>〜<%= @spots.offset_value + @spots.length %>件を表示しています。
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</main>

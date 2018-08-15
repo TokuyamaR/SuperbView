@@ -15,10 +15,29 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 
 # ページごとに指定したSCSSのみを読み込ませる処理
-# spots
-Rails.application.config.assets.precompile += %w( spots/top.scss )
-
 # users
 Rails.application.config.assets.precompile += %w( users/registrations/new.scss )
-Rails.application.config.assets.precompile += %w( users/registrations/new.js )
 Rails.application.config.assets.precompile += %w( users/sessions/new.scss )
+Rails.application.config.assets.precompile += %w( users/show.scss )
+Rails.application.config.assets.precompile += %w( users/edit.scss )
+
+# spots
+Rails.application.config.assets.precompile += %w( spots/top.scss )
+Rails.application.config.assets.precompile += %w( spots/new.scss )
+Rails.application.config.assets.precompile += %w( spots/edit.scss )
+Rails.application.config.assets.precompile += %w( spots/show.scss )
+Rails.application.config.assets.precompile += %w( spots/index.scss )
+
+# like_comments
+Rails.application.config.assets.precompile += %w( like_comments/new.scss )
+Rails.application.config.assets.precompile += %w( like_comments/edit.scss )
+Rails.application.config.assets.precompile += %w( like_comments/index.scss )
+
+
+# ページごとに指定したJSのみを読み込ませる処理
+# spots
+Rails.application.config.assets.precompile += %w( spots/raty.js )
+
+# users
+Rails.application.config.assets.precompile += %w( users/registrations/new.js )
+
