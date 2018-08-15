@@ -62,9 +62,10 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # 新規追加
-gem "devise"
-gem 'jquery-rails'
-gem 'refile',require: 'refile/rails',github: 'manfe/refile'
-gem 'refile-mini_magick'
-gem 'bootstrap-sass'
-gem 'kaminari'
+gem "devise" #ログイン認証機能
+gem 'jquery-rails' #jqueryを導入
+gem 'refile',require: 'refile/rails',github: 'manfe/refile' #画像をアップロード
+gem 'refile-mini_magick' #画像をリサイズ
+gem 'bootstrap-sass' #bootstrap使用
+gem 'kaminari' # ページング機能
+gem 'carrierwave' #複数の画像をアップロード

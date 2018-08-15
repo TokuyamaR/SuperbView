@@ -1,2 +1,108 @@
-<h1>Spots#edit</h1>
-<p>Find me in app/views/spots/edit.html.erb</p>
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "spots/edit", :media => "all" %>
+<%= javascript_include_tag "spots/raty.js" %>
+
+<main class="main">
+  <div class="for-background">
+    <div class="container-wrapper">
+      <%= form_for @spot do |f| %>
+        <div class="containers">
+          <div class="form-title">
+            <h1>投稿編集</h1>
+          </div>
+          <div class="field">
+            <%= f.label :spot_name, "スポットの名称" %><span>※</span><br />
+            <%= f.text_field :spot_name, autofocus: true, autocomplete: "spot_name", placeholder: "例：富士山", size: "30" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :spot_introduce, "絶景の紹介文" %><span>※</span><br />
+            <%= f.text_area :spot_pros, autofocus: true, autocomplete: false, placeholder: "例：火山のホットスポットの上にあるここでは、間欠泉や虹色の池を見ることができる。", size: "30x5" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :spot_pros, "ここがミドコロ！" %><span>※</span><br />
+            <%= f.text_area :spot_pros, autofocus: true, autocomplete: false, placeholder: "例：〇〇がここの見所です。特に昼間は非常にインスタ映えします。", size: "30x5" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :spotcons, "ここがイマイチ..." %><span>※</span><br />
+            <%= f.text_area :spot_cons, autofocus: true, autocomplete: false, placeholder: "例：〇〇の季節は△△のためお勧めしません。また□□には注意してください。", size: "30x5" %>
+          </div>
+
+          <div class="field">
+          	<p>スポットの画像</p>
+            <%= f.fields_for :spot_images do |g| %>
+              <div class="spot_images">
+                <%= g.file_field :spot_image, size: "30" %><br />
+              </div>
+            <% end %>
+          </div>
+
+          <div class="field">
+            <%= f.label :country, "国名（１カ国のみ）" %><span>※</span><br />
+            <%= f.text_field :country, autofocus: true, autocomplete: "country", placeholder: "例：日本", size: "30" %>
+          </div>
+          <!-- 交通手段 -->
+          <div class="field">
+            <%= f.label :transportation, "交通手段" %><span>※</span><br />
+            <label for="transportation_1" class="radio-label" >
+    			<%= f.radio_button :transportation, "徒歩", value: "徒歩", class: 'trans_radio', id: "transportation_1" %>
+    			<%= image_tag "/transportations/walk.png", :size => "70x70", :alt => "徒歩" %>
+    		</label>
+    		<label for="transportation_2" class="radio-label" >
+    			<%= f.radio_button :transportation, "自転車", value: "自転車", class: 'trans_radio', id: "transportation_2" %>
+    			<%= image_tag "/transportations/bicycle.png", :size => "70x70", :alt => "自転車" %>
+    		</label>
+    		<label for="transportation_3" class="radio-label" >
+    			<%= f.radio_button :transportation, "電車", value: "電車", class: 'trans_radio', id: "transportation_3" %>
+    			<%= image_tag "/transportations/train.png", :size => "70x70", :alt => "電車" %>
+    		</label>
+    		<label for="transportation_4" class="radio-label" >
+    			<%= f.radio_button :transportation, "車", value: "車", class: 'trans_radio', id: "transportation_4" %>
+    			<%= image_tag "/transportations/car.png", :size => "70x70", :alt => "車" %>
+    		</label>
+    		<label for="transportation_5" class="radio-label" >
+    			<%= f.radio_button :transportation, "飛行機", value: "飛行機", class: 'trans_radio', id: "transportation_5" %>
+    			<%= image_tag "/transportations/airplane.png", :size => "70x70", :alt => "飛行機" %>
+    		</label>
+          </div>
+          <!-- 観光難易度 -->
+          <div class="field">
+            <%= f.label :tourism_level, "観光難易度" %><span>※</span><br />
+            <label for="tourism_level_1" class="radio-label" >
+    			<%= f.radio_button :tourism_level, "VeryEasy", value: "VeryEasy", class: 'level_radio', id: "tourism_level_1" %>
+    			<%= image_tag "/tourism_levels/veryeasy_icon.png", :size => "70x70", :alt => "VeryEasy" %>
+    		</label>
+    		<label for="tourism_level_2" class="radio-label" >
+    			<%= f.radio_button :tourism_level, "Easy", value: "Easy", class: 'level_radio', id: "tourism_level_2" %>
+    			<%= image_tag "/tourism_levels/easy_icon.png", :size => "70x70", :alt => "Easy" %>
+    		</label>
+    		<label for="tourism_level_3" class="radio-label" >
+    			<%= f.radio_button :tourism_level, "Normal", value: "Normal", class: 'level_radio', id: "tourism_level_3" %>
+    			<%= image_tag "/tourism_levels/normal_icon.png", :size => "70x70", :alt => "Normal" %>
+    		</label>
+    		<label for="tourism_level_4" class="radio-label" >
+    			<%= f.radio_button :tourism_level, "Hard", value: "Hard", class: 'level_radio', id: "tourism_level_4" %>
+    			<%= image_tag "/tourism_levels/hard_icon.png", :size => "70x70", :alt => "Hard" %>
+    		</label>
+    		<label for="tourism_level_5" class="radio-label" >
+    			<%= f.radio_button :tourism_level, "VeryHard", value: "VeryHard", class: 'level_radio', id: "tourism_level_5" %>
+    			<%= image_tag "/tourism_levels/veryhard_icon.png", :size => "70x70", :alt => "VeryHard" %>
+    		</label>
+          </div>
+          <div class="field">
+          	<p>オススメの観光時期<span>※</span></p><br />
+            <%= f.select :good_season_start, [["1月", 1],["2月", 2],["3月", 3],["4月", 4],["5月", 5],["6月", 6],["7月", 7],["8月", 8],["9月", 9],["10月", 10],["11月", 11],["12月", 12]], autofocus: true, size: "30" %>
+            <span>〜</span>
+            <%= f.select :good_season_end, [["1月", 1],["2月", 2],["3月", 3],["4月", 4],["5月", 5],["6月", 6],["7月", 7],["8月", 8],["9月", 9],["10月", 10],["11月", 11],["12月", 12]], autofocus: true, size: "30" %>
+          </div>
+
+          <div type="submit" id="submit">
+            <%= f.submit "編集する" %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</main>
