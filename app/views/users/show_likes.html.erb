@@ -1,0 +1,61 @@
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "users/show_likes", :media => "all" %>
+
+<main class="main">
+  <div class="for-background">
+    <div class="container-wrapper">
+        <div class="containers">
+          <div class="top-container">
+          	<div class="left-contents">
+	          	<div class="user-image">ユーザー画像</div>
+	        </div>
+	        <div class="right-contents">
+	        	<div class="user-name">ユーザー名</div><span>編集アイコン（歯車）</span>
+	        	<div class="user-introduce">自己紹介分</div>
+	        </div>
+          </div>
+          <div class="main-container">
+            <div class="page-title">
+            	<h2>いいね　一覧</h2>
+            	<h2>口コミ　一覧</h2>
+            </div>
+            <div class="likes-all">
+              <% if @spots.empty? %>
+                <p>いいね！をした絶景がまだありません</p>
+                <p><%= link_to "絶景", top_path %>を見つけに行きませんか？</p>
+              <% else %>
+                <%= @spots.first(5).each do |spot| %>
+                  <ul>
+                    <li class="spots-container">
+                    	<div class="left-contents">
+                    		<div class="spot-image">スポット画像</div>
+                    	</div>
+                    	<div class="right-contents">
+                    		<div class="up-contents">
+                    			<div class="spot-name">スポット名</div>>
+                    			<div class="country">国名</div>
+                    		</div>
+                    		<div class="down-contents">
+                    			<div class="transportation">交通手段</div>
+                    			<div class="tourism-level">観光難易度</div>
+                    			<div class="good-season-start">おすすめ時期(開始)</div>
+                    			<div class="good-season-end">おすすめ時期(終了)</div>
+                    			<div class="like-comments-count">
+                    				<i class="fa fa-commenting-o" aria-hidden="true"></i> <!--アイコン+数字にて表示 -->
+                    			</div>
+                    		</div>
+                    	</div>
+                    </li>
+                  </ul>
+                <% end %>
+              <% end %>
+            </div>
+            <div class="pagination">
+            	<%= paginate @spots %>
+            	<%= @spots.total_count %>件中<%= @spots.offset_value %>〜<%= @spots.offset_value + @spots.length %>件を表示しています。
+            </div>
+          </div>
+        </div>
+    </div>
+  </div>
+</main>
