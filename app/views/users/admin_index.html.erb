@@ -1,0 +1,42 @@
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "users/admin_index", :media => "all" %>
+
+<main class="main">
+  <div class="for-background">
+    <div class="container-wrapper">
+        <div class="containers">
+            <div class="page-title">
+                <h2>ユーザー一覧(管理者用)</h2>
+            </div>
+            <div class="user-all">
+                <%= @users.first(10).each do |user| %>
+                  <ul>
+                    <li class="user-container">
+                    	<div class="left-contents">
+                    		<div class="user-image">ユーザー画像</div>
+                    	</div>
+                    	<div class="right-contents">
+                    		<div class="up-contents">
+                    			<p class="user-name">ユーザー名</p>
+                                <span>
+                                    <%= link_to admin_show_user_path(user) do %>
+                                        <i class="fas fa-book-open">詳細</i>
+                                    <% end %>
+                                </span>
+                    		</div>
+                    		<div class="down-contents">
+                    			<p class="user-introduce">自己紹介テキスト</div>
+                    		</div>
+                    	</div>
+                    </li>
+                  </ul>
+                <% end %>
+            </div>
+            <div class="pagination">
+            	<%= paginate @users %>
+            	<%= @users.total_count %>件中<%= @users.offset_value %>〜<%= @users.offset_value + @users.length %>件を表示しています。
+            </div>
+        </div>
+    </div>
+  </div>
+</main>

@@ -16,6 +16,8 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # ページごとに指定したSCSSのみを読み込ませる処理
 # users
+Rails.application.config.assets.precompile += %w( users/admin_index.scss )
+Rails.application.config.assets.precompile += %w( users/admin_show.scss )
 Rails.application.config.assets.precompile += %w( users/contact.scss )
 Rails.application.config.assets.precompile += %w( users/edit.scss )
 Rails.application.config.assets.precompile += %w( users/privacy.scss )
@@ -30,6 +32,9 @@ Rails.application.config.assets.precompile += %w( administrators/registrations/n
 Rails.application.config.assets.precompile += %w( administrators/sessions/new.scss )
 
 # spots
+Rails.application.config.assets.precompile += %w( spots/admin_index.scss )
+Rails.application.config.assets.precompile += %w( spots/admin_show.scss )
+Rails.application.config.assets.precompile += %w( spots/admin_edit.scss )
 Rails.application.config.assets.precompile += %w( spots/edit.scss )
 Rails.application.config.assets.precompile += %w( spots/index.scss )
 Rails.application.config.assets.precompile += %w( spots/new.scss )
@@ -37,6 +42,7 @@ Rails.application.config.assets.precompile += %w( spots/show.scss )
 Rails.application.config.assets.precompile += %w( spots/top.scss )
 
 # like_comments
+Rails.application.config.assets.precompile += %w( like_comments/admin_index.scss )
 Rails.application.config.assets.precompile += %w( like_comments/edit.scss )
 Rails.application.config.assets.precompile += %w( like_comments/index.scss )
 Rails.application.config.assets.precompile += %w( like_comments/new.scss )

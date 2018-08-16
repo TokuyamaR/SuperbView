@@ -14,7 +14,7 @@ class LikeCommentsController < ApplicationController
       flash[:notice] = "口コミを投稿しました"
       redirect_to spot_like_comments_path
     else
-      flash[:notice] = "口コミを投稿できませんでした"
+      flash[:alert] = "口コミを投稿できませんでした"
       render "like_comments/new"
     end
   end
@@ -29,7 +29,7 @@ class LikeCommentsController < ApplicationController
       flash[:notice] = "口コミを編集しました"
       redirect_to spot_like_comments_path
     else
-      flash[:notice] = "口コミを編集できませんでした"
+      flash[:alert] = "口コミを編集できませんでした"
       render "like_comments/edit"
     end
   end
@@ -41,7 +41,24 @@ class LikeCommentsController < ApplicationController
     like_comment = LikeComment.find(params[:id])
     like_comment.destroy
 
+    flash[:notice] = "スポットを削除しました"
     redirect_to spot_like_comments_path
+  end
+
+  # 管理者用アクション
+  def admin_index
+    @like_comments = LikeComment.all
+  end
+
+  def admin_show
+    @like_comment = LikeComment.find(params[:id])
+  end
+
+  def admin_destroy
+    @like_comment = LikeComment.find(params[:id])
+    @like_comment.delete
+    flash[:notice] = "スポットを削除しました"
+    redirect_to admin_like_comments_path
   end
 
   private
