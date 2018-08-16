@@ -1,12 +1,12 @@
 class UsersController < ApplicationController
 	
-  def index
+  def index #今回は使用せず
   end
 
-  def create
+  def create #今回は使用せず
   end
 
-  def new
+  def new #今回は使用せず
   end
 
   def show_likes
@@ -32,12 +32,38 @@ class UsersController < ApplicationController
       flash[:notice] = "ユーザー情報を変更しました"
       redirect_to user_show_likes_path
     else
-      flash[:notice] = "ユーザー情報を変更できませんでした"
+      flash[:alert] = "ユーザー情報を変更できませんでした"
       render "users/edit"
     end
   end
 
   def destroy
+    @user = User.find(params[:id])
+    @user.soft_delete
+    if user_signed_in?
+      sign_out(@user)
+      redirect_to new_user_session_path
+      flash[:notice] = "退会しました"
+    else
+      redirect_to root_path
+      flash[:alert] = "エラーが発生しました"
+    end
+  end
+
+  # 管理者用アクション
+  def admin_index
+    @users = User.all
+  end
+
+  def admin_show
+    @user = User.find(params[:id])
+  end
+
+  def admin_destroy
+    @user = User.find(params[:id])
+    @user.soft_delete
+    flash[:notice] = "削除されました"
+    redirect_to admin_users_path
   end
 
 

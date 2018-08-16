@@ -27,7 +27,7 @@ class SpotsController < ApplicationController
       flash[:notice] = "投稿が完了しました"
       redirect_to root_path  # spot_showページができていないので仮のパス
     else
-      flash[:notice] = "投稿内容にエラーがあります"
+      flash[:alert] = "投稿内容にエラーがあります"
       render "spots/new"
     end
   end
@@ -43,17 +43,25 @@ class SpotsController < ApplicationController
       flash[:notice] = "更新が完了しました"
       redirect_to root_path
     else
-      flash[:notice] = "更新内容にエラーがあります"
+      flash[:alert] = "更新内容にエラーがあります"
       render "spots/edit"
     end
   end
 
-  # 管理者側のみ実装
-  def destroy
-    spot = Spot.find(params[:id])
-    spot.destroy
+  # 管理者用アクション
+  def admin_index
+    @spots = Spot.all
+  end
 
-    redirect_to root_path
+  def admin_show
+    @spot = Spot.find(params[:id])
+  end
+
+  def admin_destroy
+    @spot = Spot.find(params[:id])
+    @spot.delete
+    flash[:notice] = "スポットを削除しました"
+    redirect_to admin_spots_path
   end
 
   private
