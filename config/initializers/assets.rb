@@ -16,22 +16,26 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 
 # ページごとに指定したSCSSのみを読み込ませる処理
 # users
+Rails.application.config.assets.precompile += %w( users/contact.scss )
+Rails.application.config.assets.precompile += %w( users/edit.scss )
+Rails.application.config.assets.precompile += %w( users/privacy.scss )
 Rails.application.config.assets.precompile += %w( users/registrations/new.scss )
 Rails.application.config.assets.precompile += %w( users/sessions/new.scss )
-Rails.application.config.assets.precompile += %w( users/show.scss )
-Rails.application.config.assets.precompile += %w( users/edit.scss )
+Rails.application.config.assets.precompile += %w( users/show_likes.scss )
+Rails.application.config.assets.precompile += %w( users/show_comments.scss )
+Rails.application.config.assets.precompile += %w( users/service.scss )
 
 # spots
-Rails.application.config.assets.precompile += %w( spots/top.scss )
-Rails.application.config.assets.precompile += %w( spots/new.scss )
 Rails.application.config.assets.precompile += %w( spots/edit.scss )
-Rails.application.config.assets.precompile += %w( spots/show.scss )
 Rails.application.config.assets.precompile += %w( spots/index.scss )
+Rails.application.config.assets.precompile += %w( spots/new.scss )
+Rails.application.config.assets.precompile += %w( spots/show.scss )
+Rails.application.config.assets.precompile += %w( spots/top.scss )
 
 # like_comments
-Rails.application.config.assets.precompile += %w( like_comments/new.scss )
 Rails.application.config.assets.precompile += %w( like_comments/edit.scss )
 Rails.application.config.assets.precompile += %w( like_comments/index.scss )
+Rails.application.config.assets.precompile += %w( like_comments/new.scss )
 
 
 # ページごとに指定したJSのみを読み込ませる処理

@@ -1,2 +1,52 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "users/edit", :media => "all" %>
+
+<main class="main">
+  <div class="for-background">
+    <div class="container-wrapper">
+        <div class="containers">
+            <div class="left-container">
+          	    <div class="contents left">
+	          	    <div class="user-image">ユーザー画像</div>
+	            </div>
+            </div>
+            <div class="right-container">
+	          	<div class="contents right">
+	          		<%= form_for @user do |f| %>
+	          			<div class="field">
+				            <%= f.label :name, "ユーザー名" %><span>※</span><br />
+				            <%= f.text_field :name, autofocus: true, autocomplete: false, placeholder: "例：絶景マン", size: "30" %>
+				        </div>
+
+				        <div class="field">
+				            <%= f.label :introduce, "自己紹介" %><span>※</span><br />
+				            <%= f.text_area :introduce, autofocus: true, autocomplete: false, placeholder: "200文字以内で入力してください", size: "30x7" %>
+				        </div>
+				        <div class="field">
+				            <%= f.label :email, "メールアドレス" %><br />
+				            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：gotrip@trip.com", size: "30" %>
+				        </div>
+
+				        <div class="field">
+				            <%= f.label :password, "新しいパスワード" %>
+				            <% if @minimum_password_length %>
+				            <% end %><br />
+				            <%= f.password_field :password, autocomplete: "off", placeholder: "8文字以上", size: "30" %>
+				        </div>
+
+				        <div class="field">
+				            <%= f.label :password_confirmation, "パスワード確認" %><br />
+				            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "パスワードを再入力", size: "30" %>
+				        </div>
+
+			            <div type="submit" id="submit">
+				            <%= f.submit "編集する" %>
+				            <%= link_to "マイページに戻る" user_show_likes_path %>
+				        </div>
+		            <% end %>
+	            </div>
+      		</div>
+        </div>
+    </div>
+  </div>
+</main>
