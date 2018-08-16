@@ -25,6 +25,10 @@ Rails.application.config.assets.precompile += %w( users/show_likes.scss )
 Rails.application.config.assets.precompile += %w( users/show_comments.scss )
 Rails.application.config.assets.precompile += %w( users/service.scss )
 
+# administrators
+Rails.application.config.assets.precompile += %w( administrators/registrations/new.scss )
+Rails.application.config.assets.precompile += %w( administrators/sessions/new.scss )
+
 # spots
 Rails.application.config.assets.precompile += %w( spots/edit.scss )
 Rails.application.config.assets.precompile += %w( spots/index.scss )
