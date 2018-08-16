@@ -25,11 +25,18 @@ class SpotsController < ApplicationController
     @spot = Spot.create(spot_params)
     if @spot.save
       flash[:notice] = "投稿が完了しました"
-      redirect_to root_path  # spot_showページができていないので仮のパス
+      redirect_to spot_path
     else
       flash[:alert] = "投稿内容にエラーがあります"
       render "spots/new"
     end
+  end
+
+  def destroy
+    @spot = Spot.find(params[:id])
+    @spot.delete
+    flash[:notice] = "スポットを削除しました"
+    redirect_to root_path
   end
 
   def edit
@@ -55,6 +62,22 @@ class SpotsController < ApplicationController
 
   def admin_show
     @spot = Spot.find(params[:id])
+  end
+
+  def admin_edit
+    @spot = Spot.find(params[:id])
+    3.times { @spot.spot_images.build }
+  end
+
+  def admin_update
+    @spot = Spot.find(params[:id])
+    if @spot.update(spot_params)
+      flash[:notice] = "更新が完了しました"
+      redirect_to admin_show_spot_path
+    else
+      flash[:alert] = "更新内容にエラーがあります"
+      render "spots/admin_edit"
+    end
   end
 
   def admin_destroy

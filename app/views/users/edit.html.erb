@@ -7,7 +7,11 @@
         <div class="containers">
             <div class="left-container">
           	    <div class="contents left">
-	          	    <div class="user-image">ユーザー画像</div>
+	          	    <div class="user-image">
+		          	    ユーザー画像<br>
+		          	    <%= f.label :user_image, "プロフィール画像" %><span>※</span><br />
+			            <%= f.attachment_field :user_image %>
+	          		</div>
 	            </div>
             </div>
             <div class="right-container">

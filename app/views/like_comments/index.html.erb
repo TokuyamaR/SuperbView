@@ -33,6 +33,19 @@
                     	<div class="right-contents">
                     		<div class="up-contents">
                     			<p class="comment-title">タイトル名</p>
+                          <% if administrator_signed_in? %>
+                            <span>
+                              <%= link_to admin_destroy_like_comment_path(like_comment), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+                                <i class="far fa-trash-alt">削除</i>
+                              <% end %>
+                            </span>
+                          <% elsif current_user.id == like_comment.user_id %>
+                            <span>
+                              <%= link_to spot_path(like_comment), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+                                <i class="far fa-trash-alt">削除</i>
+                              <% end %>
+                            </span>
+                          <% end %>
                     		</div>
                     		<div class="down-contents">
                     			<div class="comment-text">内容</div>
