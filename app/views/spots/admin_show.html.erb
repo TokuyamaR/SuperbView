@@ -1,0 +1,89 @@
+<!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "spots/admin_show", :media => "all" %>
+
+<main class="main">
+  <div class="for-background">
+    <div class="container-wrapper">
+        <div class="containers">
+          <div class="top-container">
+            <div class="spot-name">
+              <h2>スポット名</h2>
+            </div>
+            <div class="spot-images">
+              spotのスライドショーを配置
+            </div>
+            <div class="spot-introduce">
+              spotの自己紹介文を画像下部に記載（記載するため、スライドショーの矢印を少し上に設置する）
+            </div>
+          </div>
+          <div class="main-container">
+            <div class="first-contents icons"> <!-- 管理者はサイトの形だけ見ることができれば良いのでリンクは貼らない -->
+                <div class="likes">
+                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+                </div>
+                <div class="comments">
+                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                </div>
+                <div class="edit-btn">
+                    <%= link_to admin_edit_spot_path(spot) do %>
+                        <i class="far fa-edit">編集</i>
+                    <% end %>
+                </div>
+                <div class="sns-icons">
+                  <i class="fa fa-twitter-square" aria-hidden="true"></i>
+                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
+                  <i class="fa fa-instagram" aria-hidden="true"></i>
+                </div>
+            </div>
+            <div class="second-contents pros-cons">
+              <div class="spot-pros">
+                <h3 class="pros-title">一押しポイント！！</h3>
+                <p class="pros-text">「一押しポイント」のテキスト</p>
+              </div>
+              <div class="spot-cons">
+                <h3 class="cons-title">ここがイマイチ...</h3>
+                <p class="cons-text">「ここがイマイチ」のテキスト</p>
+              </div>
+            </div>
+            <div class="third-contents like-comments">
+              <h2 class="contents-title">口コミ</h2>
+              <hr class="hr">
+              <%= @like_comments.first(3).each do |like_comment| %>
+                <ul>
+                  <li>
+                    <div class="user-image">ユーザー画像</div>
+                    <div class="comment-title">タイトル</div>
+                    <div class="comment-text">口コミ内容</div>
+                  </li>
+                </ul>
+              <% end %>
+              <p class="comment-all"><%= link_to "口コミを全部見る", spot_like_comments_path(@spot) %></p>
+            </div>
+            <div class="fourth-contents about-spot">
+              <h2 class="contents-title">口コミ</h2>
+              <hr class="hr">
+              <table>
+                <tbody>
+                  <tr>
+                    <th>スポット名</th>
+                    <td>富士山（仮）</td>
+                  </tr>
+                  <tr>
+                    <th>オススメ時期</th>
+                    <td>4月〜10月</td>
+                  </tr>
+                  <tr>
+                    <th>交通手段：自転車（画像）</th>
+                    <td>観光難易度：C（画像）</td>
+                  </tr>
+                  <tr>
+                    <th>マップ</th>
+                    <td>マップ画像</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+        </div>
+    </div>
+  </div>
+</main>
