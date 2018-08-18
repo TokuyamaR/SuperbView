@@ -54,6 +54,7 @@
             <%= form_tag spots_path, :method => 'get', :id => "search-form" do %>
                 <%= text_field_tag :search, params[:search], :placeholder => "国名を入力", :id => "search-box" %>
                 <%= submit_tag "検索", :station => nil, :id => "search-btn" %>
+                <%= @user.name %>でログイン中
             <% end %>
           </div>
           <div class="app-title">
@@ -68,7 +69,7 @@
             <ul class="header-menus">
               <% if user_signed_in? %>
                 <li><%= link_to '新規投稿', new_spot_path, class: "" %></li>
-                <li><%= link_to 'マイページ', user_path(current_user.id), class: "" %></li>
+                <li><%= link_to 'マイページ', user_show_likes_path(current_user.id), class: "" %></li>
                 <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
                      "data-confirm" => "本当にログアウトしますか？", class: "" %></li>
               <% else %>

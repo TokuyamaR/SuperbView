@@ -12,6 +12,11 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  # 下記3行はログアウト時のrooting error解決のために記載
+  devise_scope :user do
+    get '/users/sign_out' => 'devise/sessions#destroy'
+  end
+
   resources :users, :except => [:show]
 
   resources :spots do
@@ -21,8 +26,8 @@ Rails.application.routes.draw do
 
 # users
   # ユーザー
-  get "users/show_likes" => "users#show_likes", as: "user_show_likes"
-  get "users/show_comments" => "users#show_comments", as: "user_show_comments"
+  get "users/:id/show_likes" => "users#show_likes", as: "user_show_likes"
+  get "users/:id/show_comments" => "users#show_comments", as: "user_show_comments"
   get 'service' => 'users#service', as:'service'
   get 'privacy' => 'users#privacy', as:'privacy'
   get 'contact' => 'users#contact', as:'contact'

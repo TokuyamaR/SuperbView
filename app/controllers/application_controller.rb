@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
 
   	def configure_permitted_parameters
     	devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-    		user_params.permit(:name, :email, :password, :password_confirmation, :current_password, :deleted_at, :accepted)
-        end
+    		user_params.permit(:name, :introduce, :email, :password, :password_confirmation, :current_password, :deleted_at, :accepted)
+      end
   	end
 
 	def after_sign_in_path_for(resource)
@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
     if resource == :user
       root_path
     else
-      root_path
+      new_administrator_session_path
     end
   end
 end

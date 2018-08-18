@@ -1,0 +1,34 @@
+main {
+	width:1280px;
+
+	.container-wrapper {
+		max-width: 90%;
+		margin: 0 auto;
+		padding-top: 100px;
+	}
+}
+
+.top-container {
+	display: flex;
+	justify-content: space-around;
+	padding-bottom: 50px;
+
+	.left-contents {
+
+		.user-image {
+			border: solid 1px;
+		}
+	}
+}
+
+.main-container {
+	.page-title {
+		display: flex;
+		justify-content: center;
+		text-align: center;
+
+		h2 {
+			padding: 10px;
+		}
+	}
+}

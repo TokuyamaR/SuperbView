@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-	
+
   def index #今回は使用せず
   end
 
@@ -11,14 +11,15 @@ class UsersController < ApplicationController
 
   def show_likes
     @user = User.find(params[:id])
-    @likes = Like.where(user_id: @user.id)
-    @spots = Spot.where(id: @likes.spot_id)
+    # @likes = Like.where(user_id: @user.id)
+    @likes = @user.likes
+    @spots = @user.spots.page(params[:page]) #仮設定のため後日質問（ユーザーがいいねしたスポットだけを抽出したい）
   end
 
   def show_comments
     @user = User.find(params[:id])
-    @like_comments = LikeComment.where(user_id: @user.id)
-    @spots = Spot.where(id: @like_comments.spot_id)
+    @like_comments = @user.like_comments.page(params[:page])
+    @spots = @user.spots.page(params[:page]) #仮設定のため後日質問（ユーザーがいいねしたスポットだけを抽出したい）
   end
 
   def edit
@@ -27,10 +28,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    @user.update(user_params)
-    if @user.save
+    if @user.update(user_params)
       flash[:notice] = "ユーザー情報を変更しました"
-      redirect_to user_show_likes_path
+      redirect_to user_show_likes_path(@user.id)
     else
       flash[:alert] = "ユーザー情報を変更できませんでした"
       render "users/edit"
@@ -70,6 +70,6 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduce, :email, :password, :password_confirmation, :deleted_at, :accepted)
+    params.require(:user).permit(:name, :introduce, :email, :user_image, :password, :password_confirmation, :current_password, :deleted_at)
   end
 end
