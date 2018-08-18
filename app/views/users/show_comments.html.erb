@@ -6,23 +6,40 @@
     <div class="container-wrapper">
         <div class="containers">
           <div class="top-container">
-          	<div class="left-contents">
-	          	<div class="user-image">ユーザー画像</div>
-	        </div>
-	        <div class="right-contents">
-	        	<div class="user-name">ユーザー名</div><span>編集アイコン（歯車）</span>
-	        	<div class="user-introduce">自己紹介テキスト</div>
-	        </div>
+            <div class="left-contents">
+              <div class="user-image">
+                <% if @user.user_image %>
+                  <%= attachment_image_tag @user, :user_image, :fill, 150, 150, format: 'jpeg' %>
+                <% else %>
+                  <i class="fas fa-user fa-7x"></i><br>
+                <% end %>
+              </div>
+            </div>
+            <div class="right-contents">
+              <div class="user-name">ユーザー名：<%= @user.name %></div>
+              <div class="user-settting">
+                <%= link_to edit_user_path do %>
+                  <i class="fas fa-cog"> 編集</i>
+                <% end %>
+                </div>
+              <div class="user-introduce">自己紹介：
+                <% if @user.introduce.nil? %>
+                  未記載
+                <% else %>
+                  <%= @user.introduce %>
+                <% end %>
+              </div>
+            </div>
           </div>
           <div class="main-container">
             <div class="page-title">
-            	<h2>いいね　一覧</h2>
+            	<h2><%= link_to "いいね　一覧", user_show_likes_path %></h2>
             	<h2>口コミ　一覧</h2>
             </div>
             <div class="comments-all">
               <% if @like_comments.empty? %>
                 <p>口コミがまだありません</p>
-                <p><%= link_to "絶景", top_path %>をみんなに共有してみませんか？</p>
+                <p><%= link_to "絶景", root_path %>をみんなに共有してみませんか？</p>
               <% else %>
                 <%= @like_comments.first(5).each do |spot| %>
                   <ul>

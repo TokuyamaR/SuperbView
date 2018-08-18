@@ -1,0 +1,15 @@
+main {
+	width:1280px;
+
+	.container-wrapper {
+		max-width: 90%;
+		margin: 0 auto;
+		padding-top: 100px;
+	}
+}
+
+.containers {
+	display: flex;
+	justify-content: space-around;
+}
+
