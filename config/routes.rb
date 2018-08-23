@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resources :spots do
     resources :like_comments
-    resources :likes, :only => [:create, :destroy]
+    resource :likes, :only => [:create, :destroy]
   end
 
 # users

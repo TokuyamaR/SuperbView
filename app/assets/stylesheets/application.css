@@ -11,10 +11,12 @@
  * It is generally better to create a new file per style scope.
  *
  *= require_self
+ *= require font-awesome
  */
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome";
 
 
 *{
@@ -29,17 +31,29 @@
   clear: both;
 }
 
+a {
+text-decoration: none;
+}
+
+li {
+	list-style: none;
+}
+
 /*ヘッダー*/
 
 .header {
-	height: 100px;
+	height: 50px;
 	border-bottom: solid 1px;
 	max-width: 1280px;
 }
 .header-container {
 	display: flex;
-	line-height: 100px;
+	line-height: 50px;
 	justify-content: space-around;
+}
+
+.header-search #search-box, #search-btn {
+    line-height: 20px;
 }
 
 .header-menus {

@@ -10,16 +10,14 @@ class UsersController < ApplicationController
   end
 
   def show_likes
-    @user = User.find(params[:id])
+    @user = User.find(current_user.id)
     # @likes = Like.where(user_id: @user.id)
-    @likes = @user.likes
-    @spots = @user.spots.page(params[:page]) #仮設定のため後日質問（ユーザーがいいねしたスポットだけを抽出したい）
+    @likes = Like.where(user_id: @user.id).page(params[:page]) # ユーザーがいいねしたスポットだけを抽出する
   end
 
   def show_comments
     @user = User.find(params[:id])
-    @like_comments = @user.like_comments.page(params[:page])
-    @spots = @user.spots.page(params[:page]) #仮設定のため後日質問（ユーザーがいいねしたスポットだけを抽出したい）
+    @like_comments = LikeComment.where(user_id: @user.id).page(params[:page]) # ユーザーの口コミ一覧を抽出する
   end
 
   def edit

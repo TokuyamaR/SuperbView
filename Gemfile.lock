@@ -74,10 +74,6 @@ GEM
       rack (>= 1.6.0)
       rack-test (>= 0.6.3)
       xpath (~> 3.1)
-    carrierwave (1.2.3)
-      activemodel (>= 4.0.0)
-      activesupport (>= 4.0.0)
-      mime-types (>= 1.16)
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chromedriver-helper (1.2.0)
@@ -103,6 +99,9 @@ GEM
     erubi (1.7.1)
     execjs (2.7.0)
     ffi (1.9.25)
+    font-awesome-rails (4.7.0.4)
+      railties (>= 3.2, < 6.0)
+    geocoder (1.5.0)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     http-cookie (1.0.3)
@@ -152,6 +151,10 @@ GEM
     msgpack (1.2.4)
     multi_json (1.13.1)
     mustermann (1.0.2)
+    nested_form_fields (0.8.2)
+      coffee-rails (>= 3.2.1)
+      jquery-rails
+      rails (>= 3.2.0)
     netrc (0.11.0)
     nio4r (2.3.1)
     nokogiri (1.8.4)
@@ -270,14 +273,16 @@ DEPENDENCIES
   bootstrap-sass
   byebug
   capybara (>= 2.15, < 4.0)
-  carrierwave
   chromedriver-helper
   coffee-rails (~> 4.2)
   devise
+  font-awesome-rails
+  geocoder
   jbuilder (~> 2.5)
   jquery-rails
   kaminari
   listen (>= 3.0.5, < 3.2)
+  nested_form_fields
   puma (~> 3.11)
   rails (~> 5.2.0)
   refile!

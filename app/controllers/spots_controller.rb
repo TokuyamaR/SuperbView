@@ -1,36 +1,47 @@
 class SpotsController < ApplicationController
 
   def top
-    @user = User.find(current_user.id)
+    if user_signed_in?
+      @user = User.find(current_user.id)
+    end
   end
 
   def index
+    @user = User.find(current_user.id)
     @spots = Spot.search(params[:search]).page(params[:page]).reverse_order
+    respond_to do |f|
+      f.html
+      f.json { render json: @spots }
+    end
     if @spots.count == 0
-        flash[:notice] = "該当する店舗はありません"
+        flash[:notice] = "該当するスポットはありません"
         redirect_to root_path
     end
   end
 
   def show
+    @user = User.find(current_user.id)
     @spot = Spot.find(params[:id])
-    @like_comments = LikeComment.where(params[:id])
+    @spot_images = @spot.spot_images
+    @like_comments = LikeComment.where(spot_id: @spot.id)
   end
 
   def new
+    if user_signed_in?
+      @user = User.find(current_user.id)
+    end
     @spot = Spot.new
-    3.times { @spot.spot_images.build }
+    @spot.spot_images.build
   end
 
   def create
-    @spot = Spot.create(spot_params)
-    if @spot.save
-      flash[:notice] = "投稿が完了しました"
-      redirect_to spot_path
-    else
-      flash[:alert] = "投稿内容にエラーがあります"
-      render "spots/new"
-    end
+    @user = User.find(current_user.id)
+    @spot = Spot.new(spot_params)
+    @like_comments = @spot.like_comments
+    @spot.user_id = current_user.id
+    @spot.save
+
+    redirect_to spot_path(@spot.id)
   end
 
   def destroy
@@ -41,15 +52,19 @@ class SpotsController < ApplicationController
   end
 
   def edit
+    @user = User.find(current_user.id)
     @spot = Spot.find(params[:id])
-    3.times { @spot.spot_images.build }
+    @spot_images = @spot.spot_images
   end
 
   def update
+    @user = User.find(current_user.id)
     @spot = Spot.find(params[:id])
+    @like_comments = @spot.like_comments
+    @spot.user_id = current_user.id
     if @spot.update(spot_params)
       flash[:notice] = "更新が完了しました"
-      redirect_to root_path
+      redirect_to spot_path(@spot.id)
     else
       flash[:alert] = "更新内容にエラーがあります"
       render "spots/edit"
@@ -91,9 +106,9 @@ class SpotsController < ApplicationController
   private
 
    def spot_params
-     params.require(:spot).permit(:spot_name, :spot_introduce, :spot_pros, :spot_cons, :country, :address,
-                                  :transportation, :tourism_level,:good_season_start, :good_season_end, :user_id,
-                                  spot_images_attributes: [:id, :spot_image, :image_cache])
+     params.require(:spot).permit(:spot_name, :spot_introduce, :spot_pros, :spot_cons, :country, :latitude, :longitude, :address,
+                                  :transportation,:transportation_text, :tourism_level, :tourism_level_text, :good_season_start, :good_season_end, :user_id,
+                                  spot_images_attributes: [:id, :image, :spot_id, :_destroy])
    end
 
 end

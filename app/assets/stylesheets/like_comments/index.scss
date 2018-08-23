@@ -1,0 +1,62 @@
+.top-container {
+	.spot-images {
+		position: relative;
+		width: 1280px;
+		height: 400px;
+
+		#spot-name{
+			position: absolute;
+			color: black;
+			font-size: 30px;
+			top: 10px;
+			left: 10px;
+		}
+
+		.spot-introduce {
+			position: absolute;
+			color: white;
+			font-size: 20px;
+			top: 250px;
+			left: 10px;
+		}
+	}
+
+	/* 画像の下部にintroduce文が見えやすいようにグラデーションを設定　*/
+	.spot-images::after {
+		bottom: 0;
+		left: 0;
+		z-index: 2;
+		content: '';
+		position: absolute;
+		width: 100%;
+		height: 60%;
+		background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 1));
+
+	}
+}
+
+.main-container {
+	list-style: none;
+	max-width: 90%;
+	margin: 0 auto;
+
+	.page-title {
+		margin-bottom: 20px;
+	}
+
+	.likecomments-container {
+		display: flex;
+
+		.left-contents {
+			padding-right: 20px;
+		}
+
+		.up-contents {
+			display: flex;
+
+			p {
+				padding-right: 20px;
+			}
+		}
+	}
+}

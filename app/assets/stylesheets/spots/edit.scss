@@ -1,0 +1,54 @@
+main {
+	width:1280px;
+
+	.container-wrapper {
+		font-size: 20px;
+		max-width: 90%;
+		margin: 0 auto;
+		padding-top: 100px;
+	}
+}
+
+.containers {
+	margin: 0 auto;
+	width:400px;
+
+	.form-title ,.field, #submit {
+		margin-bottom: 30px;
+	}
+
+}
+
+
+
+
+/* 交通手段向けCSS */
+.trans_radio {
+	display: none;
+}
+.trans_radio + img {
+	border: 1px #bebebe solid;
+	border-radius: 50%;
+	opacity: 0.2;
+}
+.trans_radio:checked + img {
+	opacity: 1;
+}
+
+/* 観光難易度向けCSS */
+.level_radio {
+	display: none;
+}
+.level_radio + img {
+	border: 1px #bebebe solid;
+	border-radius: 50%;
+	opacity: 0.2;
+}
+.level_radio:checked + img {
+	opacity: 1;
+}
+
+.field > span {
+	font-size: 5px;
+	color: red;
+}
