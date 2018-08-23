@@ -1,18 +1,27 @@
 class LikeCommentsController < ApplicationController
 
   def index
-    @like_comments = LikeComment.where(params[:spot_id])
+    @user = User.find(current_user.id)
+    @spot = Spot.find(params[:spot_id])
+    @like_comments = LikeComment.where(params[:spot_id]).page(params[:page])
   end
 
   def new
+    @user = User.find(current_user.id)
     @like_comment = LikeComment.new()
+    @spot = Spot.find(params[:spot_id])
   end
 
-  def create #spot_idは不要かわからないため、エラーが出たら@spotを作成
+  def create
+    @user = User.find(current_user.id)
+    @spot = Spot.find(params[:spot_id])
     @like_comment = LikeComment.create(like_comment_params)
+    @like_comment.spot_id = @spot.id
+    @like_comment.user_id = @user.id
+
     if @like_comment.save
       flash[:notice] = "口コミを投稿しました"
-      redirect_to spot_like_comments_path
+      redirect_to spot_like_comments_path(@like_comment.spot_id)
     else
       flash[:alert] = "口コミを投稿できませんでした"
       render "like_comments/new"
@@ -20,14 +29,20 @@ class LikeCommentsController < ApplicationController
   end
 
   def edit
+    @user = User.find(current_user.id)
+    @spot = Spot.find(params[:spot_id])
     @like_comment = LikeComment.find(params[:id])
   end
 
-  def update #spot_idは不要かわからないため、エラーが出たら@spotを作成
+  def update
+    @user = User.find(current_user.id)
+    @spot = Spot.find(params[:spot_id])
     @like_comment = LikeComment.find(params[:id])
-    if @like_comment.update
+    @like_comment.spot_id = @spot.id
+    @like_comment.user_id = @user.id
+    if @like_comment.update(like_comment_params)
       flash[:notice] = "口コミを編集しました"
-      redirect_to spot_like_comments_path
+      redirect_to spot_like_comments_path(@like_comment.spot_id)
     else
       flash[:alert] = "口コミを編集できませんでした"
       render "like_comments/edit"
@@ -38,11 +53,15 @@ class LikeCommentsController < ApplicationController
   end
 
   def destroy
-    like_comment = LikeComment.find(params[:id])
+    user = User.find(current_user.id)
+    spot = Spot.find(params[:spot_id])
+    like_comment = LikeComment.find_by(id: params[:id])
+    like_comment.spot_id = spot.id
+    like_comment.user_id = user.id
     like_comment.destroy
 
     flash[:notice] = "スポットを削除しました"
-    redirect_to spot_like_comments_path
+    redirect_to spot_like_comments_path(like_comment.spot_id)
   end
 
   # 管理者用アクション
@@ -64,6 +83,6 @@ class LikeCommentsController < ApplicationController
   private
 
    def like_comment_params
-     params.require(:like_comment).permit(:title, :text)
+     params.require(:like_comment).permit(:title, :text, :spot_id, :user_id)
    end
 end

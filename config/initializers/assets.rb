@@ -41,6 +41,7 @@ Rails.application.config.assets.precompile += %w( spots/new.scss )
 Rails.application.config.assets.precompile += %w( spots/show.scss )
 Rails.application.config.assets.precompile += %w( spots/top.scss )
 
+
 # like_comments
 Rails.application.config.assets.precompile += %w( like_comments/admin_index.scss )
 Rails.application.config.assets.precompile += %w( like_comments/edit.scss )
@@ -50,8 +51,14 @@ Rails.application.config.assets.precompile += %w( like_comments/new.scss )
 
 # ページごとに指定したJSのみを読み込ませる処理
 # spots
-Rails.application.config.assets.precompile += %w( spots/raty.js )
+Rails.application.config.assets.precompile += %w( spots/map.js )
+Rails.application.config.assets.precompile += %w( spots/jquery.bgswitcher.js )
+Rails.application.config.assets.precompile += %w( places.js.coffee )
 
 # users
 Rails.application.config.assets.precompile += %w( users/registrations/new.js )
+
+# 全体
+Rails.application.config.assets.precompile += %w( custom.scss )
+
 

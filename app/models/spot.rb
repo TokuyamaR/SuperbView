@@ -5,11 +5,20 @@ class Spot < ApplicationRecord
   has_many :spot_images, dependent: :destroy
   belongs_to :user
 
-  accepts_nested_attributes_for :spot_images
+  validates :spot_name, {presence: true, length:{maximum: 30}}
+  validates :spot_introduce, {presence: true, length:{maximum: 200}}
+  # validates :spot_images_images, presence: true
+  validates :country, {presence: true, length:{maximum: 30}}
+  validates :transportation, presence: true
+  validates :tourism_level, presence: true
+  validates :good_season_start, presence: true
+  validates :good_season_end, presence: true
+
+  accepts_nested_attributes_for :spot_images, allow_destroy: true
 
 	def self.search(search)
     if search
-      Spot.where(['content LIKE ?', "%#{search}%"])
+      Spot.where(['country LIKE ?', "%#{search}%"])
     else
       Spot.all
     end
@@ -18,4 +27,5 @@ class Spot < ApplicationRecord
   def liked_by?(user)
     likes.where(user_id: user.id).exists?
   end
+
 end

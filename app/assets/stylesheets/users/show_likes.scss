@@ -14,9 +14,21 @@ main {
 	padding-bottom: 50px;
 
 	.left-contents {
+		flex-grow: 500px;
+		text-align: center;
+	}
+	.right-contents {
+		flex-basis: 500px;
 
-		.user-image {
-			border: solid 1px;
+		.user-name .title, .user-introduce .title {
+			width:200px;
+			font-weight: bold;
+			font-size: 20px;
+			border-bottom: solid 1px;
+		}
+
+		.user-name {
+			margin-bottom: 20px;
 		}
 	}
 }
@@ -25,10 +37,63 @@ main {
 	.page-title {
 		display: flex;
 		justify-content: center;
+		margin-bottom: 50px;
 		text-align: center;
 
 		h2 {
 			padding: 10px;
+			border-bottom: solid 1px;
 		}
+
+		.now {
+			border-bottom: solid 3px;
+		}
+	}
+
+	.likes-all {
+		max-width: 70%;
+		margin: 0 auto;
+	}
+
+	.spots-container {
+		display: flex;
+
+		.left-contents {
+			margin-right: 100px;
+		}
+
+		.upper-contents {
+			display: flex;
+			font-size: 30px;
+			font-weight: bold;
+			height: 50px;
+			line-height: 50px;
+
+			.spot-name {
+				margin-right: 20px;
+			}
+		}
+
+		.lower-contents {
+			display: flex;
+			font-size: 20px;
+			line-height: 50px;
+			height: 50px;
+
+			img {
+				border: solid 1px;
+				border-radius: 50%;
+
+			}
+
+			.item {
+				margin-right: 20px;
+			}
+		}
+	}
+
+	.pagination {
+		display: flex;
+		justify-content: flex-end;
 	}
 }

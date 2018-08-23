@@ -4,27 +4,44 @@
 <main class="main">
   <div class="for-background">
     <div class="container-wrapper">
-      <%= form_for @like_comment do |f| %>
         <div class="containers">
-          <div class="form-title">
-            <h1>口コミ　新規投稿</h1>
+          <div class="top-container">
+            <div class="spot-images">
+              <% @spot.spot_images.first(1).each do |image| %>
+                <%= attachment_image_tag image, :image, :fill, 1280, 400 %>
+              <% end %>
+              <div id="spot-name">
+                <%= @spot.spot_name %>
+              </div>
+              <div class="spot-introduce">
+                <%= @spot.spot_introduce %> <!-- スライドショーの矢印を少し上に設置する -->
+              </div>
+            </div>
           </div>
-          <div class="field">
-            <%= f.label :title, "タイトル" %><span>※</span><br />
-            <%= f.text_field :title, autofocus: true, autocomplete: false, placeholder: "30文字以内で入力してください。", size: "30" %>
-          </div>
+          <div class="form-container">
+            <div class="contents">
+              <%= form_for @like_comment, :url => {:action => 'create'} do |f| %>
+                <div class="form-title">
+                  <h1>口コミ　新規投稿</h1>
+                </div>
+                <div class="field">
+                  <%= f.label :title, "タイトル" %><span>※</span><br />
+                  <%= f.text_field :title, autofocus: true, autocomplete: false, placeholder: "30文字以内で入力してください。", size: "50" %>
+                </div>
 
-          <div class="field">
-            <%= f.label :text, "内容" %><span>※</span><br />
-            <%= f.text_area :spot_pros, autofocus: true, autocomplete: false, placeholder: "200文字以内で入力してください", size: "30x7" %>
-          </div>
+                <div class="field">
+                  <%= f.label :text, "内容" %><span>※</span><br />
+                  <%= f.text_area :text, autofocus: true, autocomplete: false, placeholder: "200文字以内で入力してください", size: "49x7" %>
+                </div>
 
-          <div type="submit" id="submit">
-            <%= f.submit "投稿する" %>
-            <%= link_to "前に戻る" :back %>
+                <div type="submit" id="submit">
+                  <%= f.submit "投稿する" %><br>
+                  <%= link_to "前に戻る", :back %>
+                </div>
+              <% end %>
+            </div>
           </div>
         </div>
-      <% end %>
     </div>
   </div>
 </main>

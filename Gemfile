@@ -68,4 +68,6 @@ gem 'refile',require: 'refile/rails',github: 'manfe/refile' #画像をアップ�
 gem 'refile-mini_magick' #画像をリサイズ
 gem 'bootstrap-sass' #bootstrap使用
 gem 'kaminari' # ページング機能
-gem 'carrierwave' #複数の画像をアップロード
+gem 'nested_form_fields' #親子モデルを伴った動的なフォームを作成するためのgem
+gem 'font-awesome-rails' #font-awesomeを使うためのgem
+gem 'geocoder' #住所から経度、緯度を取得してくれる

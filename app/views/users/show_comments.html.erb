@@ -9,52 +9,69 @@
             <div class="left-contents">
               <div class="user-image">
                 <% if @user.user_image %>
-                  <%= attachment_image_tag @user, :user_image, :fill, 150, 150, format: 'jpeg' %>
+                  <%= attachment_image_tag @user, :user_image, :fill, 180, 180, format: 'jpeg' %>
                 <% else %>
-                  <i class="fas fa-user fa-7x"></i><br>
+                  <i class="fa fa-user fa-7x"></i><br>
                 <% end %>
               </div>
             </div>
             <div class="right-contents">
-              <div class="user-name">ユーザー名：<%= @user.name %></div>
-              <div class="user-settting">
-                <%= link_to edit_user_path do %>
-                  <i class="fas fa-cog"> 編集</i>
-                <% end %>
+              <div class="user-name">
+                <p class="title">ユーザー名</p>
+                <p><%= @user.name %></p>
                 </div>
-              <div class="user-introduce">自己紹介：
+              <div class="user-introduce">
+                <p class="title">自己紹介</p>
                 <% if @user.introduce.nil? %>
-                  未記載
+                  <p>まだ記入されていません</p>
                 <% else %>
-                  <%= @user.introduce %>
+                  <p><%= @user.introduce %></p>
                 <% end %>
               </div>
+              <% if @user.id == current_user.id %>
+                <div class="user-settting">
+                  <%= link_to edit_user_path do %>
+                    <i class="fa fa-cog"> 編集</i>
+                  <% end %>
+                </div>
+              <% end %>
             </div>
           </div>
           <div class="main-container">
             <div class="page-title">
             	<h2><%= link_to "いいね　一覧", user_show_likes_path %></h2>
-            	<h2>口コミ　一覧</h2>
+            	<h2 class="now">口コミ　一覧</h2>
             </div>
             <div class="comments-all">
               <% if @like_comments.empty? %>
                 <p>口コミがまだありません</p>
                 <p><%= link_to "絶景", root_path %>をみんなに共有してみませんか？</p>
               <% else %>
-                <%= @like_comments.first(5).each do |spot| %>
+                <% @like_comments.first(5).each do |like_comment| %>
+                <% spot = Spot.find(like_comment.spot_id) %>
+                <% spot_image = SpotImage.find(spot.id) %>
                   <ul>
                     <li class="spots-container">
                     	<div class="left-contents">
-                    		<div class="spot-image">スポット画像</div>
+                    		<div class="spot-image">
+                          <%= link_to spot_path(spot.id) do %>
+                            <%= attachment_image_tag spot_image, :image, :fill, 120, 120, format: 'jpeg' %>  
+                          <% end %>
+                        </div>
                     	</div>
                     	<div class="right-contents">
-                    		<div class="up-contents">
-                    			<div class="comment-title">タイトル</div>>
-                    			<div class="edit">編集ボタン</div>
-                          <div class="delete">削除ボタン</div>
+                    		<div class="upper-contents">
+                    			<div class="comment-title"><%= like_comment.title %></div>
+                          <% if like_comment.user_id == current_user.id %>
+                      			<div class="edit">
+                              <%= link_to edit_spot_like_comment_path(spot.id, like_comment.id) do %>
+                                <i class="fa fa-edit fa-2x"> 編集</i>
+                              <% end %>
+                            </div>
+                          <% end %>
                     		</div>
-                    		<div class="down-contents">
-                    			<div class="comment-tezt">口コミの内容</div>
+                    		<div class="lower-contents">
+                    			<div class="comment-tezt"><%= like_comment.text %></div>
                     		</div>
                     	</div>
                     </li>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_09_101420) do
+ActiveRecord::Schema.define(version: 2018_08_22_122343) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -46,7 +46,7 @@ ActiveRecord::Schema.define(version: 2018_08_09_101420) do
   end
 
   create_table "spot_images", force: :cascade do |t|
-    t.string "spot_image"
+    t.string "image_id"
     t.integer "spot_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -55,10 +55,9 @@ ActiveRecord::Schema.define(version: 2018_08_09_101420) do
 
   create_table "spots", force: :cascade do |t|
     t.string "spot_name", null: false
-    t.json "spot_image_id", null: false
     t.text "spot_introduce", null: false
-    t.text "spot_pros", null: false
-    t.text "spot_cons", null: false
+    t.text "spot_pros"
+    t.text "spot_cons"
     t.string "country", null: false
     t.string "address"
     t.string "transportation", null: false
@@ -68,6 +67,10 @@ ActiveRecord::Schema.define(version: 2018_08_09_101420) do
     t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.text "transportation_text"
+    t.text "tourism_level_text"
+    t.float "latitude"
+    t.float "longitude"
     t.index ["country"], name: "index_spots_on_country"
     t.index ["spot_name"], name: "index_spots_on_spot_name"
   end
