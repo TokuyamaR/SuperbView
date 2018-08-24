@@ -17,7 +17,7 @@ Rails.application.routes.draw do
     get '/users/sign_out' => 'devise/sessions#destroy'
   end
 
-  resources :users, :except => [:show]
+  resources :users, :except => [:show, :index]
 
   resources :spots do
     resources :like_comments
@@ -34,12 +34,14 @@ Rails.application.routes.draw do
   # 管理者
   get "admin/users" => "users#admin_index", as: "admin_users"
   get "admin/users/:user_id" => "users#admin_show", as: "admin_show_user"
+  get "admin/users/:user_id/edit" => "users#admin_edit", as: "admin_edit_user"
   delete "admin/users/:user_id" => "users#admin_destroy", as: "admin_destroy_user"
 
 # spots
   # ユーザー
   # 管理者
   get "admin/spots" => "spots#admin_index", as: "admin_spots"
+  get "admin/spots/new" => "spots#admin_new", as: "admin_new_spot"
   get "admin/spots/:spot_id/show" => "spots#admin_show", as: "admin_show_spot"
   get "admin/spots/:spot_id/edit" => "spots#admin_edit", as: "admin_edit_spot"
   patch 'admin/spots/:spot_id/edit' => 'spots#admin_update', as: 'admin_update_spot'

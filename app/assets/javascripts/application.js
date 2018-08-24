@@ -18,3 +18,9 @@
 //= require bootstrap-sprockets
 //= require nested_form_fields
 //= require map_helper
+
+
+$( document ).ready(function() {
+    $('.alert').fadeOut(5000);
+    $(".alert-text").removeClass('hide');
+});

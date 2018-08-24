@@ -10,32 +10,23 @@
   </head>
 
   <body>
-    <% if @greed_flag != true %>
+    <% if @header_flag != true %>
     <!-- 管理者ヘッダー -->
     <% if administrator_signed_in? %>
       <header class="header clearfix">
         <div class="header-container">
-          <!-- 検索フォーム -->
-          <div class="header-search">
-            <%= form_tag spots_path, :method => 'get', :id => "search-form" do %>
-                <%= text_field_tag :search, params[:search], :placeholder => "国名を入力", :id => "search-box" %>
-                <%= submit_tag "検索", :country => nil, :id => "search-btn" %>
-            <% end %>
-          </div>
+          <!-- 管理者は投稿一覧があるため検索フォームなし -->
+          <p>管理者でログイン中</p>
           <div class="app-title">
-            <% if user_signed_in? %>
-              <%= link_to 'アプリタイトル', root_path %>
-            <% else %>
-              <%= link_to 'アプリタイトル', root_path %>
-            <% end %>
+            <%= link_to 'アプリタイトル', root_path %>
           </div>
           <!-- ナビゲーション -->
           <div id="gnavi" class="header-menus">
             <ul class="header-menus">
-              <li><%= link_to '新規投稿', new_post_path, class: "" %></li>
-              <li><%= link_to '投稿一覧', spots_path, class: "" %></li>
-              <li><%= link_to 'ユーザー一覧', users_path, class: "" %></li>
-              <li><%= link_to '口コミ一覧', spot_like_comments_path, class: "" %></li>
+              <li><%= link_to '新規投稿', admin_new_spot_path, class: "" %></li>
+              <li><%= link_to '投稿一覧', admin_spots_path, class: "" %></li>
+              <li><%= link_to 'ユーザー一覧', admin_users_path, class: "" %></li>
+              <li><%= link_to '口コミ一覧', admin_like_comments_path, class: "" %></li>
               <li><%= link_to '管理者ログアウト', destroy_administrator_session_path, method: :delete,
                    "data-confirm" => "本当にログアウトしますか？", class: "" %>
               </li>
@@ -99,7 +90,7 @@
 
     <%= yield %>
 
-    <% if @greed_flag != true %>
+    <% if @footer_flag != true %>
     <!-- フッター -->
     <div class="clearfix"></div>
       <footer class="clearfix">
@@ -110,7 +101,8 @@
           <%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
                        "data-confirm" => "本当にログアウトしますか？", class: "footer-sign-out" %>
         <% if user_signed_in? %>
-          <%= link_to '退会', user_path(current_user.id), class: "unsubscribe" %>
+          <%= link_to '退会', user_path(current_user.id),
+                       "data-confirm" => "本当に退会しますか？", class: "unsubscribe" %>
         <% end %>
         </div>
         <div class="copyright">

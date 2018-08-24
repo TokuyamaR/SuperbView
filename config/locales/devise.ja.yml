@@ -83,4 +83,9 @@ ja:
         user_name: "プロフィール画像"
         remember_me: "ログイン状態を保持する"
         accepted: 「利用規約、プライバシーポリシーの取扱に同意する」
+      administrator:
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+        email: "メールアドレス"
+        remember_me: "ログイン状態を維持する"
 
