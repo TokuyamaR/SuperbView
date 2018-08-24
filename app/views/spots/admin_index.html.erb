@@ -45,8 +45,8 @@
                 <% end %>
             </div>
             <div class="pagination">
-            	<%= paginate @users %>
-            	<%= @spots.total_count %>件中<%= @spots.offset_value %>〜<%= @spots.offset_value + @spots.length %>件を表示しています。
+            	<%= paginate @spots %>
+            	<%= @spots.total_count %>件中<%= @spots.offset_value + 1 %>〜<%= @spots.offset_value + @spots.length %>件を表示しています。
             </div>
         </div>
     </div>

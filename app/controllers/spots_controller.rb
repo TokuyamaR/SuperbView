@@ -73,7 +73,7 @@ class SpotsController < ApplicationController
 
   # 管理者用アクション
   def admin_index
-    @spots = Spot.all
+    @spots = Spot.all.page(params[:page]).reverse_order
   end
 
   def admin_show
