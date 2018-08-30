@@ -60,6 +60,15 @@
                                 <i class="fa fa-trash">削除</i>
                               <% end %>
                             </p>
+                          <% else %>
+                            <p>
+                              <%= link_to edit_spot_like_comment_path(like_comment.spot_id,like_comment.id) do %>
+                              <% end %>
+                            </p>
+                            <p>
+                              <%= link_to spot_like_comment_path(like_comment.spot_id,like_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
+                              <% end %>
+                            </p>
                           <% end %>
                     		</div>
                     		<div class="down-contents">

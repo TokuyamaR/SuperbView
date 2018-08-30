@@ -1,53 +1,89 @@
 <!-- 読み込むscssファイル -->
 <%= stylesheet_link_tag "spots/admin_index", :media => "all" %>
+<%= javascript_include_tag "places" %>
 
 <main class="main">
   <div class="for-background">
     <div class="container-wrapper">
         <div class="containers">
+          <div class="top-container">
+            <!-- 地図を表示 -->
+            <div class="map-index"></div>
+          </div>
+          <div class="main-container">
             <div class="page-title">
-                <h2>スポット一覧(管理者用)</h2>
+                <h2>検索結果</h2>
+                <hr class="hr">
             </div>
-            <div class="spot-all">
-                <%= @spots.first(10).each do |spot| %>
+            <div class="search-result">
+              <% if @spots.empty? %>
+                <p>該当する絶景はまだありません。</p>
+                <p>最初の<%= link_to "絶景を投稿", new_spot_path %>しませんか？</p>
+              <% else %>
+                <% @spots.first(5).each do |spot| %>
+                <% spot_image = Spot.find(spot.id) %>
                   <ul>
-                    <li class="spot-container">
+                    <li class="spots-container">
                         <div class="left-contents">
-                            <div class="spot-image">スポット画像</div> <!-- 登録されている画像の１枚目のみを抜き出す -->
+                            <div class="spot-image">
+                          <%= link_to spot_path(spot.id) do %>
+                            <% spot.spot_images.first(1).each do |image| %>
+                              <%= attachment_image_tag image, :image, :fill, 150, 150 %>
+                            <% end %>
+                          <% end %>
+                        </div>
                         </div>
                         <div class="right-contents">
-                            <div class="up-contents">
-                                <p class="spot-name">スポット名</p>
-                                <p class="country">国名</p>
-                                <span>
-                                    <%= link_to admin_show_spot_path(spot) do %>
-                                        <i class="fas fa-book-open">詳細</i>
-                                    <% end %>
-                                </span>
-                                <span>
-                                    <%= link_to admin_edit_spot_path(spot) do %>
-                                        <i class="far fa-edit">編集</i>
-                                    <% end %>
-                                </span>
+                            <div class="upper-contents">
+                                <p class="spot-name"><%= spot.spot_name %></p>
+                          <p class="country">(<%= spot.country %>)</p>
                             </div>
-                            <div class="down-contents">
-                                <div class="transportation">交通手段</div>
-                                <div class="tourism-level">観光難易度</div>
-                                <div class="good-season-start">おすすめ時期(開始)</div>
-                                <div class="good-season-end">おすすめ時期(終了)</div>
-                                <div class="like-comments-count">
-                                    <i class="fa fa-commenting-o" aria-hidden="true"></i> <!--アイコン+数字にて表示 -->
-                                </div>
-                            </div>
+                            <div class="lower-contents">
+                          <div class="good-season item">おすすめ時期：
+                            <%= spot.good_season_start %>月〜<%= spot.good_season_end %>月
+                          </div>
+                          <div class="transportation item">
+                            <% if spot.transportation == "徒歩" %>
+                              <%= image_tag "/transportations/walk.png", :size => "40x40", :alt => "徒歩" %>
+                            <% elsif spot.transportation == "自転車" %>
+                              <%= image_tag "/transportations/bicycle.png", :size => "40x40", :alt => "自転車" %>
+                            <% elsif spot.transportation == "電車" %>
+                              <%= image_tag "/transportations/train.png", :size => "40x40", :alt => "電車" %>
+                            <% elsif spot.transportation == "車" %>
+                              <%= image_tag "/transportations/car.png", :size => "40x40", :alt => "車" %>
+                            <% else spot.transportation == "飛行機" %>
+                              <%= image_tag "/transportations/airplane.png", :size => "40x40", :alt => "飛行機" %>
+                            <% end %>
+                          </div>
+                          <div class="tourism-level item">
+                           <% if spot.tourism_level == "VeryEasy" %>
+                              <%= image_tag "/tourism_levels/veryeasy_icon.png", :size => "40x40", :alt => "VeryEasy" %>
+                            <% elsif spot.tourism_level == "Easy" %>
+                              <%= image_tag "/tourism_levels/easy_icon.png", :size => "40x40", :alt => "Easy" %>
+                            <% elsif spot.tourism_level == "Normal" %>
+                              <%= image_tag "/tourism_levels/normal_icon.png", :size => "40x40", :alt => "Normal" %>
+                            <% elsif spot.tourism_level == "Hard" %>
+                              <%= image_tag "/tourism_levels/hard_icon.png", :size => "40x40", :alt => "Hard" %>
+                            <% else spot.tourism_level == "VeryHard" %>
+                              <%= image_tag "/tourism_levels/veryhard_icon.png", :size => "40x40", :alt => "VeryHard" %>
+                            <% end %>
+                          </div>
+                          <div class="like-comments-count item">
+                            <i class="fa fa-commenting-o" aria-hidden="true"></i>
+                            <%= spot.like_comments.count %>件 <!--アイコン+数字にて表示 -->
+                          </div>
+                        </div>
                         </div>
                     </li>
                   </ul>
                 <% end %>
+              <% end %>
             </div>
             <div class="pagination">
-            	<%= paginate @spots %>
-            	<%= @spots.total_count %>件中<%= @spots.offset_value + 1 %>〜<%= @spots.offset_value + @spots.length %>件を表示しています。
+                <%= paginate @spots %>
+                <%= @spots.total_count %>件中<%= @spots.offset_value + 1 %>〜<%= @spots.offset_value + @spots.length %>件を表示しています。
             </div>
+          </div>
         </div>
     </div>
   </div>

@@ -16,19 +16,21 @@
       <header class="header clearfix">
         <div class="header-container">
           <!-- 管理者は投稿一覧があるため検索フォームなし -->
-          <p>管理者でログイン中</p>
+          <p class="p-image">
+            <%= image_tag "/anything/admin_image.png", :size => "50x50", :alt => "管理者画像", class: 'admin-image' %>
+          </p>
           <div class="app-title">
-            <%= link_to 'アプリタイトル', root_path %>
+            <%= link_to root_path do %>
+              <%= image_tag "/logo/header_logo_4.png", :size => "170x50", :alt => "header_logo" %>
+            <% end %>
           </div>
           <!-- ナビゲーション -->
           <div id="gnavi" class="header-menus">
             <ul class="header-menus">
-              <li><%= link_to '新規投稿', admin_new_spot_path, class: "" %></li>
-              <li><%= link_to '投稿一覧', admin_spots_path, class: "" %></li>
-              <li><%= link_to 'ユーザー一覧', admin_users_path, class: "" %></li>
-              <li><%= link_to '口コミ一覧', admin_like_comments_path, class: "" %></li>
-              <li><%= link_to '管理者ログアウト', destroy_administrator_session_path, method: :delete,
-                   "data-confirm" => "本当にログアウトしますか？", class: "" %>
+              <li class="h-1"><%= link_to '投稿一覧', admin_spots_path, class: "h-s-index" %></li>
+              <li class="h-2"><%= link_to 'ユーザー一覧', admin_users_path, class: "h-u-index" %></li>
+              <li class="h-3"><%= link_to 'ログアウト', destroy_administrator_session_path, method: :delete,
+                   "data-confirm" => "本当にログアウトしますか？", class: "h-logout" %>
               </li>
             </ul>
           </div>
@@ -44,30 +46,27 @@
           <div class="header-search">
             <%= form_tag spots_path, :method => 'get', :id => "search-form" do %>
                 <%= text_field_tag :search, params[:search], :placeholder => "国名を入力", :id => "search-box" %>
-                <%= submit_tag "検索", :station => nil, :id => "search-btn" %>
-                <% if user_signed_in? %>
-                  <%= @user.name %>でログイン中
+                <%= button_tag tyep: 'submit', :country => nil, :id => "search-btn" do %>
+                <i class="fa fa-search"></i>
                 <% end %>
             <% end %>
           </div>
           <div class="app-title">
-            <% if user_signed_in? %>
-              <%= link_to 'アプリタイトル', root_path %>
-            <% else %>
-              <%= link_to 'アプリタイトル', root_path %>
+            <%= link_to root_path do %>
+              <%= image_tag "/logo/header_logo_4.png", :size => "170x50", :alt => "header_logo" %>
             <% end %>
           </div>
           <!-- ナビゲーション -->
           <div id="gnavi" class="header-menus">
             <ul class="header-menus">
               <% if user_signed_in? %>
-                <li><%= link_to '新規投稿', new_spot_path, class: "" %></li>
-                <li><%= link_to 'マイページ', user_show_likes_path(current_user.id), class: "" %></li>
-                <li><%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
-                     "data-confirm" => "本当にログアウトしますか？", class: "" %></li>
+                <li class="h-1"><%= link_to '新規投稿', new_spot_path, class: "h-create" %></li>
+                <li class="h-2"><%= link_to 'マイページ', user_show_likes_path(current_user.id), class: "h-mypage" %></li>
+                <li class="h-3"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
+                     "data-confirm" => "本当にログアウトしますか？", class: "h-logout" %></li>
               <% else %>
-                <li><%= link_to 'ログイン', new_user_session_path, class: "" %></li>
-                <li><%= link_to '会員登録', new_user_registration_path, class: "" %></li>
+                <li class="h-1"><%= link_to 'ログイン', new_user_session_path, class: "h-login" %></li>
+                <li class="h-2"><%= link_to '会員登録', new_user_registration_path, class: "h-signup" %></li>
               <% end %>
             </ul>
           </div>
@@ -106,7 +105,7 @@
         <% end %>
         </div>
         <div class="copyright">
-           <p>©︎ 2018 Infratop.inc</p>
+           <p>©︎ 2018 SuperbView.inc</p>
         </div>
       </footer>
     <% end %>

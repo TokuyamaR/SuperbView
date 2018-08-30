@@ -34,6 +34,8 @@ Rails.application.config.assets.precompile += %w( administrators/sessions/new.sc
 
 # spots
 Rails.application.config.assets.precompile += %w( spots/admin_index.scss )
+Rails.application.config.assets.precompile += %w( spots/admin_new.scss )
+Rails.application.config.assets.precompile += %w( spots/admin_show.scss )
 Rails.application.config.assets.precompile += %w( spots/admin_edit.scss )
 Rails.application.config.assets.precompile += %w( spots/admin_new.scss )
 Rails.application.config.assets.precompile += %w( spots/admin_show.scss )

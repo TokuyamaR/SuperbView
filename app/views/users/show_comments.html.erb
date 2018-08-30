@@ -9,9 +9,9 @@
             <div class="left-contents">
               <div class="user-image">
                 <% if @user.user_image %>
-                  <%= attachment_image_tag @user, :user_image, :fill, 180, 180, format: 'jpeg' %>
+                  <%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg' %>
                 <% else %>
-                  <i class="fa fa-user fa-7x"></i><br>
+                  <%= image_tag "/anything/no_user_image.png", :size => "180x180", :alt => "ユーザー画像" %>
                 <% end %>
               </div>
             </div>
@@ -31,7 +31,7 @@
               <% if @user.id == current_user.id %>
                 <div class="user-settting">
                   <%= link_to edit_user_path do %>
-                    <i class="fa fa-cog"> 編集</i>
+                    <i class="fa fa-cog fa-2x"></i> 編集
                   <% end %>
                 </div>
               <% end %>
@@ -45,7 +45,7 @@
             <div class="comments-all">
               <% if @like_comments.empty? %>
                 <p>口コミがまだありません</p>
-                <p><%= link_to "絶景", root_path %>をみんなに共有してみませんか？</p>
+                <p><%= link_to "絶景", root_path, class: 'link' %>をみんなに共有してみませんか？</p>
               <% else %>
                 <% @like_comments.first(5).each do |like_comment| %>
                 <% spot = Spot.find(like_comment.spot_id) %>
@@ -65,7 +65,7 @@
                           <% if like_comment.user_id == current_user.id %>
                       			<div class="edit">
                               <%= link_to edit_spot_like_comment_path(spot.id, like_comment.id) do %>
-                                <i class="fa fa-edit fa-2x"> 編集</i>
+                                <i class="fa fa-edit fa-2x"></i>
                               <% end %>
                             </div>
                           <% end %>
@@ -81,7 +81,13 @@
             </div>
             <div class="pagination">
             	<%= paginate @like_comments %>
-            	<%= @like_comments.total_count %>件中<%= @like_comments.offset_value %>〜<%= @like_comments.offset_value + @like_comments.length %>件を表示しています。
+            	<%= @like_comments.total_count %>件中
+              <% if @like_comments.present? %>
+                <%= @like_comments.offset_value + 1 %>
+              <% else %>
+                <%= @like_comments.offset_value %>
+              <% end %>
+              〜<%= @like_comments.offset_value + @like_comments.length %>件を表示しています。
             </div>
           </div>
         </div>

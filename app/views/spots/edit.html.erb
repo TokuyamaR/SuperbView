@@ -1,4 +1,5 @@
 <!-- 読み込むscssファイル -->
+<%= stylesheet_link_tag "custom", :media => "all" %>
 <%= stylesheet_link_tag "spots/edit", :media => "all" %>
 <%= javascript_include_tag "places" %>
 
@@ -11,7 +12,7 @@
             <h1>投稿編集</h1>
           </div>
           <div class="field">
-            <%= f.label :spot_name, "スポットの名称" %><span>※</span>
+            <%= f.label :spot_name, "絶景の名称" %><span>※</span>
             <%= f.text_field :spot_name, autofocus: true, autocomplete: "spot_name", placeholder: "例：富士山", size: "50", class: "address" %>
             <%= link_to "SEARCH", "#", class: "map-search-button" %>
             <div class="map-canvas" style="height: 0;"
@@ -40,17 +41,17 @@
           <div class="field">
             <p class="spot-image-title">絶景の画像</p>
             <% @spot.spot_images.each do |image| %>
-              <%= attachment_image_tag image, :image, :fill, 200, 200 %>
+              <%= attachment_image_tag image, :image, :fill, 300,150, class: "s-image" %>
             <% end %>
-            <table class="table table-striped table-bordered table-hover">
+            <table class="table table-striped table-hover">
               <tbody>
                   <%= f.nested_fields_for :spot_images, wrapper_tag: :tr do |g| %>
                       <td><%= g.attachment_field :image, class: 'form-control' %></td>
-                      <td><%= g.remove_nested_fields_link '削除', class: 'btn btn-danger', role: 'button' %></td>
+                      <td><%= g.remove_nested_fields_link class: 'btn btn-danger', role: 'button' do %><i class="fa fa-trash"> 削除</i><% end %></td>
                   <% end %>
               </tbody>
             </table>
-            <%= f.add_nested_fields_link :spot_images, '追加', class: 'btn btn-primary', role: 'button' %>
+            <%= f.add_nested_fields_link :spot_images, class: 'btn btn-primary', role: 'button' do %><i class="fa fa-image"></i> 追加</i><% end %>
           </div>
 
           <div class="field">
@@ -110,7 +111,7 @@
             </label>
           </div>
           <div class="field">
-            <%= f.label :tourism_level_text, "難易度の理由" %><br />
+            <%= f.label :tourism_level_text, "難易度の詳細" %><br />
             <%= f.text_area :tourism_level_text, autofocus: true, autocomplete: false, placeholder: "例：時間帯によらず治安も良く、徒歩１０分ほどで行けるため。", size: "49x5" %>
           </div>
           <div class="field">

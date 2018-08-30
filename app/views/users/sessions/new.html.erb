@@ -14,16 +14,16 @@
               ログイン
             </div>
           </div>
-          <div class="field">
+          <div class="field email">
             <%= f.label :email, "メールアドレス" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：gotrip@trip.com", size: "30" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：gotrip@trip.com", size: "30", class: 'login-field' %>
           </div>
 
-          <div class="field">
+          <div class="field password">
             <%= f.label :password, "パスワード" %>
             <% if @minimum_password_length %>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "off", placeholder: "8文字以上", size: "30" %>
+            <%= f.password_field :password, autocomplete: "off", placeholder: "8文字以上", size: "30", class: 'login-field' %>
           </div>
 
           <% if devise_mapping.rememberable? -%>

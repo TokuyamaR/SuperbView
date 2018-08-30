@@ -15,26 +15,26 @@
               <%= link_to "ログイン", new_user_session_path %>
             </div>
           </div>
-          <div class="field">
+          <div class="field user-name">
             <%= f.label :name, "ユーザー名" %><br />
-            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "20文字以内", size: "30" %>
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", placeholder: "20文字以内", size: "30", class: 'signup-field' %>
           </div>
 
-          <div class="field">
+          <div class="field email">
             <%= f.label :email, "メールアドレス" %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：gotrip@trip.com", size: "30" %>
+            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：gotrip@trip.com", size: "30", class: 'signup-field' %>
           </div>
 
-          <div class="field">
+          <div class="field password">
             <%= f.label :password, "パスワード" %>
             <% if @minimum_password_length %>
             <% end %><br />
-            <%= f.password_field :password, autocomplete: "off", placeholder: "8文字以上", size: "30" %>
+            <%= f.password_field :password, autocomplete: "off", placeholder: "8文字以上", size: "30", class: 'signup-field' %>
           </div>
 
-          <div class="field">
+          <div class="field password-confirmation">
             <%= f.label :password_confirmation, "パスワード確認" %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "パスワードを再入力", size: "30" %>
+            <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "パスワードを再入力", size: "30", class: 'signup-field' %>
           </div>
 
           <div class="field text-left">

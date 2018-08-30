@@ -3,29 +3,56 @@
 	margin: 0 auto;
 	margin-top: 50px;
 
+
 	.page-title {
 		margin-bottom: 50px;
 	}
 
 	hr {
-		margin: 10px 0 ;
+		margin: 10px 0;
 	}
 
+	.search-result {
+		max-width: 70%;
+		margin: 0 auto;
+	}
 
-
-	.user-container {
+	.spots-container {
 		display: flex;
-		margin-bottom: 20px;
 
-		table {
+		.left-contents {
+			margin-right: 100px;
+		}
 
-			td {
-				height: 100px;
+		.upper-contents {
+			display: flex;
+			font-size: 30px;
+			font-weight: bold;
+			height: 50px;
+			line-height: 50px;
+
+			.spot-name {
+				margin-right: 20px;
+			}
+		}
+
+		.lower-contents {
+			display: flex;
+			font-size: 20px;
+			line-height: 50px;
+			height: 50px;
+
+			img {
+				border: solid 1px;
+				border-radius: 50%;
+
+			}
+
+			.item {
+				margin-right: 20px;
 			}
 		}
 	}
-
-
 	.pagination {
 		display: flex;
 		justify-content: flex-end;

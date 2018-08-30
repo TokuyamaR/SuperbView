@@ -14,8 +14,6 @@
  *= require font-awesome
  */
 
-@import "bootstrap-sprockets";
-@import "bootstrap";
 @import "font-awesome";
 
 
@@ -31,16 +29,33 @@
   clear: both;
 }
 
-a {
-text-decoration: none;
-}
-
-li {
+ul {
 	list-style: none;
 }
 
-/*ヘッダー*/
 
+/* aだけに指定してもtext-decorationは効かないので注意 */
+
+
+a, a:visited, a:focus, a:hover {
+        text-decoration: none;
+        color: #000;
+    }
+
+.fa-twitter-square {
+	color: #1DA1F2;
+}
+
+
+.fa-facebook-square {
+	color: #3B5998;
+	}
+
+.fa-google-plus-square {
+	color: #DB4437;
+}
+
+/*ヘッダー*/
 .header {
 	height: 50px;
 	border-bottom: solid 1px;
@@ -48,19 +63,71 @@ li {
 }
 .header-container {
 	display: flex;
+	height: 50px;
 	line-height: 50px;
 	justify-content: space-around;
+
+
+	.p-image {
+		width:200px;
+
+		.admin-image {
+			border-radius: 50%;
+			border: solid 1px;
+		}
+	}
 }
 
 .header-search #search-box, #search-btn {
     line-height: 20px;
 }
 
+#search-box {
+	border: solid 1px;
+	height: 30px;
+	line-height: 30px;
+	outline: 0;
+	width: 200px;
+}
+
+#search-btn {
+	line-height: 30px;
+	border-radius:5px;
+	color:#000;
+	border:none;
+	outline: 0;
+	width:30px;
+}
+#search-btn:hover{
+	background:#000;
+	color:#fff;
+	-webkit-transition: all .40s;
+	   -moz-transition: all .40s;
+	    -ms-transition: all .40s;
+	     -o-transition: all .40s;
+	        transition: all .40s;
+}
+
+
+
 .header-menus {
 	display: flex;
-	list-style-type: none;
 	justify-content: space-around;
 	width:300px;
+	height: 50px;
+}
+
+.header-menus li {
+	min-width: 33%;
+	text-align: center;
+}
+
+.h-1:hover, .h-2:hover, .h-3:hover {
+	background-color: #000;
+	transition: 1s;
+	a {
+		color: #fff;
+	}
 }
 
 .app-title {
@@ -84,7 +151,22 @@ li {
 body {
 	 display: flex;
 	 flex-direction: column;
+	 font-family: 'Helvetica Neue','Helvetica','Arial',sans-serif;
 	 min-height: 100vh;
+}
+
+/*ページネーション*/
+/*ページネーション*/
+.paginate {
+	margin: 10px 0;
+	text-align: center;
+}
+.pagination {
+	margin: 0 auto;
+}
+
+.pagination-text {
+	text-align: right;
 }
 
 /*フッター*/
@@ -105,4 +187,16 @@ footer {
 
 .copyright {
 	text-align: center;
+}
+
+.alert-text {
+    padding: 0 15px;
+    border-radius: 4px;
+    height: 0.1px;
+    text-align: center;
+}
+.notice {
+    background-color: #CCFFCC;
+    border-color: #CCFFCC;
+    color: #008000;
 }

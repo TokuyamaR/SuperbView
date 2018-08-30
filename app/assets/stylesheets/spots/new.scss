@@ -11,10 +11,17 @@ main {
 
 .containers {
 	margin: 0 auto;
-	width:400px;
+	width:520px;
 
 	.form-title ,.field, #submit {
 		margin-bottom: 30px;
+	}
+	.form-title {
+		text-align: center;
+	}
+
+	.latitude , .longitude {
+		display: none;
 	}
 
 }

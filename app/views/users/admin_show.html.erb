@@ -5,22 +5,38 @@
   <div class="for-background">
     <div class="container-wrapper">
         <div class="containers">
-            <div class="left-container">
-          	    <div class="contents left">
-	          	    <div class="user-image">
-		          	    ユーザー画像
-	          		</div>
-	            </div>
+          <div class="top-container">
+            <div class="left-contents">
+              <div class="user-image">
+                <% if @user.user_image %>
+                  <%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg' %>
+                <% else %>
+                  <%= image_tag "/anything/no_user_image.png", :size => "180x180", :alt => "ユーザー画像" %>
+                <% end %>
+              </div>
             </div>
-            <div class="right-container">
-	          	<div class="contents right">
-	          		<div class="user-name">ユーザー名</div><span>編集アイコン（歯車）</span>
-	        		<div class="user-introduce">自己紹介テキスト</div>
-	        		<div class="user-email">メールアドレス</div>
-	        		<div class="user-password">パスワード</div>
-	            </div>
-      		</div>
+            <div class="right-contents">
+              <div class="user-name">
+                <p class="title">ユーザー名</p>
+                <p><%= @user.name %></p>
+                </div>
+              <div class="user-introduce">
+                <p class="title">自己紹介</p>
+                <% if @user.introduce.nil? %>
+                  <p>まだ記入されていません</p>
+                <% else %>
+                  <p><%= @user.introduce %></p>
+                <% end %>
+              </div>
+              <div class="user-settting">
+                <%= link_to admin_edit_user_path do %>
+                  <i class="fa fa-cog fa-2x"></i> 編集
+                <% end %>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
   </div>
 </main>
+

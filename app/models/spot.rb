@@ -23,8 +23,16 @@ class Spot < ApplicationRecord
     end
   end
 
-  def liked_by?(user)
-    likes.where(user_id: user.id).exists?
+  # 最初に設定したいいね判定メソッド
+
+  # def liked_by?(user)
+  #   likes.where(user_id: user.id).exists?
+  # end
+
+  # 後から設定したいいね判定メソッド
+
+  def like_user(user_id)
+   likes.find_by(user_id: user_id)
   end
 
 end

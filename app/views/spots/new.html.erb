@@ -1,19 +1,29 @@
 <!-- 読み込むscssファイル -->
 <%= stylesheet_link_tag "spots/new", :media => "all" %>
+<%= stylesheet_link_tag "custom", :media => "all" %>
 <%= javascript_include_tag "places" %>
 
 <main class="main">
   <div class="for-background">
     <div class="container-wrapper">
+      <% if @spot.errors.any? %>
+        <div id="error_explanation" class="alert alert-danger">
+          <ul>
+            <% @spot.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
       <%= form_for @spot, html:{class: 'form-horizontal'} do |f| %>
         <div class="containers">
           <div class="form-title">
-            <h1>新規登録</h1>
+            <h1>新規投稿</h1>
           </div>
           <div class="field"> <!-- スポットの地図および緯度、経度を取得　-->
-            <%= f.label :spot_name, "スポットの名称" %><span>※</span>
+            <%= f.label :spot_name, "絶景の名称" %><span>※</span>
             <%= f.text_field :spot_name, autofocus: true, autocomplete: "spot_name", placeholder: "例：富士山", size: "50", class: "address" %>
-            <%= link_to "SEARCH", "#", class: "map-search-button" %>
+            <%= link_to "場所を確認する", "#", class: "map-search-button btn btn-success" %>
             <div class="map-canvas" style="height: 0;"
                  data-lat="<%= f.object.latitude %>"
                  data-lng="<%= f.object.longitude %>">
@@ -47,7 +57,7 @@
                     <% end %>
                 </tbody>
               </table>
-              <%= f.add_nested_fields_link :spot_images, '追加', class: 'btn btn-primary', role: 'button' %>
+              <%= f.add_nested_fields_link :spot_images, '画像を追加', class: 'btn btn-primary', role: 'button' %>
           </div>
 
           <div class="field">
@@ -107,11 +117,11 @@
         		</label>
           </div>
           <div class="field">
-            <%= f.label :tourism_level_text, "難易度の理由" %><br />
+            <%= f.label :tourism_level_text, "難易度の詳細" %><br />
             <%= f.text_area :tourism_level_text, autofocus: true, autocomplete: false, placeholder: "例：時間帯によらず治安も良く、徒歩１０分ほどで行けるため。", size: "49x5" %>
           </div>
           <div class="field">
-          	<p>オススメの観光時期<span>※</span></p>
+          	<p>オススメの観光時期</p>
             <%= f.select :good_season_start, [["1月", 1],["2月", 2],["3月", 3],["4月", 4],["5月", 5],["6月", 6],["7月", 7],["8月", 8],["9月", 9],["10月", 10],["11月", 11],["12月", 12]], autofocus: true, size: "30" %>
             <span>〜</span>
             <%= f.select :good_season_end, [["1月", 1],["2月", 2],["3月", 3],["4月", 4],["5月", 5],["6月", 6],["7月", 7],["8月", 8],["9月", 9],["10月", 10],["11月", 11],["12月", 12]], autofocus: true, size: "30" %>

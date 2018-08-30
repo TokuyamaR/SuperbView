@@ -1,5 +1,5 @@
 main {
-	width:1280px;
+	width:100%;
 	word-break: break-all;
 
 	.container-wrapper {
@@ -10,16 +10,23 @@ main {
 }
 
 .top-container {
+	background-color: #f9ebd1;
+	border-radius: 30px;
 	display: flex;
 	justify-content: space-around;
-	padding-bottom: 50px;
+	margin: 50px 0;
+	padding: 50px 0;
 
 	.left-contents {
-		flex-grow: 500px;
+		flex-grow: 1;
 		text-align: center;
+
+		img {
+			border-radius: 50%;
+		}
 	}
 	.right-contents {
-		flex-basis: 500px;
+		flex-grow: 1;
 
 		.user-name .title, .user-introduce .title {
 			width:200px;
@@ -28,13 +35,15 @@ main {
 			border-bottom: solid 1px;
 		}
 
-		.user-name {
+		.user-name, .user-introduce {
 			margin-bottom: 20px;
 		}
 	}
 }
 
 .main-container {
+	margin-bottom: 50px;
+
 	.page-title {
 		display: flex;
 		justify-content: center;
@@ -54,10 +63,20 @@ main {
 	.comments-all {
 		max-width: 70%;
 		margin: 0 auto;
+
+		.link {
+			font-weight: bold;
+			text-decoration: underline;
+		}
 	}
 
 	.spots-container {
+		border:solid 2px;
+		border-color: #81a47a;
+		border-radius:5px;
 		display: flex;
+		margin: 20px 0;
+		padding: 20px;
 
 		.left-contents {
 			margin-right: 100px;

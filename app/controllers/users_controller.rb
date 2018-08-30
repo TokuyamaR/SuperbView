@@ -1,4 +1,7 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_administrator!, only: [:admin_index, :admin_show, :admin_edit, :admin_update, :admin_destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
   # 昇順、降順で並び替えするためのヘルパーメソッド
   helper_method :sort_column, :sort_direction
@@ -64,6 +67,17 @@ class UsersController < ApplicationController
     @user.soft_delete
     flash[:notice] = "削除されました"
     redirect_to admin_users_path
+  end
+
+  def admin_edit 
+    @user = User.find(params[:id])
+  end 
+
+  def admin_update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    flash[:notice] = "ユーザー情報を変更しました"
+    redirect_to admin_update_user_path(@user.id)
   end
 
 

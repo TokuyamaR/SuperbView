@@ -1,8 +1,15 @@
+.containers {
+	margin-bottom: 50px;
+}
+
 .top-container {
-	padding-bottom: 50px;
+	padding-bottom: 20px;
 }
 
 .main-container {
+	max-width: 90%;
+	margin: 0 auto;
+	margin-top: 20px;
 
 	.page-title {
 		margin-bottom: 50px;
@@ -15,9 +22,15 @@
 
 	.spots-container {
 		display: flex;
+		height: 200px;
+		margin: 20px 0;
 
 		.left-contents {
-			margin-right: 100px;
+			margin-right: 50px;
+
+			img {
+				border-radius: 10px;
+			}
 		}
 
 		.upper-contents {
@@ -39,15 +52,21 @@
 			height: 50px;
 
 			img {
-				border: solid 1px;
+				border: dashed 1px;
 				border-radius: 50%;
 
 			}
 
 			.item {
-				margin-right: 20px;
+				margin-right: 30px;
 			}
 		}
+	}
+
+	.spots-container:hover{
+		background-color: #dfd4be;
+		border-radius: 10px;
+		transition: .5s;
 	}
 
 	.pagination {

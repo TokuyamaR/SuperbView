@@ -1,12 +1,9 @@
 <!-- 読み込むscssファイル -->
-<%= stylesheet_link_tag "spots/show", :media => "all" %>
-<%= stylesheet_link_tag "custom", :media => "all" %>
+<%= stylesheet_link_tag "spots/show", "custom", :media => "all" %>
 <%= javascript_include_tag "spots/map.js" %>
 
-
-
+<body data-turbolinks="false">
 <main class="main">
-  <%= flash[:notice] %>
   <div class="for-background">
     <div class="container-wrapper">
         <div class="containers">
@@ -43,16 +40,9 @@
           <div class="main-container">
             <div class="first-contents icons">
               <% if user_signed_in? %>
-                <div class="likes icon">
-                  <% if @spot.liked_by?(current_user) %>
-                    <%= link_to spot_likes_path(@spot), method: :delete do %>
-                      <i class="fa fa-heart fa-3x" aria-hidden="true" style="color: red;"></i>
-                    <% end %>
-                  <% else %>
-                    <%= link_to spot_likes_path(@spot), method: :post do %>
-                      <i class="fa fa-heart-o fa-3x" aria-hidden="true"></i>
-                    <% end %>
-                  <% end %>
+                <!-- Ajaxにていいね機能を実装 -->
+                <div class="likes icon" id="likes_buttons_<%= @spot.id %>">
+                 <%= render partial: 'likes/like', locals: { spot: @spot, likes: @likes} %>
                 </div>
                 <div class="comments icon">
                   <%= link_to new_spot_like_comment_path(@spot) do %>
@@ -60,18 +50,18 @@
                   <% end %>
                 </div>
                 <div class="twitter icon"> <!-- 具体的なspotを投稿後に、仮保存記事「Twitterの投稿機能を連携する」を参照しながら実装 -->
-                  <%= link_to spot_path(@spot) do %>
+                  <%= link_to "http://twitter.com/share?url=https:ここに共有したいURLの中身を入れる&text=#{@spot.spot_name}の絶景がすごい！", :target =>"_blank", :rel => "nofollow" do %>
                     <i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i>
                   <% end %>
                 </div>
                 <div class="facebook icon">
-                  <%= link_to spot_path(@spot) do %>
-                    <i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+                  <%= link_to "http://www.facebook.com/share.php?u=「共有したいURL」&t=#{@spot.spot_name}の絶景がすごい！", :target => "_blank", :rel => "nofollow" do %>
+                    <i class="fa fa-facebook-square fa-3x"aria-hidden="true"></i>
                   <% end %>
                 </div>
                 <div class="instagram icon">
-                  <%= link_to spot_path(@spot) do %>
-                    <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+                  <%= link_to "https://plus.google.com/share?url=「シェアするページのURL」", :target => "_blank", :rel => "nofollow" do %>
+                    <i class="fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
                   <% end %>
                 </div>
               <% end %>
@@ -97,9 +87,9 @@
             <div class="third-contents">
               <div class="left about-spot">
                 <h2 class="contents-title">基本情報
-                  <% if administrator_signed_in? || @spot.user_id == current_user.id %>
+                  <% if administrator_signed_in? || (user_signed_in? && @spot.user_id == current_user.id) %>
                     <%= link_to edit_spot_path do %>
-                      <i class="fa fa-edit"> 編集ボタン</i>
+                      <i class="fa fa-edit"></i>
                     <% end %>
                   <% end %>
                 </h2>
@@ -187,8 +177,8 @@
                     <%= link_to "口コミを全部見る(#{@like_comments.count}件)", spot_like_comments_path(@spot) %>
                   </p>
                 <% else %>
-                 <p> まだ口コミはありません。</p>
-                 <p> 初めての<%= link_to "口コミ", new_spot_like_comment_path(@spot) %>を書き込みませんか？</p>
+                 <p> 口コミはまだありません。</p>
+                 <p> 初めての<%= link_to "口コミ", new_spot_like_comment_path(@spot), class: 'link' %>を書き込みませんか？</p>
                 <% end %>
               </div>
             </div>
@@ -196,3 +186,5 @@
     </div>
   </div>
 </main>
+
+</body>

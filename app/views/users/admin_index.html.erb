@@ -34,7 +34,7 @@
                                     <td><%= user.name %><br>
                                         <%= user.introduce %>
                                     </td>
-                                    <td><%= link_to '詳細', user %></td>
+                                    <td><%= link_to '詳細', admin_show_user_path(user.id) %></td>
                                     <td><%= link_to '編集', admin_edit_user_path(user.id) %></td>
                                     <td><%= link_to '削除', user_path(user.id),
                                                "data-confirm" => "本当に退会させますか？", class: "unsubscribe" %></td>
@@ -51,7 +51,7 @@
                                     <td><%= user.name %><br>
                                         <%= user.introduce %>
                                     </td>
-                                    <td><%= link_to '詳細', user %></td>
+                                    <td><%= link_to '詳細', admin_show_user_path(user.id) %></td>
                                     <td><%= link_to '編集', admin_edit_user_path(user.id) %></td>
                                     <td><%= link_to '削除', user_path(user.id),
                                                "data-confirm" => "本当に退会させますか？", class: "unsubscribe" %></td>

@@ -1,87 +1,172 @@
 <!-- 読み込むscssファイル -->
 <%= stylesheet_link_tag "spots/admin_show", :media => "all" %>
+<%= stylesheet_link_tag "custom", :media => "all" %>
+<%= javascript_include_tag "spots/map.js" %>
 
 <main class="main">
   <div class="for-background">
     <div class="container-wrapper">
         <div class="containers">
-          <div class="top-container">
-            <div class="spot-name">
-              <h2>スポット名</h2>
+          <!-- bootstrap にてスライドショーを実装 -->
+          <div class="top-container carousel slide" id="sampleCarousel" data-ride="carousel">
+            <div class="spot-images carousel-inner" role="listbox">
+              <% @spot.spot_images.each_with_index do |image, i| %>
+                <% if i == 0 %>
+                  <div class="item active">
+                    <%= attachment_image_tag image, :image, :fill, 1280, 400 %>
+                  </div>
+                <% else %>
+                  <div class="item">
+                    <%= attachment_image_tag image, :image, :fill, 1280, 400 %>
+                  </div>
+                <% end %>
+              <% end %>
+              <div id="spot-name">
+                <%= @spot.spot_name %>
+              </div>
+              <div class="spot-introduce">
+                <%= @spot.spot_introduce %>
+              </div>
             </div>
-            <div class="spot-images">
-              spotのスライドショーを配置
-            </div>
-            <div class="spot-introduce">
-              spotの自己紹介文を画像下部に記載（記載するため、スライドショーの矢印を少し上に設置する）
-            </div>
+            <a class="left carousel-control" href="#sampleCarousel" role="button" data-slide="prev">
+              <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
+              <span class="sr-only">前へ</span>
+            </a>
+            <a class="right carousel-control" href="#sampleCarousel" role="button" data-slide="next">
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              <span class="sr-only">次へ</span>
+            </a>
           </div>
           <div class="main-container">
-            <div class="first-contents icons"> <!-- 管理者はサイトの形だけ見ることができれば良いのでリンクは貼らない -->
-                <div class="likes">
-                  <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
-                </div>
-                <div class="comments">
-                  <i class="fa fa-commenting-o" aria-hidden="true"></i>
-                </div>
-                <div class="edit-btn">
-                    <%= link_to admin_edit_spot_path(spot) do %>
-                        <i class="far fa-edit">編集</i>
-                    <% end %>
-                </div>
-                <div class="sns-icons">
-                  <i class="fa fa-twitter-square" aria-hidden="true"></i>
-                  <i class="fa fa-facebook-square" aria-hidden="true"></i>
-                  <i class="fa fa-instagram" aria-hidden="true"></i>
-                </div>
+            <div class="first-contents icons">
+              <div class="likes icon">
+                <% @likes = Like.where(user_id: @spot.user_id) %>
+                <i class="fa fa-heart-o fa-3x" aria-hidden="true"><%= @likes.count %></i>
+              </div>
+              <div class="comments icon">
+                  <i class="fa fa-commenting-o fa-3x" aria-hidden="true"></i>
+              </div>
+              <div class="twitter icon"> <!-- 具体的なspotを投稿後に、仮保存記事「Twitterの投稿機能を連携する」を参照しながら実装 -->
+                  <i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i>
+              </div>
+              <div class="facebook icon">
+                  <i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i>
+              </div>
+              <div class="instagram icon">
+                  <i class="fa fa-instagram fa-3x" aria-hidden="true"></i>
+              </div>
             </div>
             <div class="second-contents pros-cons">
               <div class="spot-pros">
-                <h3 class="pros-title">一押しポイント！！</h3>
-                <p class="pros-text">「一押しポイント」のテキスト</p>
+                <h3 class="pros-title">
+                  <i class="fa fa-thumbs-up"></i>
+                  <span>一押しポイント！！</span>
+                  <i class="fa fa-thumbs-up"></i>
+                </h3>
+                <p class="pros-text"><%= @spot.spot_pros %></p>
               </div>
               <div class="spot-cons">
-                <h3 class="cons-title">ここがイマイチ...</h3>
-                <p class="cons-text">「ここがイマイチ」のテキスト</p>
+                <h3 class="cons-title">
+                  <i class="fa fa-exclamation-circle"></i>
+                  <span>ここがイマイチ...</span>
+                  <i class="fa fa-exclamation-circle"></i>
+                </h3>
+                <p class="cons-text"><%= @spot.spot_cons %></p>
               </div>
             </div>
-            <div class="third-contents like-comments">
-              <h2 class="contents-title">口コミ</h2>
-              <hr class="hr">
-              <%= @like_comments.first(3).each do |like_comment| %>
-                <ul>
-                  <li>
-                    <div class="user-image">ユーザー画像</div>
-                    <div class="comment-title">タイトル</div>
-                    <div class="comment-text">口コミ内容</div>
-                  </li>
-                </ul>
-              <% end %>
-              <p class="comment-all"><%= link_to "口コミを全部見る", spot_like_comments_path(@spot) %></p>
-            </div>
-            <div class="fourth-contents about-spot">
-              <h2 class="contents-title">口コミ</h2>
-              <hr class="hr">
-              <table>
-                <tbody>
-                  <tr>
-                    <th>スポット名</th>
-                    <td>富士山（仮）</td>
-                  </tr>
-                  <tr>
-                    <th>オススメ時期</th>
-                    <td>4月〜10月</td>
-                  </tr>
-                  <tr>
-                    <th>交通手段：自転車（画像）</th>
-                    <td>観光難易度：C（画像）</td>
-                  </tr>
-                  <tr>
-                    <th>マップ</th>
-                    <td>マップ画像</td>
-                  </tr>
-                </tbody>
-              </table>
+            <div class="third-contents">
+              <div class="left about-spot">
+                <h2 class="contents-title">基本情報
+                  <i class="fa fa-edit"> 編集ボタン</i>
+                </h2>
+                <hr class="hr">
+                <div class="table-responsive">
+                  <table class="table">
+                    <tbody>
+                      <tr>
+                        <th>スポット名</th>
+                        <td><%= @spot.spot_name %></td>
+                      </tr>
+                      <tr>
+                        <th>オススメ時期</th>
+                        <td><%= @spot.good_season_start %>月〜<%= @spot.good_season_end %>月</td>
+                      </tr>
+                      <tr>
+                        <th>交通手段</th>
+                        <% if @spot.transportation == "徒歩" %>
+                          <td><%= image_tag "/transportations/walk.png", :size => "70x70", :alt => "徒歩" %><td>
+                        <% elsif @spot.transportation == "自転車" %>
+                          <td><%= image_tag "/transportations/bicycle.png", :size => "70x70", :alt => "自転車" %></td>
+                        <% elsif @spot.transportation == "電車" %>
+                          <td><%= image_tag "/transportations/train.png", :size => "70x70", :alt => "電車" %></td>
+                        <% elsif @spot.transportation == "車" %>
+                          <td><%= image_tag "/transportations/car.png", :size => "70x70", :alt => "車" %></td>
+                        <% else @spot.transportation == "飛行機" %>
+                          <td><%= image_tag "/transportations/airplane.png", :size => "70x70", :alt => "飛行機" %></td>
+                        <% end %>
+                      </tr>
+                      <tr>
+                        <th>交通手段の詳細</th>
+                        <td><%= @spot.transportation_text %></td>
+                      </tr>
+                      <tr>
+                        <th>観光難易度</th>
+                        <% if @spot.tourism_level == "VeryEasy" %>
+                          <td><%= image_tag "/tourism_levels/veryeasy_icon.png", :size => "70x70", :alt => "VeryEasy" %></td>
+                        <% elsif @spot.tourism_level == "Easy" %>
+                          <td><%= image_tag "/tourism_levels/easy_icon.png", :size => "70x70", :alt => "Easy" %></td>
+                        <% elsif @spot.tourism_level == "Normal" %>
+                          <td><%= image_tag "/tourism_levels/normal_icon.png", :size => "70x70", :alt => "Normal" %></td>
+                        <% elsif @spot.tourism_level == "Hard" %>
+                          <td><%= image_tag "/tourism_levels/hard_icon.png", :size => "70x70", :alt => "Hard" %></td>
+                        <% else @spot.tourism_level == "VeryHard" %>
+                          <td><%= image_tag "/tourism_levels/veryhard_icon.png", :size => "70x70", :alt => "VeryHard" %></td>
+                        <% end %>
+                      </tr>
+                      <tr>
+                        <th>難易度の理由</th>
+                        <td><%= @spot.tourism_level_text %></td>
+                      </tr>
+                      <tr>
+                        <th>マップ</th>
+                        <td>
+                          <div class="map_box01">
+                            <div id="map-canvas" style="width: 450px;height: 350px;">
+                            </div>
+                            <!-- 下記の２行でマップ上に目的地の矢印を反映 -->
+                            <input type="hidden" id="lat" value="">
+                            <input type="hidden" id="lng" value="">
+                          </div>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+              <div class="right like-comments">
+                <h2 class="contents-title">口コミ</h2>
+                <hr class="hr">
+                <% if @like_comments.present? %>
+                  <% @like_comments.first(3).each do |like_comment| %>
+                  <% @user = User.find(like_comment.user_id) %>
+                    <ul>
+                      <li class="comments-container">
+                        <div class="user-image left-contents"><%= attachment_image_tag @user, :user_image, :fill, 80, 80 %></div>
+                        <div class="right-contents">
+                          <div class="comment-title"><%= like_comment.title %></div>
+                          <!-- truncateメソッドで長い文字列を区切る -->
+                          <div class="comment-text"><%= like_comment.text.truncate(60, omission: '...(続く)') %></div> 
+                        </div>
+                      </li>
+                    </ul>
+                  <% end %>
+                  <p class="comment-all">
+                    <%= link_to "口コミを全部見る(#{@like_comments.count}件)", spot_like_comments_path(@spot) %>
+                  </p>
+                <% else %>
+                 <p> 口コミはまだありません。</p>
+                <% end %>
+              </div>
             </div>
         </div>
     </div>

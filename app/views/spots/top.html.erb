@@ -6,15 +6,18 @@
 	<div class="for-background">
 		<div class="container-wrapper">
 			<div class="containers">
-				<p class="page-title">Let's travel！</p>
-				<p class="page-text">世界の絶景を旅しよう</p>
+				<p class="page-title">Let's Real Travel！</p>
+				<p class="page-text">Knowing a bad side, you enjoy truely. </p>
 				<!-- 検索フォーム -->
-		        <div class="header-search">
-		            <%= form_tag spots_path, :method => 'get', :id => "search-form" do %>
-		                <%= text_field_tag :search, params[:search], :placeholder => "国名を入力", :id => "search-box", :size =>"30" %>
-		                <%= submit_tag "検索", :country => nil, :id => "search-btn" %>
+		        <div class="main-search">
+		            <%= form_tag spots_path, :method => 'get', :id => "m-search-form" do %>
+		                <%= text_field_tag :search, params[:search], :placeholder => "国名を入力", :id => "m-search-box" %>
+		                <%= button_tag tyep: 'submit', :country => nil, :id => "m-search-btn" do %>
+		                <i class="fa fa-search fa-2x"></i>
+		                <% end %>
 		            <% end %>
-	        </div>
+		        </div>
+          </div>
 		</div>
 	</div>
 </main>

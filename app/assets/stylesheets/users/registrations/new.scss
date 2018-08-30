@@ -6,15 +6,33 @@
 }
 
 .container {
+  margin: 0 auto;
+  margin-bottom: 50px;
   text-align: center;
   width: 600px;
-  margin: 0 auto;
 
   .field, .actions, p {
-    padding-bottom: 20px;
-    width:220px;
     margin: 0 auto;
+    margin-top: 10px;
+    padding-bottom: 20px;
+    text-align: left;
+    width:220px;
+
+    .signup-field {
+        font-size: 15px;
+        height: 40px;
+        margin-top: 5px;
+        width: 220px;
+    }
   }
+
+  .text-left {
+    margin-top: 0;
+  }
+
+/*  .user-name, .email, .password, .password-confirmation {
+    margin-top: 20px;
+  }*/
 
   .form-title {
     width: 250px;
