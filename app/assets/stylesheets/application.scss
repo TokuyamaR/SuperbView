@@ -17,6 +17,8 @@
 @import "font-awesome";
 
 
+/* 全体 */
+
 *{
   margin: 0;
   padding: 0;
@@ -33,9 +35,15 @@ ul {
 	list-style: none;
 }
 
+body {
+	 display: flex;
+	 flex-direction: column;
+	 font-family: 'Helvetica Neue','Helvetica','Arial',sans-serif;
+	 min-height: 100vh;
+}
+
 
 /* aだけに指定してもtext-decorationは効かないので注意 */
-
 
 a, a:visited, a:focus, a:hover {
         text-decoration: none;
@@ -55,18 +63,22 @@ a, a:visited, a:focus, a:hover {
 	color: #DB4437;
 }
 
-/*ヘッダー*/
+/* ヘッダー */
+
 .header {
 	height: 50px;
 	border-bottom: solid 1px;
 	max-width: 1280px;
+
+	.header-search-mobile {
+		display: none;
+	}
 }
 .header-container {
 	display: flex;
 	height: 50px;
 	line-height: 50px;
 	justify-content: space-around;
-
 
 	.p-image {
 		width:200px;
@@ -76,9 +88,10 @@ a, a:visited, a:focus, a:hover {
 			border: solid 1px;
 		}
 	}
+
 }
 
-.header-search #search-box, #search-btn {
+.header-search .header-search-mobile #search-box, #search-btn {
     line-height: 20px;
 }
 
@@ -115,6 +128,10 @@ a, a:visited, a:focus, a:hover {
 	justify-content: space-around;
 	width:300px;
 	height: 50px;
+
+	.humburger {
+		display: none;
+	}
 }
 
 .header-menus li {
@@ -131,32 +148,14 @@ a, a:visited, a:focus, a:hover {
 }
 
 .app-title {
+	padding-top: 5px;
 	text-align: center;
 }
 
 
 
 /*ページネーション*/
-.paginate {
-	margin: 10px 0;
-	text-align: center;
-}
-.pagination {
-	margin: 0 auto;
-}
-.item-total {
-	padding-left: 600px;
-}
 
-body {
-	 display: flex;
-	 flex-direction: column;
-	 font-family: 'Helvetica Neue','Helvetica','Arial',sans-serif;
-	 min-height: 100vh;
-}
-
-/*ページネーション*/
-/*ページネーション*/
 .paginate {
 	margin: 10px 0;
 	text-align: center;
@@ -168,16 +167,27 @@ body {
 .pagination-text {
 	text-align: right;
 }
+.item-total {
+	padding-left: 600px;
+}
 
-/*フッター*/
+
+/* フッター */
+
 footer {
 	height: 100px;
 	margin-top: auto;
 	border-top: solid 1px;
 }
+
+.mobile-footer {
+	display: none;
+}
+
 .service-info, .privacy-info, .contact-info, .footer-sign-out, .unsubscribe, .copy {
 	max-width: 90%;
 }
+
 .footer-contents {
 	display: flex;
 	justify-content: space-around;
@@ -195,8 +205,98 @@ footer {
     height: 0.1px;
     text-align: center;
 }
+
+.alert-danger {
+    background-color: #fed6d6;
+    border-color: #fda4a4;
+    color: #fa4141;
+}
 .notice {
     background-color: #CCFFCC;
     border-color: #CCFFCC;
     color: #008000;
+}
+
+/* タブレット */
+@media(max-width: 1024px) {
+
+}
+/* スマートフォン */
+@media(max-width: 768px) {
+	.header {
+		height: 100px;
+
+		.header-container {
+			/*position: relative;*/
+
+			.app-title {
+				/*position: fixed;
+				top: 5px;
+				left: 10px;*/
+				margin: 0 auto;
+			}
+		}
+
+		.header-search {
+			display: none;
+		}
+
+		.header-search-mobile {
+			display: block;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			width: 100%;
+
+			#search-box {
+				min-width: 80%;
+			}
+
+			#search-btn {
+				width:30px;
+			}
+		}
+	}
+	.header-menus {
+		position: relative;
+		width: 0px;
+
+		.menu {
+			display: none;
+		}
+
+		.humburger {
+			position: absolute;
+			top:0px;
+			right: 10px;
+			display: inline-block;
+			text-align: right;
+		}
+	}
+
+	.pc-footer {
+		display: none;
+	}
+
+	footer {
+		height: 50px;
+		border: none;
+	}
+
+	.mobile-footer {
+		background-color: #fff;
+		display: block;
+		position: fixed;
+		bottom: 0px;
+		width: 100%;
+
+		ul {
+			display: flex;
+			justify-content: space-around;
+
+			li {
+				padding: 5px 0;
+			}
+		}
+	}
 }

@@ -31,6 +31,7 @@
                 <ul>
                   <% @like_comments.first(5).each do |like_comment| %>
                     <li class="likecomments-container">
+                      <% @user = User.find(like_comment.user_id) %>
                     	<div class="left-contents">
                     		<div class="user-image"><%= attachment_image_tag @user, :user_image, :fill, 100, 100 %></div>
                         <div class="user-name"><%= @user.name %></div>
@@ -41,23 +42,23 @@
                           <% if administrator_signed_in? %>
                             <p>
                               <%= link_to admin_destroy_like_comment_path(like_comment) do %>
-                                <i class="far fa-trash-alt">削除</i>
+                                <i class="far fa-trash-alt"></i>
                               <% end %>
                             </p>
                             <p>
                               <%= link_to admin_destroy_like_comment_path(like_comment), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
-                                <i class="far fa-trash-alt">削除</i>
+                                <i class="far fa-trash-alt"></i>
                               <% end %>
                             </p>
                           <% elsif current_user.id == like_comment.user_id %>
                             <p>
                               <%= link_to edit_spot_like_comment_path(like_comment.spot_id,like_comment.id) do %>
-                                <i class="fa fa-edit">編集</i>
+                                <i class="fa fa-edit"></i>
                               <% end %>
                             </p>
                             <p>
                               <%= link_to spot_like_comment_path(like_comment.spot_id,like_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
-                                <i class="fa fa-trash">削除</i>
+                                <i class="fa fa-trash"></i>
                               <% end %>
                             </p>
                           <% else %>
@@ -82,7 +83,7 @@
             </div>
             <div class="pagination">
             	<%= paginate @like_comments %>
-            	<%= @like_comments.total_count %>件中<%= @like_comments.offset_value %>〜<%= @like_comments.offset_value + @like_comments.length %>件を表示しています。
+            	<%= @like_comments.total_count %>件中<%= @like_comments.offset_value + 1 %>〜<%= @like_comments.offset_value + @like_comments.length %>件を表示しています。
             </div>
           </div>
         </div>

@@ -6,8 +6,9 @@
 
 		#spot-name{
 			position: absolute;
-			color: black;
-			font-size: 30px;
+			color: #fff;
+			font-size: 50px;
+			font-style: oblique;
 			top: 10px;
 			left: 10px;
 		}
@@ -39,6 +40,7 @@
 	list-style: none;
 	max-width: 90%;
 	margin: 0 auto;
+	padding-top: 50px;
 
 	.page-title {
 		margin-bottom: 20px;
@@ -46,17 +48,40 @@
 
 	.likecomments-container {
 		display: flex;
+		margin: 30px 0;
 
 		.left-contents {
 			padding-right: 20px;
+
+			img {
+				border-radius: 50%;
+			}
+
+			.user-name {
+				text-align: center;
+			}
 		}
 
 		.up-contents {
 			display: flex;
 
+			.fa, .far {
+				font-size: 30px;
+			}
+
 			p {
 				padding-right: 20px;
 			}
+
+			.comment-title {
+				font-weight: bold;
+				font-size: 20px;
+				margin-bottom: 20px;
+			}
 		}
+	}
+
+	.pagination {
+		text-align: right;
 	}
 }

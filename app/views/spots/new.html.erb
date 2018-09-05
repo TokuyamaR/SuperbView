@@ -6,15 +6,6 @@
 <main class="main">
   <div class="for-background">
     <div class="container-wrapper">
-      <% if @spot.errors.any? %>
-        <div id="error_explanation" class="alert alert-danger">
-          <ul>
-            <% @spot.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        </div>
-      <% end %>
       <%= form_for @spot, html:{class: 'form-horizontal'} do |f| %>
         <div class="containers">
           <div class="form-title">
@@ -128,7 +119,7 @@
           </div>
 
           <div type="submit" id="submit">
-            <%= f.submit "投稿する" %>
+            <%= f.submit '投稿',:class=>"button" %>
           </div>
         </div>
       <% end %>

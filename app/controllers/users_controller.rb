@@ -31,13 +31,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "ユーザー情報を変更しました"
-      redirect_to user_show_likes_path(@user.id)
-    else
-      flash[:alert] = "ユーザー情報を変更できませんでした"
-      render "users/edit"
-    end
+    @user.update(user_params)
+    flash[:notice] = "ユーザー情報を変更しました"
+    redirect_to user_show_likes_path(@user.id)
   end
 
   def destroy
@@ -84,7 +80,7 @@ class UsersController < ApplicationController
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduce, :email, :user_image, :password, :password_confirmation, :current_password, :deleted_at)
+    params.require(:user).permit(:name, :introduce, :email, :user_image, :password, :password_confirmation, :current_password, :deleted_at, :accepted)
   end
 
   def sort_direction

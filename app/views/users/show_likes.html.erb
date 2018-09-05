@@ -47,9 +47,9 @@
                 <p>いいね！をした絶景がまだありません</p>
                 <p><%= link_to "絶景", root_path, class: "link" %>を見つけに行きませんか？</p>
               <% else %>
-                <% @likes.first(5).each do |like| %>
+                <% @likes.each do |like| %>
                   <% spot = Spot.find(like.spot_id) %> <!-- いいね！をした絶景の変数を定義 -->
-                  <% spot_image = SpotImage.find(spot.id) %>
+                  <% spot_image = SpotImage.find_by(spot_id:spot.id) %>
                   <ul>
                     <li class="spots-container">
                     	<div class="left-contents">

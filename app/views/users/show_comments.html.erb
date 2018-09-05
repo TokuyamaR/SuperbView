@@ -49,7 +49,7 @@
               <% else %>
                 <% @like_comments.first(5).each do |like_comment| %>
                 <% spot = Spot.find(like_comment.spot_id) %>
-                <% spot_image = SpotImage.find(spot.id) %>
+                <% spot_image = SpotImage.find_by(spot_id:spot.id) %>
                   <ul>
                     <li class="spots-container">
                     	<div class="left-contents">

@@ -48,10 +48,13 @@ class SpotsController < ApplicationController
     @user = User.find(current_user.id)
     @spot = Spot.new(spot_params)
     @spot.user_id = current_user.id
-    @spot.save
-
-    flash[:notice] = "投稿が完了しました"
-    redirect_to spot_path(@spot.id)
+    if @spot.save
+      flash[:notice] = "投稿が完了しました"
+      redirect_to spot_path(@spot.id)
+    else
+      flash[:alert] = "投稿内容に不備があります"
+      redirect_to new_spot_path
+    end
   end
 
   def destroy

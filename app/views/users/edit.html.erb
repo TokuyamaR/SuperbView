@@ -10,11 +10,10 @@
 	          	    <div class="contents left">
 		          	    <div class="user-image field">
 			          	    <% if @user.user_image %>
-			          	    	<%= attachment_image_tag @user, :user_image, :fill, 150, 150, format: 'jpeg' %><br>
+			          	    	<%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg' %><br>
 			                <% else %>
-			                  	<%= image_tag "/anything/no_user_image.png", :size => "200x200", :alt => "ユーザー画像" %>
+			                  	<%= image_tag "/anything/no_user_image.png", :size => "200x200", :alt => "ユーザー画像" %><br>
 			                <% end %>
-			          	    <%= f.label :user_image, "プロフィール画像" %><br />
 				            <%= f.attachment_field :user_image %>
 		          		</div>
 		            </div>

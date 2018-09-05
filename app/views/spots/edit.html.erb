@@ -14,7 +14,8 @@
           <div class="field">
             <%= f.label :spot_name, "絶景の名称" %><span>※</span>
             <%= f.text_field :spot_name, autofocus: true, autocomplete: "spot_name", placeholder: "例：富士山", size: "50", class: "address" %>
-            <%= link_to "SEARCH", "#", class: "map-search-button" %>
+            <%= link_to "場所を確認する", "#", class: "map-search-button
+            btn btn-success" %>
             <div class="map-canvas" style="height: 0;"
                         data-lat="<%= f.object.latitude %>"
                         data-lng="<%= f.object.longitude %>">
@@ -122,7 +123,7 @@
           </div>
 
           <div type="submit" id="submit">
-            <%= f.submit "投稿する" %>
+            <%= f.submit '編集',:class=>"button" %>
           </div>
         </div>
       <% end %>

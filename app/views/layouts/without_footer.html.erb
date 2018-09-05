@@ -10,7 +10,6 @@
   </head>
 
   <body>
-    <% if @header_flag != true %>
     <!-- 管理者ヘッダー -->
     <% if administrator_signed_in? %>
       <header class="header clearfix">
@@ -60,16 +59,24 @@
           <div id="gnavi" class="header-menus">
             <ul class="header-menus">
               <% if user_signed_in? %>
-                <li class="h-1"><%= link_to '新規投稿', new_spot_path, class: "h-create" %></li>
-                <li class="h-2"><%= link_to 'マイページ', user_show_likes_path(current_user.id), class: "h-mypage" %></li>
-                <li class="h-3"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
+                <li class="h-1 menu"><%= link_to '新規投稿', new_spot_path, class: "h-create" %></li>
+                <li class="h-2 menu"><%= link_to 'マイページ', user_show_likes_path(current_user.id), class: "h-mypage" %></li>
+                <li class="h-3 menu"><%= link_to 'ログアウト', destroy_user_session_path, method: :delete,
                      "data-confirm" => "本当にログアウトしますか？", class: "h-logout" %></li>
               <% else %>
-                <li class="h-1"><%= link_to 'ログイン', new_user_session_path, class: "h-login" %></li>
-                <li class="h-2"><%= link_to '会員登録', new_user_registration_path, class: "h-signup" %></li>
+                <li class="h-1 menu"><%= link_to 'ログイン', new_user_session_path, class: "h-login" %></li>
+                <li class="h-2 menu"><%= link_to '会員登録', new_user_registration_path, class: "h-signup" %></li>
               <% end %>
             </ul>
           </div>
+        </div>
+        <div class="header-search-mobile">
+          <%= form_tag spots_path, :method => 'get', :id => "search-form" do %>
+              <%= text_field_tag :search, params[:search], :placeholder => "国名を入力", :id => "search-box" %>
+              <%= button_tag tyep: 'submit', :country => nil, :id => "search-btn" do %>
+              <i class="fa fa-search"></i>
+              <% end %>
+          <% end %>
         </div>
       </header>
     <% end %>
@@ -85,8 +92,43 @@
         <p class="alert notice"><%= notice %></p>
       </div>
     <% end %>
-    <% end %>
 
     <%= yield %>
+
+    <footer class="clearfix mobile-footer">
+        <div id="gnavi" class="footer-menus">
+            <ul class="menus">
+              <% if user_signed_in? %>
+                <li class="f-1 f-menu">
+                  <%= link_to new_spot_path, class: "f-create" do %>
+                    <%= image_tag "/logo/create_spot.png", :size => "40x40", :alt => "footer_logo" %>
+                  <% end %>
+                </li>
+                <li class="f-2 f-menu">
+                  <%= link_to user_show_likes_path(current_user.id), class: "f-mypage" do %>
+                    <%= image_tag "/logo/mypage.png", :size => "40x40", :alt => "footer_logo" %>
+                  <% end %>
+                </li>
+                <li class="f-3 f-menu">
+                  <%= link_to destroy_user_session_path, method: :delete,
+                     "data-confirm" => "本当にログアウトしますか？", class: "f-logout" do %>
+                     <%= image_tag "/logo/logout.png", :size => "40x40", :alt => "footer_logo" %>
+                  <% end %>
+                </li>
+              <% else %>
+                <li class="f-1 f-menu">
+                  <%= link_to new_user_session_path, class: "f-login" do %>
+                    <%= image_tag "/logo/login.png", :size => "40x40", :alt => "footer_logo" %>
+                  <% end %>
+                  </li>
+                <li class="f-2 f-menu">
+                  <%= link_to new_user_registration_path, class: "f-signup" do %>
+                    <%= image_tag "/logo/signup.png", :size => "40x40", :alt => "footer_logo" %>
+                  <% end %>
+                  </li>
+              <% end %>
+            </ul>
+          </div>
+      </footer>
   </body>
 </html>

@@ -4,7 +4,6 @@ class LikeCommentsController < ApplicationController
 
 
   def index
-    @user = User.find(current_user.id)
     @spot = Spot.find(params[:spot_id])
     @like_comments = LikeComment.where(params[:spot_id]).page(params[:page])
   end
