@@ -5,8 +5,7 @@
   <div class="for-background">
     <div class="container-wrapper">
       <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= devise_error_messages! %>
-        <div class="containers">
+        <div class="container">
           <div class="form-title">
             <div class="sign-up active">
               新規登録
@@ -33,12 +32,11 @@
             <%= f.password_field :password_confirmation, autocomplete: "off", placeholder: "パスワードを再入力", size: "30" %>
           </div>
 
-          <div type="submit" id="submit">
+          <div type="submit" id="submit" class="button">
             <%= f.submit "新規登録" %>
           </div>
         </div>
       <% end %>
-      <%= render "administrators/shared/links" %>
     </div>
   </div>
 </main>

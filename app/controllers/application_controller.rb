@@ -27,4 +27,18 @@ class ApplicationController < ActionController::Base
       new_administrator_session_path
     end
   end
+
+  def ensure_correct_user
+    if administrator_signed_in?
+    elsif user_signed_in?
+      @user = User.find_by(id: params[:id])
+      if  current_user.id != @user.id
+        redirect_to user_path(current_user.id)
+        flash[:alert] = "権限がありません"
+      end
+        else
+          redirect_to greeds_path
+          flash[:alert] = "権限がありません"
+        end
+    end
 end

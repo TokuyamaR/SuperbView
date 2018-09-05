@@ -1,40 +1,69 @@
 <!-- 読み込むscssファイル -->
 <%= stylesheet_link_tag "users/admin_index", :media => "all" %>
+<%= stylesheet_link_tag "custom", :media => "all" %>
 
 <main class="main">
   <div class="for-background">
     <div class="container-wrapper">
-        <div class="containers">
+        <div class="container">
             <div class="page-title">
-                <h2>ユーザー一覧(管理者用)</h2>
+                <h2>ユーザー一覧</h2>
+                <hr class="hr">
             </div>
-            <div class="user-all">
-                <%= @users.first(10).each do |user| %>
-                  <ul>
-                    <li class="user-container">
-                    	<div class="left-contents">
-                    		<div class="user-image">ユーザー画像</div>
-                    	</div>
-                    	<div class="right-contents">
-                    		<div class="up-contents">
-                    			<p class="user-name">ユーザー名</p>
-                                <span>
-                                    <%= link_to admin_show_user_path(user) do %>
-                                        <i class="fas fa-book-open">詳細</i>
-                                    <% end %>
-                                </span>
-                    		</div>
-                    		<div class="down-contents">
-                    			<p class="user-introduce">自己紹介テキスト</div>
-                    		</div>
-                    	</div>
-                    </li>
-                  </ul>
-                <% end %>
+            <div class="user-all table-responsive">
+                <table class="table table-striped table-bordered table-hover">
+                    <thead>
+                        <tr>
+                            <th>画像</th>
+                            <th><%= sortable "name", "名前" %></th>
+                            <th colspan="3"></th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        <% @users.each do |user| %>
+                            <% if user.deleted_at.present? %>
+                                <tr class="danger">
+                                    <td>
+                                        <% if user.user_image %>
+                                            <%= attachment_image_tag user, :user_image, :fill, 80, 80 %>
+                                        <% else %>
+                                            <%= image_tag("/anything/no_user_image.png", :size => "80x80", :alt => "ユーザー画像なし") %>
+                                        <% end %>
+                                    </td>
+                                    <td><%= user.name %><br>
+                                        <%= user.introduce %>
+                                    </td>
+                                    <td><%= link_to '詳細', admin_show_user_path(user.id) %></td>
+                                    <td><%= link_to '編集', admin_edit_user_path(user.id) %></td>
+                                    <td><%= link_to '削除', user_path(user.id),
+                                               "data-confirm" => "本当に退会させますか？", class: "unsubscribe" %></td>
+                                </tr>
+                            <% else %>
+                                <tr>
+                                    <td>
+                                        <% if user.user_image %>
+                                            <%= attachment_image_tag user, :user_image, :fill, 80, 80 %>
+                                        <% else %>
+                                            <%= image_tag("/anything/no_user_image.png", :size => "80x80", :alt => "ユーザー画像なし") %>
+                                        <% end %>
+                                    </td>
+                                    <td><%= user.name %><br>
+                                        <%= user.introduce %>
+                                    </td>
+                                    <td><%= link_to '詳細', admin_show_user_path(user.id) %></td>
+                                    <td><%= link_to '編集', admin_edit_user_path(user.id) %></td>
+                                    <td><%= link_to '削除', user_path(user.id),
+                                               "data-confirm" => "本当に退会させますか？", class: "unsubscribe" %></td>
+                                </tr>
+                            <% end %>
+                        <% end %>
+                    </tbody>
+                </table>
             </div>
             <div class="pagination">
             	<%= paginate @users %>
-            	<%= @users.total_count %>件中<%= @users.offset_value %>〜<%= @users.offset_value + @users.length %>件を表示しています。
+            	<%= @users.total_count %>件中<%= @users.offset_value + 1 %>〜<%= @users.offset_value + @users.length %>件を表示しています。
             </div>
         </div>
     </div>

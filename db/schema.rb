@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_08_22_122343) do
+ActiveRecord::Schema.define(version: 2018_08_26_211606) do
 
   create_table "administrators", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2018_08_22_122343) do
     t.text "tourism_level_text"
     t.float "latitude"
     t.float "longitude"
+    t.integer "likes_count"
     t.index ["country"], name: "index_spots_on_country"
     t.index ["spot_name"], name: "index_spots_on_spot_name"
   end

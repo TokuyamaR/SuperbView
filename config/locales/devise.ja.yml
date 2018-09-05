@@ -72,8 +72,9 @@ ja:
     attributes:
       models:
         user: "ユーザー"
-        post: "投稿"
-        post_comment: "コメント"
+        administrator: "管理者"
+        spot: "絶景"
+        like_comment: "口コミ"
       user:
         name: "名前"
         password: "パスワード"
@@ -83,4 +84,32 @@ ja:
         user_name: "プロフィール画像"
         remember_me: "ログイン状態を保持する"
         accepted: 「利用規約、プライバシーポリシーの取扱に同意する」
+      administrator:
+        password: "パスワード"
+        password_confirmation: "パスワード確認"
+        email: "メールアドレス"
+        remember_me: "ログイン状態を維持する"
+      spot:
+        spot_name: "絶景の名前"
+        spot_introduce: "絶景の紹介文"
+        spot_pros: "一押しポイント！"
+        spot_cons: "ここがイマイチ..."
+        country: "国名"
+        transportation: "交通手段"
+        tourism_level: "観光難易度"
+        good_season_start: "オススメ時期（開始）"
+        good_season_end: "オススメ時期（終了）"
+        transportation_text: "交通手段の詳細"
+        tourism_level_text: "難易度の詳細"
+        latitude: "緯度"
+        longitude: "経度"
+      like_comment:
+        title: "タイトル"
+        text: "口コミの内容"
+  views:
+    pagination:
+      first: "1"
+      last: "終"
+      previous: "<"
+      next: ">"
 

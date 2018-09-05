@@ -14,9 +14,10 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 
 
-# ページごとに指定したSCSSのみを読み込ませる処理
+# 個別　SCSSを読み込ませる処理
 # users
 Rails.application.config.assets.precompile += %w( users/admin_index.scss )
+Rails.application.config.assets.precompile += %w( users/admin_edit.scss )
 Rails.application.config.assets.precompile += %w( users/admin_show.scss )
 Rails.application.config.assets.precompile += %w( users/contact.scss )
 Rails.application.config.assets.precompile += %w( users/edit.scss )
@@ -33,8 +34,11 @@ Rails.application.config.assets.precompile += %w( administrators/sessions/new.sc
 
 # spots
 Rails.application.config.assets.precompile += %w( spots/admin_index.scss )
+Rails.application.config.assets.precompile += %w( spots/admin_new.scss )
 Rails.application.config.assets.precompile += %w( spots/admin_show.scss )
 Rails.application.config.assets.precompile += %w( spots/admin_edit.scss )
+Rails.application.config.assets.precompile += %w( spots/admin_new.scss )
+Rails.application.config.assets.precompile += %w( spots/admin_show.scss )
 Rails.application.config.assets.precompile += %w( spots/edit.scss )
 Rails.application.config.assets.precompile += %w( spots/index.scss )
 Rails.application.config.assets.precompile += %w( spots/new.scss )
@@ -49,7 +53,7 @@ Rails.application.config.assets.precompile += %w( like_comments/index.scss )
 Rails.application.config.assets.precompile += %w( like_comments/new.scss )
 
 
-# ページごとに指定したJSのみを読み込ませる処理
+# 個別　JavaScriptを読み込ませる処理
 # spots
 Rails.application.config.assets.precompile += %w( spots/map.js )
 Rails.application.config.assets.precompile += %w( spots/jquery.bgswitcher.js )

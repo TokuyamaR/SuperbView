@@ -41,6 +41,8 @@ window.triggerMap = ->
     $.ajax(
       type: 'GET',
       url: '/spots.json',
+      url: '/admin/spots.json',
+
       # data: { if you need }
     ).done( (data) ->
       if data.length

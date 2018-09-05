@@ -1,20 +1,55 @@
 main {
 	width:1280px;
 
+	.for-background {
+		background-image: url(/background/new.jpg);
+	}
+
 	.container-wrapper {
 		font-size: 20px;
 		max-width: 90%;
 		margin: 0 auto;
-		padding-top: 100px;
+		padding: 100px 0;
+		background-color: rgba(255,255,255,0.5);
 	}
 }
 
 .containers {
 	margin: 0 auto;
-	width:400px;
+	width:520px;
 
 	.form-title ,.field, #submit {
 		margin-bottom: 30px;
+	}
+	.form-title {
+		text-align: center;
+	}
+
+	.btn {
+		margin: 10px 0;
+	}
+
+	.latitude , .longitude {
+		display: none;
+	}
+
+	#submit {
+		text-align: center;
+
+		.button {
+		    display: inline-block;
+		    padding: 0.3em 1em;
+		    text-decoration: none;
+		    color: #67c5ff;
+		    border: solid 2px #67c5ff;
+		    border-radius: 3px;
+		    transition: .4s;
+		}
+
+		.button:hover {
+		    background: #67c5ff;
+		    color: white;
+		}
 	}
 
 }
@@ -27,7 +62,7 @@ main {
 	display: none;
 }
 .trans_radio + img {
-	border: 1px #bebebe solid;
+	border: 2px solid;
 	border-radius: 50%;
 	opacity: 0.2;
 }
@@ -40,7 +75,7 @@ main {
 	display: none;
 }
 .level_radio + img {
-	border: 1px #bebebe solid;
+	border: 2px solid;
 	border-radius: 50%;
 	opacity: 0.2;
 }

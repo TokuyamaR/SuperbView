@@ -9,9 +9,9 @@
           	<div class="left-contents">
               <div class="user-image">
                 <% if @user.user_image %>
-                  <%= attachment_image_tag @user, :user_image, :fill, 180, 180, format: 'jpeg' %>
+                  <%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg' %>
                 <% else %>
-                  <i class="fa fa-user fa-7x"></i><br>
+                  <%= image_tag "/anything/no_user_image.png", :size => "180x180", :alt => "ユーザー画像" %>
                 <% end %>
               </div>
             </div>
@@ -31,7 +31,7 @@
               <% if @user.id == current_user.id %>
                 <div class="user-settting">
                   <%= link_to edit_user_path do %>
-                    <i class="fa fa-cog"> 編集</i>
+                    <i class="fa fa-cog fa-2x"></i> 編集
                   <% end %>
                 </div>
               <% end %>
@@ -45,11 +45,11 @@
             <div class="likes-all">
               <% if @likes.empty? %>
                 <p>いいね！をした絶景がまだありません</p>
-                <p><%= link_to "絶景", root_path %>を見つけに行きませんか？</p>
+                <p><%= link_to "絶景", root_path, class: "link" %>を見つけに行きませんか？</p>
               <% else %>
-                <% @likes.first(5).each do |like| %>
+                <% @likes.each do |like| %>
                   <% spot = Spot.find(like.spot_id) %> <!-- いいね！をした絶景の変数を定義 -->
-                  <% spot_image = SpotImage.find(spot.id) %>
+                  <% spot_image = SpotImage.find_by(spot_id:spot.id) %>
                   <ul>
                     <li class="spots-container">
                     	<div class="left-contents">
@@ -107,7 +107,13 @@
             </div>
             <div class="pagination">
             	<%= paginate @likes %>
-            	<%= @likes.total_count %>件中<%= @likes.offset_value %>〜<%= @likes.offset_value + @likes.length %>件を表示しています。
+            	<%= @likes.total_count %>件中
+              <% if @likes.present? %>
+                <%= @likes.offset_value + 1 %>
+              <% else %>
+                <%= @likes.offset_value %>
+              <% end %>
+              〜<%= @likes.offset_value + @likes.length %>件を表示しています。
             </div>
           </div>
         </div>

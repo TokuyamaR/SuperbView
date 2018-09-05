@@ -35,8 +35,20 @@
 		position: absolute;
 		width: 100%;
 		height: 60%;
-		background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.6) 70%, rgba(0, 0, 0, 1));
+		background: linear-gradient(rgba(0, 0, 0, 0) 30%, rgba(0, 0, 0, 0.5) 70%, rgba(0, 0, 0, 1));
 
+	}
+
+	#spot-name, .spot-images::after, .spot-introduce {
+		opacity: 1;
+		transition: 1s;
+	}
+
+	&:hover {
+		#spot-name, .spot-images::after, .spot-introduce {
+			opacity: 0;
+			transition: 1s;
+		}
 	}
 }
 
@@ -142,6 +154,15 @@
 		text-align: left;
 	}
 
+	.right {
+
+		.link {
+			font-weight: bold;
+			text-decoration: underline;
+		}
+
+	}
+
 	.title-container {
 	}
 
@@ -161,6 +182,14 @@
 	.comments-container {
 		display: flex;
 		margin-bottom: 20px;
+
+		.left-contents {
+			margin-right: 20px;
+		}
+
+		img {
+			border-radius: 50%;
+		}
 
 		.comment-title {
 			font-style: oblique;

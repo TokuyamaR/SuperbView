@@ -40,7 +40,7 @@
                     		</div>
                     		<div class="lower-contents">
                           <div class="good-season item">おすすめ時期：
-                            <%= spot.good_season_start %>月〜<%= spot.good_season_end %>月
+                            <%= spot.good_season_start %>〜<%= spot.good_season_end %>月
                           </div>
                           <div class="transportation item">
                             <% if spot.transportation == "徒歩" %>
@@ -81,7 +81,9 @@
             </div>
             <div class="pagination">
             	<%= paginate @spots %>
-            	<%= @spots.total_count %>件中<%= @spots.offset_value + 1 %>〜<%= @spots.offset_value + @spots.length %>件を表示しています。
+            </div>
+            <div class="pagination-text">
+              <%= @spots.total_count %>件中<%= @spots.offset_value + 1 %>〜<%= @spots.offset_value + @spots.length %>件を表示しています。
             </div>
           </div>
         </div>

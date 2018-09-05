@@ -12,9 +12,14 @@
 //
 //= require rails-ujs
 //= require activestorage
-//= require turbolinks
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap-sprockets
 //= require nested_form_fields
 //= require map_helper
+
+
+$( document ).ready(function() {
+    $('.alert').fadeOut(5000);
+    $(".alert-text").removeClass('hide');
+});

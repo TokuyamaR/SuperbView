@@ -7,7 +7,6 @@ class Spot < ApplicationRecord
 
   validates :spot_name, {presence: true, length:{maximum: 30}}
   validates :spot_introduce, {presence: true, length:{maximum: 200}}
-  # validates :spot_images_images, presence: true
   validates :country, {presence: true, length:{maximum: 30}}
   validates :transportation, presence: true
   validates :tourism_level, presence: true
@@ -24,8 +23,16 @@ class Spot < ApplicationRecord
     end
   end
 
-  def liked_by?(user)
-    likes.where(user_id: user.id).exists?
+  # 最初に設定したいいね判定メソッド
+
+  # def liked_by?(user)
+  #   likes.where(user_id: user.id).exists?
+  # end
+
+  # 後から設定したいいね判定メソッド
+
+  def like_user(user_id)
+   likes.find_by(user_id: user_id)
   end
 
 end

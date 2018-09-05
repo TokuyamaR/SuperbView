@@ -19,7 +19,7 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 4.2'
 # Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-gem 'turbolinks', '~> 5'
+# turoblinksはwindowのloadが発火しないため削除
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 2.5'
 # Use Redis adapter to run Action Cable in production
@@ -71,3 +71,4 @@ gem 'kaminari' # ページング機能
 gem 'nested_form_fields' #親子モデルを伴った動的なフォームを作成するためのgem
 gem 'font-awesome-rails' #font-awesomeを使うためのgem
 gem 'geocoder' #住所から経度、緯度を取得してくれる
+gem 'pry-rails'

@@ -1,4 +1,10 @@
 class UsersController < ApplicationController
+  before_action :authenticate_user!, only: [:edit, :update, :destroy]
+  before_action :authenticate_administrator!, only: [:admin_index, :admin_show, :admin_edit, :admin_update, :admin_destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
+
+  # 昇順、降順で並び替えするためのヘルパーメソッド
+  helper_method :sort_column, :sort_direction
 
   def index #今回は使用せず
   end
@@ -11,13 +17,12 @@ class UsersController < ApplicationController
 
   def show_likes
     @user = User.find(current_user.id)
-    # @likes = Like.where(user_id: @user.id)
-    @likes = Like.where(user_id: @user.id).page(params[:page]) # ユーザーがいいねしたスポットだけを抽出する
+    @likes = Like.where(user_id: @user.id).page(params[:page]).per(5) # ユーザーがいいねしたスポットだけを抽出する
   end
 
   def show_comments
     @user = User.find(params[:id])
-    @like_comments = LikeComment.where(user_id: @user.id).page(params[:page]) # ユーザーの口コミ一覧を抽出する
+    @like_comments = LikeComment.where(user_id: @user.id).page(params[:page]).per(5) # ユーザーの口コミ一覧を抽出する
   end
 
   def edit
@@ -26,13 +31,9 @@ class UsersController < ApplicationController
 
   def update
     @user = User.find(params[:id])
-    if @user.update(user_params)
-      flash[:notice] = "ユーザー情報を変更しました"
-      redirect_to user_show_likes_path(@user.id)
-    else
-      flash[:alert] = "ユーザー情報を変更できませんでした"
-      render "users/edit"
-    end
+    @user.update(user_params)
+    flash[:notice] = "ユーザー情報を変更しました"
+    redirect_to user_show_likes_path(@user.id)
   end
 
   def destroy
@@ -50,7 +51,7 @@ class UsersController < ApplicationController
 
   # 管理者用アクション
   def admin_index
-    @users = User.all
+    @users = User.all.page(params[:page]).order(sort_column + ' ' + sort_direction).per(20)
   end
 
   def admin_show
@@ -64,10 +65,29 @@ class UsersController < ApplicationController
     redirect_to admin_users_path
   end
 
+  def admin_edit 
+    @user = User.find(params[:id])
+  end 
+
+  def admin_update
+    @user = User.find(params[:id])
+    @user.update(user_params)
+    flash[:notice] = "ユーザー情報を変更しました"
+    redirect_to admin_update_user_path(@user.id)
+  end
+
 
   private
 
   def user_params
-    params.require(:user).permit(:name, :introduce, :email, :user_image, :password, :password_confirmation, :current_password, :deleted_at)
+    params.require(:user).permit(:name, :introduce, :email, :user_image, :password, :password_confirmation, :current_password, :deleted_at, :accepted)
+  end
+
+  def sort_direction
+      %w[asc desc].include?(params[:direction]) ?  params[:direction] : "asc"
+  end
+
+  def sort_column
+      User.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
 end

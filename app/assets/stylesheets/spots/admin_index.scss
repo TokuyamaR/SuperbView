@@ -1,0 +1,76 @@
+.containers {
+	margin-bottom: 50px;
+}
+
+.top-container {
+	padding-bottom: 20px;
+}
+
+.main-container {
+	max-width: 90%;
+	margin: 0 auto;
+	margin-top: 20px;
+
+	.page-title {
+		margin-bottom: 50px;
+	}
+
+	.search-result {
+		max-width: 70%;
+		margin: 0 auto;
+	}
+
+	.spots-container {
+		display: flex;
+		height: 150px;
+		margin: 20px 0;
+
+		.left-contents {
+			margin-right: 50px;
+
+			img {
+				border-radius: 10px;
+			}
+		}
+
+		.upper-contents {
+			display: flex;
+			font-size: 30px;
+			font-weight: bold;
+			height: 50px;
+			line-height: 50px;
+
+			.spot-name {
+				margin-right: 20px;
+			}
+		}
+
+		.lower-contents {
+			display: flex;
+			font-size: 20px;
+			line-height: 50px;
+			height: 50px;
+
+			img {
+				border: dashed 1px;
+				border-radius: 50%;
+
+			}
+
+			.item {
+				margin-right: 30px;
+			}
+		}
+	}
+
+	.spots-container:hover{
+		background-color: #dfd4be;
+		border-radius: 10px;
+		transition: .5s;
+	}
+
+	.pagination {
+		display: flex;
+		justify-content: flex-end;
+	}
+}
