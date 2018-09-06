@@ -4,7 +4,7 @@ main {
 	.container-wrapper {
 		max-width: 90%;
 		margin: 0 auto;
-		padding-top: 100px;
+		padding-top: 30px;
 	}
 }
 
@@ -13,19 +13,22 @@ main {
 	border-radius: 30px;
 	display: flex;
 	justify-content: space-around;
-	margin: 50px 0;
+	margin: 10px 0;
 	padding: 50px 0;
 
 	.left-contents {
-		flex-grow: 1;
+		flex-basis: 30%;
 		text-align: center;
 
 		img {
 			border-radius: 50%;
+			height: 200px;
+			width: 200px;
+			object-fit: cover;
 		}
 	}
 	.right-contents {
-		flex-grow: 1;
+		flex-basis: 70%;
 
 		.user-name .title, .user-introduce .title {
 			width:200px;
@@ -42,6 +45,7 @@ main {
 
 .main-container {
 	margin-bottom: 50px;
+
 	.page-title {
 		display: flex;
 		justify-content: center;
@@ -77,26 +81,38 @@ main {
 		padding: 20px;
 
 		.left-contents {
-			margin-right: 100px;
+			margin-right: 50px;
+
+			img {
+				border-radius: 5px;
+				height: 200px;
+				width: 200px;
+				object-fit: cover;
+			}
 		}
 
 		.upper-contents {
-			display: flex;
 			font-size: 30px;
 			font-weight: bold;
-			height: 50px;
-			line-height: 50px;
+			height: 30px;
+			margin-bottom: 70px;
+			line-height: 30px;
 
-			.spot-name {
-				margin-right: 20px;
+
+			.country {
+				font-size: 20px;
 			}
 		}
 
 		.lower-contents {
-			display: flex;
+			display: block;
 			font-size: 20px;
 			line-height: 50px;
 			height: 50px;
+
+			.mobile-flex-item {
+				display: flex;
+			}
 
 			img {
 				border: solid 1px;
@@ -118,5 +134,143 @@ main {
 	.pagination {
 		display: flex;
 		justify-content: flex-end;
+	}
+}
+
+/* タブレット */
+@media(max-width: 1024px) {
+
+	.main-container {
+
+		.likes-all {
+			max-width: 80%;
+		}
+
+		.spots-container {
+
+			.spot-image img {
+				height: 150px;
+				width: 150px;
+				object-fit: cover;
+			}
+
+			.left-contents {
+				margin-right: 50px;
+			}
+
+			.upper-contents {
+				display: block;
+				margin-bottom: 20px;
+			}
+
+			.lower-contents {
+
+				.like-comments-count {
+					height: 35px;
+					line-height: 35px;
+				}
+			}
+		}
+		.pagination {
+			font-size: 15px;
+		}
+	}
+
+}
+/* スマートフォン */
+@media(max-width: 768px) {
+	main {
+
+		.container-wrapper {
+			max-width: 90%;
+			margin: 0 auto;
+			padding-top: 30px;
+		}
+	}
+
+	.top-container {
+		display: block;
+		padding: 20px 0;
+
+		.left-contents {
+			margin-bottom: 30px;
+			img {
+				height: 150px;
+				width: 150px;
+			}
+		}
+		.right-contents {
+			margin: 0 auto;
+			width: 90%;
+
+			.user-name .title, .user-introduce .title {
+				width:100%;
+			}
+
+			.user-setting {
+				text-align: right;
+			}
+		}
+	}
+
+	.main-container {
+
+		.likes-all {
+			max-width: 90%;
+		}
+
+		.spots-container {
+
+			.spot-image img {
+				height: 100px;
+				width: 100px;
+				object-fit: cover;
+			}
+
+			.left-contents {
+				margin-right: 10px;
+			}
+
+			.upper-contents {
+				display: block;
+				font-size: 15px;
+				height: 15px;
+				line-height: 15px;
+				margin-bottom: 20px;
+
+				.country {
+					font-size: 12px;
+				}
+			}
+
+			.lower-contents {
+				font-size: 12px;
+				line-height: 45px;
+				height: 45px;
+
+				.good-season {
+					display: block;
+					height: 35px;
+				}
+
+				img {
+					height: 30px;
+					width: 30px;
+				}
+
+				.like-comments-count {
+					height: 30px;
+					line-height: 30px;
+				}
+
+				.item {
+					margin-right: 15px;
+				}
+			}
+		}
+
+		.pagination {
+			font-size: 15px;
+		}
 	}
 }

@@ -9,9 +9,9 @@
           	<div class="left-contents">
               <div class="user-image">
                 <% if @user.user_image %>
-                  <%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg' %>
+                  <%= attachment_image_tag @user, :user_image, format: 'jpeg' %>
                 <% else %>
-                  <%= image_tag "/anything/no_user_image.png", :size => "180x180", :alt => "ユーザー画像" %>
+                  <%= image_tag "/anything/no_user_image.png", :alt => "ユーザー画像" %>
                 <% end %>
               </div>
             </div>
@@ -29,7 +29,7 @@
                 <% end %>
               </div>
               <% if @user.id == current_user.id %>
-                <div class="user-settting">
+                <div class="user-setting">
                   <%= link_to edit_user_path do %>
                     <i class="fa fa-cog fa-2x"></i> 編集
                   <% end %>
@@ -55,7 +55,7 @@
                     	<div class="left-contents">
                     		<div class="spot-image">
                           <%= link_to spot_path(spot.id) do %>
-                            <%= attachment_image_tag spot_image, :image, :fill, 120, 120, format: 'jpeg' %>
+                            <%= attachment_image_tag spot_image, :image, format: 'jpeg' %>
                           <% end %>
                         </div>
                     	</div>
@@ -66,38 +66,40 @@
                     		</div>
                     		<div class="lower-contents">
                           <div class="good-season item">おすすめ時期：
-                            <%= spot.good_season_start %>月〜<%= spot.good_season_end %>月
+                            <%= spot.good_season_start %>〜<%= spot.good_season_end %>月
                           </div>
-                    			<div class="transportation item">
-                            <% if spot.transportation == "徒歩" %>
-                              <%= image_tag "/transportations/walk.png", :size => "40x40", :alt => "徒歩" %>
-                            <% elsif spot.transportation == "自転車" %>
-                              <%= image_tag "/transportations/bicycle.png", :size => "40x40", :alt => "自転車" %>
-                            <% elsif spot.transportation == "電車" %>
-                              <%= image_tag "/transportations/train.png", :size => "40x40", :alt => "電車" %>
-                            <% elsif spot.transportation == "車" %>
-                              <%= image_tag "/transportations/car.png", :size => "40x40", :alt => "車" %>
-                            <% else spot.transportation == "飛行機" %>
-                              <%= image_tag "/transportations/airplane.png", :size => "40x40", :alt => "飛行機" %><
-                            <% end %>
+                          <div class="mobile-flex-item">
+                      			<div class="transportation item">
+                              <% if spot.transportation == "徒歩" %>
+                                <%= image_tag "/transportations/walk.png", :size => "40x40", :alt => "徒歩" %>
+                              <% elsif spot.transportation == "自転車" %>
+                                <%= image_tag "/transportations/bicycle.png", :size => "40x40", :alt => "自転車" %>
+                              <% elsif spot.transportation == "電車" %>
+                                <%= image_tag "/transportations/train.png", :size => "40x40", :alt => "電車" %>
+                              <% elsif spot.transportation == "車" %>
+                                <%= image_tag "/transportations/car.png", :size => "40x40", :alt => "車" %>
+                              <% else spot.transportation == "飛行機" %>
+                                <%= image_tag "/transportations/airplane.png", :size => "40x40", :alt => "飛行機" %><
+                              <% end %>
+                            </div>
+                      			<div class="tourism-level item">
+                             <% if spot.tourism_level == "VeryEasy" %>
+                                <%= image_tag "/tourism_levels/veryeasy_icon.png", :size => "40x40", :alt => "VeryEasy" %>
+                              <% elsif spot.tourism_level == "Easy" %>
+                                <%= image_tag "/tourism_levels/easy_icon.png", :size => "40x40", :alt => "Easy" %>
+                              <% elsif spot.tourism_level == "Normal" %>
+                                <%= image_tag "/tourism_levels/normal_icon.png", :size => "40x40", :alt => "Normal" %>
+                              <% elsif spot.tourism_level == "Hard" %>
+                                <%= image_tag "/tourism_levels/hard_icon.png", :size => "40x40", :alt => "Hard" %>
+                              <% else spot.tourism_level == "VeryHard" %>
+                                <%= image_tag "/tourism_levels/veryhard_icon.png", :size => "40x40", :alt => "VeryHard" %>
+                              <% end %>
+                            </div>
+                      			<div class="like-comments-count item">
+                      				<i class="fa fa-commenting-o fa-2x" aria-hidden="true"></i>
+                              <%= spot.like_comments.count %>件 <!--アイコン+数字にて表示 -->
+                      			</div>
                           </div>
-                    			<div class="tourism-level item">
-                           <% if spot.tourism_level == "VeryEasy" %>
-                              <%= image_tag "/tourism_levels/veryeasy_icon.png", :size => "40x40", :alt => "VeryEasy" %>
-                            <% elsif spot.tourism_level == "Easy" %>
-                              <%= image_tag "/tourism_levels/easy_icon.png", :size => "40x40", :alt => "Easy" %>
-                            <% elsif spot.tourism_level == "Normal" %>
-                              <%= image_tag "/tourism_levels/normal_icon.png", :size => "40x40", :alt => "Normal" %>
-                            <% elsif spot.tourism_level == "Hard" %>
-                              <%= image_tag "/tourism_levels/hard_icon.png", :size => "40x40", :alt => "Hard" %>
-                            <% else spot.tourism_level == "VeryHard" %>
-                              <%= image_tag "/tourism_levels/veryhard_icon.png", :size => "40x40", :alt => "VeryHard" %>
-                            <% end %>
-                          </div>
-                    			<div class="like-comments-count item">
-                    				<i class="fa fa-commenting-o" aria-hidden="true"></i>
-                            <%= spot.like_comments.count %>件 <!--アイコン+数字にて表示 -->
-                    			</div>
                     		</div>
                     	</div>
                     </li>
