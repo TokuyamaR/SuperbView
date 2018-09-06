@@ -8,9 +8,9 @@
 	justify-content: center;
 
 	.for-background {
-		width:100%;
+		background: rgba(0, 0, 0,0.3);
 		height:100%;
-		background: rgba(0, 0, 0,0.3)
+		width:100%;
 	}
 
 	.main-search{
@@ -20,21 +20,21 @@
 		}
 
 		#m-search-box {
-		border-radius:5px;
-		border: none;
-		height: 60px;
-		line-height: 30px;
-		margin-right: 20px;
-		outline: 0;
-		font-size: 20px;
-		width: 400px;
+			border-radius:5px;
+			border: none;
+			font-size: 20px;
+			height: 60px;
+			line-height: 30px;
+			margin-right: 20px;
+			outline: 0;
+			width: 400px;
 		}
 
 		#m-search-btn {
-			height: 60px;
 			border-radius: 50%;
-			color:#000;
 			border:none;
+			color:#000;
+			height: 60px;
 			outline: 0;
 			width:60px;
 		}
@@ -65,5 +65,63 @@
 	.page-text {
 		font-size: 30px;
 		margin-bottom: 50px;
+	}
+}
+
+/* タブレット */
+@media(max-width: 1024px) {
+
+}
+/* スマートフォン */
+@media(max-width: 768px) {
+
+	header {
+		display: none;
+	}
+
+	.bg-slider {
+		height: 650px;
+	}
+
+	.containers {
+	margin-top: 150px;
+
+		.page-title {
+			font-size: 45px;
+		}
+
+		.page-text {
+			font-size: 20px;
+			margin-bottom: 50px;
+		}
+
+		.main-search{
+
+			#m-search-form {
+				height: 60px;
+			}
+
+			#m-search-box {
+				height: 40px;
+				line-height: 30px;
+				margin-right: 20px;
+				width: 200px;
+			}
+
+			#m-search-btn {
+				height: 40px;
+				width:40px;
+			}
+
+			#m-search-btn:hover{
+				background:#000;
+				color:#fff;
+				-webkit-transition: all .40s;
+				   -moz-transition: all .40s;
+				    -ms-transition: all .40s;
+				     -o-transition: all .40s;
+				        transition: all .40s;
+			}
+		}
 	}
 }

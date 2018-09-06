@@ -100,8 +100,8 @@
     <!-- フッター -->
     <div class="clearfix"></div>
       <footer class="clearfix pc-footer">
-        <% if user_signed_in? %>
         <div class="footer-contents">
+        <% if user_signed_in? %>
           <%= link_to '利用規約', root_path, class: "service-info after-footer-menu" %>
           <%= link_to 'プライバシーポリシー', root_path, class: "privacy-info after-footer-menu" %>
           <%= link_to 'お問い合わせ先', root_path, class: "contact-info after-footer-menu" %>
@@ -125,29 +125,29 @@
               <% if user_signed_in? %>
                 <li class="f-1 f-menu">
                   <%= link_to new_spot_path, class: "f-create" do %>
-                    <%= image_tag "/logo/create_spot.png", :size => "40x40", :alt => "footer_logo" %>
+                    <%= image_tag "/logo/create_spot.png", :size => "30x30", :alt => "footer_logo" %>
                   <% end %>
                 </li>
                 <li class="f-2 f-menu">
                   <%= link_to user_show_likes_path(current_user.id), class: "f-mypage" do %>
-                    <%= image_tag "/logo/mypage.png", :size => "40x40", :alt => "footer_logo" %>
+                    <%= image_tag "/logo/mypage.png", :size => "30x30", :alt => "footer_logo" %>
                   <% end %>
                 </li>
                 <li class="f-3 f-menu">
                   <%= link_to destroy_user_session_path, method: :delete,
                      "data-confirm" => "本当にログアウトしますか？", class: "f-logout" do %>
-                     <%= image_tag "/logo/logout.png", :size => "40x40", :alt => "footer_logo" %>
+                     <%= image_tag "/logo/logout.png", :size => "30x30", :alt => "footer_logo" %>
                   <% end %>
                 </li>
               <% else %>
                 <li class="f-1 f-menu">
                   <%= link_to new_user_session_path, class: "f-login" do %>
-                    <%= image_tag "/logo/login.png", :size => "40x40", :alt => "footer_logo" %>
+                    <%= image_tag "/logo/login.png", :size => "30x30", :alt => "footer_logo" %>
                   <% end %>
                   </li>
                 <li class="f-2 f-menu">
                   <%= link_to new_user_registration_path, class: "f-signup" do %>
-                    <%= image_tag "/logo/signup.png", :size => "40x40", :alt => "footer_logo" %>
+                    <%= image_tag "/logo/signup.png", :size => "30x30", :alt => "footer_logo" %>
                   <% end %>
                   </li>
               <% end %>
