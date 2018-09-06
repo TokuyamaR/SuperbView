@@ -1,8 +1,10 @@
 main {
-	width:1280px;
+	width:100%;
 
 	.for-background {
 		background-image: url(/background/new.jpg);
+		background-size: cover;
+		background-position: center center;
 	}
 
 	.container-wrapper {
@@ -16,11 +18,29 @@ main {
 
 .containers {
 	margin: 0 auto;
-	width:520px;
+	width: 40%;
+
+	.field, .textfield, .textarea {
+		width: 100%;
+
+		p {
+			font-weight: bold;
+		}
+	}
+
+	.textarea {
+		height: 6em;
+	}
+
+	img {
+		width: 70px;
+		height: 70px;
+	}
 
 	.form-title ,.field, #submit {
 		margin-bottom: 30px;
 	}
+
 	.form-title {
 		text-align: center;
 	}
@@ -37,53 +57,92 @@ main {
 		text-align: center;
 
 		.button {
+			border: solid 2px #000;
+		    border-radius: 3px;
+		    color: #000;
 		    display: inline-block;
+		    height: 40px;
 		    padding: 0.3em 1em;
 		    text-decoration: none;
-		    color: #67c5ff;
-		    border: solid 2px #67c5ff;
-		    border-radius: 3px;
 		    transition: .4s;
+		    width: 100px;
 		}
 
 		.button:hover {
-		    background: #67c5ff;
-		    color: white;
+		    background: #000;
+		    color: #fff;
 		}
+	}
+
+	/* 交通手段向けCSS */
+	.trans_radio {
+		display: none;
+	}
+	.trans_radio + img {
+		border: 2px solid;
+		border-radius: 50%;
+		opacity: 0.6;
+	}
+	.trans_radio:checked + img {
+		color: red;
+		opacity: 1.0;
+	}
+
+	/* 観光難易度向けCSS */
+	.level_radio {
+		display: none;
+	}
+	.level_radio + img {
+		border: 2px solid;
+		border-radius: 50%;
+		opacity: 0.6;
+	}
+	.level_radio:checked + img {
+		color: red;
+		opacity: 1.0;
+	}
+
+	.field > span {
+		font-size: 5px;
+		color: red;
 	}
 
 }
 
+/* タブレット */
+@media(max-width: 1024px) {
+	.containers {
+		width: 350px;
 
+		.field, .textfield, .textarea {
+			width: 350px;
+		}
 
+		img {
+			width: 60px;
+			height: 60px;
+		}
 
-/* 交通手段向けCSS */
-.trans_radio {
-	display: none;
+	}
 }
-.trans_radio + img {
-	border: 2px solid;
-	border-radius: 50%;
-	opacity: 0.2;
-}
-.trans_radio:checked + img {
-	opacity: 1;
-}
+/* スマートフォン */
+@media(max-width: 768px) {
+	.containers {
+		font-size: 20px;
+		width: 250px;
 
-/* 観光難易度向けCSS */
-.level_radio {
-	display: none;
-}
-.level_radio + img {
-	border: 2px solid;
-	border-radius: 50%;
-	opacity: 0.2;
-}
-.level_radio:checked + img {
-	opacity: 1;
-}
+		h1 {
+			font-size: 30px;
+		}
 
-.field > span {
-	font-size: 5px;
-	color: red;
+		.field, .textfield, .textarea {
+			width: 250px;
+		}
+
+		img {
+			width: 35px;
+			height: 35px;
+		}
+
+	}
 }

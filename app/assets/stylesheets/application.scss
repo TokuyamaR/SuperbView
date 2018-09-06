@@ -67,7 +67,6 @@ a, a:visited, a:focus, a:hover {
 
 .header {
 	height: 50px;
-	border-bottom: solid 1px;
 	max-width: 1280px;
 
 	.header-search-mobile {
@@ -97,6 +96,7 @@ a, a:visited, a:focus, a:hover {
 
 #search-box {
 	border: solid 1px;
+	border-radius: 3px;
 	height: 30px;
 	line-height: 30px;
 	outline: 0;
@@ -175,9 +175,15 @@ a, a:visited, a:focus, a:hover {
 /* フッター */
 
 footer {
+	border-top: solid 1px;
 	height: 100px;
 	margin-top: auto;
-	border-top: solid 1px;
+	width: 100%;
+
+	.footer-contents {
+		display: flex;
+		justify-content: space-around;
+	}
 }
 
 .mobile-footer {
@@ -224,7 +230,7 @@ footer {
 /* スマートフォン */
 @media(max-width: 768px) {
 	.header {
-		height: 100px;
+		height: 95px;
 
 		.header-container {
 			/*position: relative;*/
@@ -243,8 +249,8 @@ footer {
 
 		.header-search-mobile {
 			display: block;
-			height: 50px;
-			line-height: 50px;
+			height: 40px;
+			line-height: 40px;
 			text-align: center;
 			width: 100%;
 
@@ -264,14 +270,6 @@ footer {
 		.menu {
 			display: none;
 		}
-
-		.humburger {
-			position: absolute;
-			top:0px;
-			right: 10px;
-			display: inline-block;
-			text-align: right;
-		}
 	}
 
 	.pc-footer {
@@ -284,18 +282,22 @@ footer {
 	}
 
 	.mobile-footer {
-		background-color: #fff;
 		display: block;
 		position: fixed;
 		bottom: 0px;
 		width: 100%;
+
+		.footer-menus {
+			background-color: rgba(255, 255, 255 ,0.8);
+		}
 
 		ul {
 			display: flex;
 			justify-content: space-around;
 
 			li {
-				padding: 5px 0;
+				/*background-color: ;*/
+				padding: 10px;
 			}
 		}
 	}
