@@ -210,6 +210,7 @@ footer {
     border-radius: 4px;
     height: 0.1px;
     text-align: center;
+    z-index: 10;
 }
 
 .alert-danger {
@@ -218,27 +219,19 @@ footer {
     color: #fa4141;
 }
 .notice {
-    background-color: #CCFFCC;
-    border-color: #CCFFCC;
+    background-color: #ccffcc;
+    border-color: #ccffcc;
     color: #008000;
 }
 
-/* タブレット */
-@media(max-width: 1024px) {
-
-}
 /* スマートフォン */
 @media(max-width: 768px) {
 	.header {
 		height: 95px;
 
 		.header-container {
-			/*position: relative;*/
 
 			.app-title {
-				/*position: fixed;
-				top: 5px;
-				left: 10px;*/
 				margin: 0 auto;
 			}
 		}
