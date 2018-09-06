@@ -12,7 +12,7 @@ main {
 		max-width: 90%;
 		margin: 0 auto;
 		padding: 100px 0;
-		background-color: rgba(255,255,255,0.5);
+		background-color: rgba(255,255,255,0.8);
 	}
 }
 
@@ -111,6 +111,14 @@ main {
 
 /* タブレット */
 @media(max-width: 1024px) {
+
+	main {
+
+		.container-wrapper {
+			padding: 80px 0;
+		}
+	}
+
 	.containers {
 		width: 350px;
 
@@ -127,6 +135,14 @@ main {
 }
 /* スマートフォン */
 @media(max-width: 768px) {
+
+	main {
+
+		.container-wrapper {
+			padding: 50px 0;
+		}
+	}
+	
 	.containers {
 		font-size: 20px;
 		width: 250px;
