@@ -1,13 +1,20 @@
 .top-container {
 	.spot-images {
-		position: relative;
-		width: 1280px;
 		height: 400px;
+		position: relative;
+		width: 100%;
+
+		.slide-image {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
+		}
 
 		#spot-name{
 			position: absolute;
-			color: black;
-			font-size: 30px;
+			color: #fff;
+			font-size: 50px;
+			font-style: oblique;
 			top: 10px;
 			left: 10px;
 		}
@@ -40,11 +47,28 @@
 	justify-content: center;
 	max-width: 90%;
 	margin: 0 auto;
-	margin-bottom: 50px;
-	margin-top: 100px;
+	margin-bottom: 70px;
+	margin-top: 30px;
 
 	.contents {
 		text-align: left;
+
+		.form-title {
+			font-size: 18px;
+		}
+
+		.title, .text {
+			font-weight: bold;
+		}
+
+		.textfield, .textarea {
+			font-size: 16px;
+			width: 400px;
+		}
+
+		.textarea {
+			height: 10em;
+		}
 	}
 
 	.form-title {
@@ -55,4 +79,73 @@
 		margin-bottom: 20px;
 	}
 
+	span {
+		color: red;
+	}
+
+	#submit {
+		text-align: center;
+
+		.button {
+			border: solid 2px #000;
+		    border-radius: 3px;
+		    color: #000;
+		    display: inline-block;
+		    height: 40px;
+		    margin-bottom: 10px;
+		    padding: 0.3em 1em;
+		    text-decoration: none;
+		    transition: .4s;
+		    width: 100px;
+		}
+
+		.button:hover {
+		    background: #000;
+		    color: #fff;
+		}
+
+		a {
+			color: blue;
+			text-decoration-line: underline;
+		}
+	}
+
+	.devise-alert {
+		color: red;
+	}
+}
+
+/* スマートフォン */
+@media(max-width: 768px) {
+	.top-container {
+		.spot-images {
+			height: 200px;
+
+			.slide-image {
+				height: 200px;
+			}
+
+			#spot-name{
+				font-size: 22px;
+			}
+
+			.spot-introduce {
+				font-size: 11px;
+				top: 120px;
+			}
+		}
+	}
+
+	.form-container {
+		.contents {
+
+			.form-title {
+				font-size: 16px;
+			}
+
+			.textfield, .textarea {
+				width: 300px;
+			}
+		}
+	}
 }

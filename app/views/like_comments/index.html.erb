@@ -8,7 +8,7 @@
           <div class="top-container">
             <div class="spot-images">
               <% @spot.spot_images.first(1).each do |image| %>
-                <%= attachment_image_tag image, :image, :fill, 1280, 400 %>
+                <%= attachment_image_tag image, :image, class: "slide-image" %>
               <% end %>
               <div id="spot-name">
                 <%= @spot.spot_name %>
@@ -20,7 +20,8 @@
           </div>
           <div class="main-container">
             <div class="page-title">
-            	<h2>口コミ一覧</h2>
+            	<h1>口コミ一覧</h1>
+              <%= link_to "スポット詳細へ", spot_path(@spot.id), class: "spot-link" %>
             	<hr class="hr">
             </div>
             <div class="like-comments-all">
@@ -33,40 +34,36 @@
                     <li class="likecomments-container">
                       <% @user = User.find(like_comment.user_id) %>
                     	<div class="left-contents">
-                    		<div class="user-image"><%= attachment_image_tag @user, :user_image, :fill, 100, 100 %></div>
+                    		<div class="user-image"><%= attachment_image_tag @user, :user_image, fallback: "/anything/no_user_image.png", alt: "ユーザー画像" %></div>
                         <div class="user-name"><%= @user.name %></div>
                     	</div>
                     	<div class="right-contents">
                     		<div class="up-contents">
-                    			<p class="comment-title"><%= like_comment.title %></p>
+                    			<p class="comment-title">
+                            <%= like_comment.title %>
+                          </p>
                           <% if administrator_signed_in? %>
-                            <p>
+                            <p class="icons">
                               <%= link_to admin_destroy_like_comment_path(like_comment) do %>
                                 <i class="far fa-trash-alt"></i>
                               <% end %>
-                            </p>
-                            <p>
                               <%= link_to admin_destroy_like_comment_path(like_comment), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
                                 <i class="far fa-trash-alt"></i>
                               <% end %>
                             </p>
                           <% elsif current_user.id == like_comment.user_id %>
-                            <p>
+                            <p class="icons">
                               <%= link_to edit_spot_like_comment_path(like_comment.spot_id,like_comment.id) do %>
                                 <i class="fa fa-edit"></i>
                               <% end %>
-                            </p>
-                            <p>
                               <%= link_to spot_like_comment_path(like_comment.spot_id,like_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
                                 <i class="fa fa-trash"></i>
                               <% end %>
                             </p>
                           <% else %>
-                            <p>
+                            <p class="icons">
                               <%= link_to edit_spot_like_comment_path(like_comment.spot_id,like_comment.id) do %>
                               <% end %>
-                            </p>
-                            <p>
                               <%= link_to spot_like_comment_path(like_comment.spot_id,like_comment.id), method: :delete, "data-confirm" => "本当に削除しますか？" do %>
                               <% end %>
                             </p>

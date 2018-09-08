@@ -163,8 +163,11 @@
                 <% if @like_comments.present? %>
                   <% @like_comments.first(3).each do |like_comment| %>
                     <ul>
+                      <% user = User.find_by(id: like_comment.user_id) %>
                       <li class="comments-container">
-                        <div class="user-image left-contents"><%= attachment_image_tag @user, :user_image, :fill, 80, 80 %></div>
+                        <div class="user-image left-contents">
+                          <%= attachment_image_tag user, :user_image, fallback: "/anything/no_user_image.png", alt: "ユーザー画像" %>
+                        </div>
                         <div class="right-contents">
                           <div class="comment-title"><%= like_comment.title %></div>
                           <!-- truncateメソッドで長い文字列を区切る -->

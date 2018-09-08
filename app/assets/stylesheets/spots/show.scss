@@ -1,8 +1,8 @@
 .top-container {
 	.spot-images {
+		height: 400px;
 		position: relative;
 		width: 100%;
-		height: 400px;
 
 		.slide-image {
 			width: 100%;
@@ -167,6 +167,12 @@
 			text-decoration: underline;
 		}
 
+		img {
+			height: 80px;
+			object-fit: cover;
+			width: 80px;
+		}
+
 	}
 
 	.title-container {
@@ -215,6 +221,7 @@
 
 
 }
+
 /* スマートフォン */
 @media(max-width: 768px) {
 	.top-container {
@@ -256,7 +263,7 @@
 	.third-contents {
 		display: block;
 		margin: 0 auto;
-		margin-bottom: 50px;
+		margin-bottom: 70px;
 		max-width: 90%;
 
 		.left, .right {

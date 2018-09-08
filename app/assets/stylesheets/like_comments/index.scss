@@ -1,8 +1,14 @@
 .top-container {
 	.spot-images {
 		position: relative;
-		width: 1280px;
+		width: 100%;
 		height: 400px;
+
+		.slide-image {
+			width: 100%;
+			height: 400px;
+			object-fit: cover;
+		}
 
 		#spot-name{
 			position: absolute;
@@ -40,10 +46,16 @@
 	list-style: none;
 	max-width: 90%;
 	margin: 0 auto;
+	margin-bottom: 70px;
 	padding-top: 50px;
 
 	.page-title {
 		margin-bottom: 20px;
+
+		.spot-link {
+				color:blue;
+				text-decoration-line: underline;
+			}
 	}
 
 	.likecomments-container {
@@ -55,6 +67,9 @@
 
 			img {
 				border-radius: 50%;
+				height: 100px;
+				object-fit: cover;
+				width: 100px;
 			}
 
 			.user-name {
@@ -83,5 +98,79 @@
 
 	.pagination {
 		text-align: right;
+	}
+}
+
+/* スマートフォン */
+@media(max-width: 768px) {
+	.top-container {
+		.spot-images {
+			height: 200px;
+
+			.slide-image {
+				height: 200px;
+			}
+
+			#spot-name{
+				font-size: 22px;
+			}
+
+			.spot-introduce {
+				font-size: 11px;
+				top: 120px;
+			}
+		}
+	}
+
+	.main-container {
+		.page-title {
+			font-size: 12px;
+		}
+
+		.likecomments-container {
+
+			.left-contents {
+
+				img {
+					height: 80px;
+					width: 80px;
+				}
+
+				.user-name {
+					font-size: 12px;
+				}
+			}
+
+			.up-contents {
+				display: block;
+
+				.comment-title {
+					font-size: 16px;
+					margin-bottom: 10px;
+				}
+
+				.icons {
+					display: flex;
+					justify-content: flex-end;
+					padding-right: 0;
+
+					.fa-edit {
+						margin-right: 10px;
+					}
+
+				}
+
+				.fa {
+					font-size: 25px;
+				}
+			}
+
+			.down-contents {
+				.comment-text {
+					font-size: 13px;
+					margin-top: 10px;
+				}
+			}
+		}
 	}
 }

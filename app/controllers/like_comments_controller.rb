@@ -5,7 +5,7 @@ class LikeCommentsController < ApplicationController
 
   def index
     @spot = Spot.find(params[:spot_id])
-    @like_comments = LikeComment.where(params[:spot_id]).page(params[:page])
+    @like_comments = LikeComment.where(spot_id: @spot.id).page(params[:page])
   end
 
   def new
@@ -62,7 +62,7 @@ class LikeCommentsController < ApplicationController
     like_comment.user_id = user.id
     like_comment.destroy
 
-    flash[:notice] = "スポットを削除しました"
+    flash[:notice] = "口コミを削除しました"
     redirect_to spot_like_comments_path(like_comment.spot_id)
   end
 
@@ -78,7 +78,7 @@ class LikeCommentsController < ApplicationController
   def admin_destroy
     @like_comment = LikeComment.find(params[:id])
     @like_comment.delete
-    flash[:notice] = "スポットを削除しました"
+    flash[:notice] = "口コミを削除しました"
     redirect_to admin_like_comments_path
   end
 
