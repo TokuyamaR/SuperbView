@@ -6,35 +6,35 @@
     <div class="container-wrapper">
     	<%= form_for @user do |f| %>
 	    	<div class="containers">
-	            <div class="left-container">
+	            <div class="left-contents">
 	          	    <div class="contents left">
 		          	    <div class="user-image field">
 			          	    <% if @user.user_image %>
-			          	    	<%= attachment_image_tag @user, :user_image, :fill, 200, 200, format: 'jpeg' %><br>
+			          	    	<%= attachment_image_tag @user, :user_image, format: 'jpeg' %><br>
 			                <% else %>
-			                  	<%= image_tag "/anything/no_user_image.png", :size => "200x200", :alt => "ユーザー画像" %><br>
+			                  	<%= image_tag "/anything/no_user_image.png", :alt => "ユーザー画像" %><br>
 			                <% end %>
-				            <%= f.attachment_field :user_image %>
+				            <%= f.attachment_field :user_image, class: "attachment" %>
 		          		</div>
 		            </div>
 	            </div>
-	            <div class="right-container">
+	            <div class="right-contents">
 		          	<div class="contents right">
-	          			<div class="field">
+	          			<div class="field user-name">
 				            <%= f.label :name, "ユーザー名" %><span>※</span><br />
-				            <%= f.text_field :name, autofocus: true, autocomplete: false, placeholder: "例：絶景マン", size: "30" %>
+				            <%= f.text_field :name, autofocus: true, autocomplete: false, placeholder: "例：絶景マン", class: "textfield" %>
 				        </div>
-				        <div class="field">
+				        <div class="field user-introduce">
 				            <%= f.label :introduce, "自己紹介" %><br />
-				            <%= f.text_area :introduce, autofocus: true, autocomplete: false, placeholder: "200文字以内で入力してください", size: "30x7" %>
+				            <%= f.text_area :introduce, autofocus: true, autocomplete: false, placeholder: "200文字以内で入力してください", class: "textarea" %>
 				        </div>
 				        <div class="field">
 				            <%= f.label :email, "メールアドレス" %><br />
-				            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：gotrip@trip.com", size: "30" %>
+				            <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "例：gotrip@trip.com", class: "textfield" %>
 				        </div>
 			            <div type="submit" id="submit">
-				            <%= f.submit "編集する" %><br>
-				            <%= link_to "マイページに戻る", user_show_likes_path %>
+				            <%= f.submit "編集", class: "button" %><br>
+				            <%= link_to "マイページに戻る", user_show_likes_path, class: "back" %>
 				        </div>
 		            </div>
 	      		</div>
