@@ -8,7 +8,7 @@
           <div class="top-container">
             <div class="spot-images">
               <% @spot.spot_images.first(1).each do |image| %>
-                <%= attachment_image_tag image, :image, :fill, 1280, 400 %>
+                <%= attachment_image_tag image, :image, class: "slide-image" %>
               <% end %>
               <div id="spot-name">
                 <%= @spot.spot_name %>
@@ -25,18 +25,18 @@
                   <h1>口コミ　編集画面</h1>
                 </div>
                 <div class="field">
-                  <%= f.label :title, "タイトル" %><span>※</span><br />
-                  <%= f.text_field :title, autofocus: true, autocomplete: false, placeholder: "30文字以内で入力してください。", size: "50" %>
+                  <%= f.label :title, "タイトル", class: "title" %><span>※</span><br />
+                  <%= f.text_field :title, autofocus: true, autocomplete: false, placeholder: "30文字以内で入力してください。", class: "textfield" %>
                 </div>
 
                 <div class="field">
-                  <%= f.label :text, "内容" %><span>※</span><br />
-                  <%= f.text_area :text, autofocus: true, autocomplete: false, placeholder: "200文字以内で入力してください", size: "49x7" %>
+                  <%= f.label :text, "内容", class: "text" %><span>※</span><br />
+                  <%= f.text_area :text, autofocus: true, autocomplete: false, placeholder: "200文字以内で入力してください", class: "textarea" %>
                 </div>
 
                 <div type="submit" id="submit">
-                  <%= f.submit "編集する" %><br>
-                  <%= link_to "前に戻る", :back %>
+                  <%= f.submit "編集", class: "button" %><br>
+                  <%= link_to "前に戻る", spot_like_comments_path(@spot.id) %>
                 </div>
               <% end %>
             </div>
