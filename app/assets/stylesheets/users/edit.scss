@@ -1,13 +1,12 @@
 main {
-	max-width:1280px;
+	width: 100%;
 
 	.container-wrapper {
 		max-width: 90%;
 		margin: 0 auto;
-		padding-top: 100px;
+		padding-top: 30px;
 	}
 }
-
 
 .containers {
 	background-color: #f9ebd1;
@@ -16,10 +15,9 @@ main {
 	justify-content: space-around;
 	margin: 50px 0;
 	padding: 50px 0;
-	max-width: 100%;
 
-	.left-container {
-		flex-grow: 1;
+	.left-contents {
+		flex-basis: 50%;
 		text-align: center;
 
 		.left {
@@ -28,22 +26,114 @@ main {
 
 		img {
 			border-radius: 50%;
+			height: 200px;
+			width: 200px;
+			object-fit: cover;
 		}
 	}
-	.right-container {
-		flex-grow: 1;
+	.right-contents {
+		flex-basis: 50%;
 
-		.user-name .title, .user-introduce .title {
-			width:200px;
+		.field, .textfield, .textarea {
+			font-size: 16px;
+			width: 80%;
+		}
+
+		.textarea {
+			height: 6em;
+		}
+
+		.field {
 			font-weight: bold;
-			font-size: 20px;
-			border-bottom: solid 1px;
 		}
 
 		.user-name, .user-introduce {
 			margin-bottom: 20px;
 		}
+
+		#submit {
+		display: flex;
+		justify-content: space-around;
+		margin-top: 30px;
+		text-align: center;
+
+			.button {
+				border: solid 2px #000;
+			    border-radius: 3px;
+			    color: #000;
+			    display: inline-block;
+			    font-size: 16px;
+			    height: 40px;
+			    padding: 0.3em 1em;
+			    text-decoration: none;
+			    transition: .4s;
+			    width: 100px;
+			}
+
+			.button:hover {
+			    background: #000;
+			    color: #fff;
+			}
+
+			.back {
+				font-size: 12px;
+			}
+		}
+
+		span {
+			color: red;
+		}
 	}
 }
 
+/* タブレット */
+@media(max-width: 1024px) {
 
+}
+
+/* スマートフォン */
+@media(max-width: 768px) {
+	main {
+
+		.container-wrapper {
+			max-width: 90%;
+			margin: 0 auto;
+			padding-top: 30px;
+		}
+	}
+
+	.containers {
+		display: block;
+		margin: 0 auto;
+		margin-bottom: 70px;
+		padding: 20px 0;
+		width: 90%;
+
+		.left-contents {
+			margin-bottom: 30px;
+			img {
+				height: 150px;
+				width: 150px;
+			}
+		}
+		.right-contents {
+			display: flex;
+			justify-content: space-around;
+			margin: 0 auto;
+
+			.contents {
+				width: 80%;
+				margin: 0 auto;
+
+				field {
+					width:100%;
+				}
+
+				.textfield, .textarea {
+					width: 120%;
+				}
+
+			}
+		}
+	}
+}
