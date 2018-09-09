@@ -21,50 +21,60 @@
 	}
 
 	.spots-container {
+		border:solid 2px;
+		border-color: #81a47a;
+		border-radius:5px;
 		display: flex;
-		height: 200px;
 		margin: 20px 0;
+		padding: 10px;
 
 		.left-contents {
 			margin-right: 50px;
 
 			img {
-				border-radius: 10px;
+				border-radius: 5px;
+				height: 200px;
+				width: 200px;
+				object-fit: cover;
 			}
 		}
 
 		.upper-contents {
-			display: flex;
 			font-size: 30px;
 			font-weight: bold;
-			height: 50px;
-			line-height: 50px;
+			height: 30px;
+			margin-bottom: 70px;
+			line-height: 30px;
 
-			.spot-name {
-				margin-right: 20px;
+			.country {
+				font-size: 20px;
 			}
 		}
 
 		.lower-contents {
-			display: flex;
+			display: block;
 			font-size: 20px;
 			line-height: 50px;
 			height: 50px;
 
+			.mobile-flex-item {
+				display: flex;
+			}
+
 			img {
-				border: dashed 1px;
+				border: solid 1px;
 				border-radius: 50%;
 
 			}
 
 			.item {
-				margin-right: 30px;
+				margin-right: 20px;
 			}
 		}
 	}
 
 	.spots-container:hover{
-		background-color: #dfd4be;
+		border-color: red;
 		border-radius: 10px;
 		transition: .5s;
 	}
@@ -72,5 +82,124 @@
 	.pagination {
 		display: flex;
 		justify-content: flex-end;
+	}
+}
+
+/* タブレット */
+@media(max-width: 1024px) {
+
+	.main-container {
+
+		.likes-all {
+			max-width: 80%;
+		}
+
+		.spots-container {
+
+			.spot-image img {
+				height: 150px;
+				width: 150px;
+				object-fit: cover;
+			}
+
+			.left-contents {
+				margin-right: 50px;
+			}
+
+			.upper-contents {
+				display: block;
+				margin-bottom: 20px;
+			}
+
+			.lower-contents {
+
+				.like-comments-count {
+					height: 35px;
+					line-height: 35px;
+				}
+			}
+		}
+		.pagination {
+			font-size: 15px;
+		}
+	}
+
+}
+/* スマートフォン */
+@media(max-width: 768px) {
+	main {
+
+		.container-wrapper {
+			max-width: 100%;
+			margin: 0 auto;
+			padding-top: 30px;
+		}
+	}
+
+	.main-container {
+
+		.page-title {
+			margin-bottom: 20px;
+		}
+
+		.search-result {
+			max-width: 100%;
+		}
+
+		.spots-container {
+
+			.left-contents {
+				margin-right: 10px;
+
+				.spot-image img {
+					height: 100px;
+					width: 100px;
+					object-fit: cover;
+				}
+			}
+
+			.upper-contents {
+				display: block;
+				font-size: 15px;
+				height: 15px;
+				line-height: 15px;
+				margin-bottom: 20px;
+
+				.country {
+					font-size: 12px;
+				}
+			}
+
+			.lower-contents {
+				font-size: 12px;
+				line-height: 45px;
+				height: 45px;
+
+				.good-season {
+					display: block;
+					font-size: 11px;
+					height: 35px;
+				}
+
+				img {
+					height: 25px;
+					margin-right: 10px;
+					width: 25px;
+				}
+
+				.like-comments-count {
+					height: 25px;
+					line-height: 25px;
+				}
+
+				.item {
+					margin-right: 0px;
+				}
+			}
+		}
+
+		.pagination {
+			font-size: 15px;
+		}
 	}
 }

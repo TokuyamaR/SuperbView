@@ -1,6 +1,7 @@
 class LikeCommentsController < ApplicationController
   before_action :authenticate_user!, only: [:index, :new, :create, :edit, :update, :destroy]
   before_action :authenticate_administrator!, only: [:admin_index, :admin_show, :admin_edit, :admin_destroy]
+  before_action :ensure_correct_user, only: [:edit, :update, :destroy]
 
 
   def index
@@ -86,5 +87,19 @@ class LikeCommentsController < ApplicationController
 
    def like_comment_params
      params.require(:like_comment).permit(:title, :text, :spot_id, :user_id)
+   end
+
+   def ensure_correct_user
+    if administrator_signed_in?
+    elsif user_signed_in?
+      @like_comment = LikeComment.find_by(id: params[:id])
+      if  @like_comment.user_id != current_user.id
+        redirect_to root_path
+        flash[:alert] = "権限がありません"
+      end
+    else
+      redirect_to root_path
+      flash[:alert] = "権限がありません"
+    end
    end
 end

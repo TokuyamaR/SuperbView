@@ -3,13 +3,13 @@ class ApplicationController < ActionController::Base
 	before_action :configure_permitted_parameters, if: :devise_controller?
 
 
-  	protected
+	protected
 
-  	def configure_permitted_parameters
-    	devise_parameter_sanitizer.permit(:sign_up) do |user_params|
-    		user_params.permit(:name, :introduce, :email, :password, :password_confirmation, :current_password, :deleted_at, :accepted)
-      end
-  	end
+	def configure_permitted_parameters
+  	devise_parameter_sanitizer.permit(:sign_up) do |user_params|
+  		user_params.permit(:name, :introduce, :email, :password, :password_confirmation, :current_password, :deleted_at, :accepted)
+    end
+	end
 
 	def after_sign_in_path_for(resource)
 		case resource
@@ -27,18 +27,4 @@ class ApplicationController < ActionController::Base
       new_administrator_session_path
     end
   end
-
-  def ensure_correct_user
-    if administrator_signed_in?
-    elsif user_signed_in?
-      @user = User.find_by(id: params[:id])
-      if  current_user.id != @user.id
-        redirect_to user_path(current_user.id)
-        flash[:alert] = "権限がありません"
-      end
-        else
-          redirect_to greeds_path
-          flash[:alert] = "権限がありません"
-        end
-    end
 end

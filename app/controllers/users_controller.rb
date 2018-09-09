@@ -90,4 +90,18 @@ class UsersController < ApplicationController
   def sort_column
       User.column_names.include?(params[:sort]) ? params[:sort] : "name"
   end
+
+  def ensure_correct_user
+    if administrator_signed_in?
+    elsif user_signed_in?
+      @user = User.find_by(id: params[:id])
+      if  @user.id != current_user.id
+        redirect_to root_path
+        flash[:alert] = "権限がありません"
+      end
+    else
+      redirect_to root_path
+      flash[:alert] = "権限がありません"
+    end
+  end
 end

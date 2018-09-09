@@ -53,7 +53,7 @@ class SpotsController < ApplicationController
       redirect_to spot_path(@spot.id)
     else
       flash[:alert] = "投稿内容に不備があります"
-      redirect_to new_spot_path
+      redirect_to new_spot_path # renderはbuttonが選べなくなるためredirectにて記述
     end
   end
 
@@ -65,13 +65,11 @@ class SpotsController < ApplicationController
   end
 
   def edit
-    @user = User.find(current_user.id)
     @spot = Spot.find(params[:id])
     @spot_images = @spot.spot_images
   end
 
   def update
-    @user = User.find(current_user.id)
     @spot = Spot.find(params[:id])
     @like_comments = @spot.like_comments
     @spot.user_id = current_user.id
@@ -144,6 +142,20 @@ class SpotsController < ApplicationController
      params.require(:spot).permit(:spot_name, :spot_introduce, :spot_pros, :spot_cons, :country, :latitude, :longitude, :address,
                                   :transportation,:transportation_text, :tourism_level, :tourism_level_text, :good_season_start, :good_season_end, :user_id,
                                   spot_images_attributes: [:id, :image, :spot_id, :_destroy])
+   end
+
+   def ensure_correct_user
+    if administrator_signed_in?
+    elsif user_signed_in?
+      @spot = Spot.find_by(id: params[:id])
+      if  @spot.user_id != current_user.id
+        redirect_to root_path
+        flash[:alert] = "権限がありません"
+      end
+    else
+      redirect_to root_path
+      flash[:alert] = "権限がありません"
+    end
    end
 
 end
