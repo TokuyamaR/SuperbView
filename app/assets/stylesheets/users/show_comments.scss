@@ -117,7 +117,6 @@ main {
 
 		.lower-contents {
 			display: flex;
-			height: 50px;
 
 			img {
 				border: solid 1px;
@@ -214,11 +213,17 @@ main {
 
 	.main-container {
 
+		.page-title {
+			margin-bottom: 20px;
+		}
+
 		.comments-all {
-			max-width: 90%;
+			max-width: 100%;
 		}
 
 		.spots-container {
+			height: auto;
+			padding: 10px;
 
 			.spot-image img {
 				height: 100px;
@@ -247,7 +252,7 @@ main {
 					}
 
 					.comment-title {
-						font-size: 18px;
+						font-size: 12px;
 						height: 18px;
 						line-height: 18px;
 					}

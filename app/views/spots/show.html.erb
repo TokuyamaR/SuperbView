@@ -108,15 +108,15 @@
                       <tr>
                         <th>交通手段</th>
                         <% if @spot.transportation == "徒歩" %>
-                          <td><%= image_tag "/transportations/walk.png", :size => "70x70", :alt => "徒歩" %></td>
+                          <td><%= image_tag "/transportations/walk.png", :alt => "徒歩" %></td>
                         <% elsif @spot.transportation == "自転車" %>
-                          <td><%= image_tag "/transportations/bicycle.png", :size => "70x70", :alt => "自転車" %></td>
+                          <td><%= image_tag "/transportations/bicycle.png", :alt => "自転車" %></td>
                         <% elsif @spot.transportation == "電車" %>
-                          <td><%= image_tag "/transportations/train.png", :size => "70x70", :alt => "電車" %></td>
+                          <td><%= image_tag "/transportations/train.png", :alt => "電車" %></td>
                         <% elsif @spot.transportation == "車" %>
-                          <td><%= image_tag "/transportations/car.png", :size => "70x70", :alt => "車" %></td>
+                          <td><%= image_tag "/transportations/car.png", :alt => "車" %></td>
                         <% else @spot.transportation == "飛行機" %>
-                          <td><%= image_tag "/transportations/airplane.png", :size => "70x70", :alt => "飛行機" %></td>
+                          <td><%= image_tag "/transportations/airplane.png", :alt => "飛行機" %></td>
                         <% end %>
                       </tr>
                       <tr>
@@ -126,15 +126,15 @@
                       <tr>
                         <th>観光難易度</th>
                         <% if @spot.tourism_level == "VeryEasy" %>
-                          <td><%= image_tag "/tourism_levels/veryeasy_icon.png", :size => "70x70", :alt => "VeryEasy" %></td>
+                          <td><%= image_tag "/tourism_levels/veryeasy_icon.png", :alt => "VeryEasy" %></td>
                         <% elsif @spot.tourism_level == "Easy" %>
-                          <td><%= image_tag "/tourism_levels/easy_icon.png", :size => "70x70", :alt => "Easy" %></td>
+                          <td><%= image_tag "/tourism_levels/easy_icon.png", :alt => "Easy" %></td>
                         <% elsif @spot.tourism_level == "Normal" %>
-                          <td><%= image_tag "/tourism_levels/normal_icon.png", :size => "70x70", :alt => "Normal" %></td>
+                          <td><%= image_tag "/tourism_levels/normal_icon.png", :alt => "Normal" %></td>
                         <% elsif @spot.tourism_level == "Hard" %>
-                          <td><%= image_tag "/tourism_levels/hard_icon.png", :size => "70x70", :alt => "Hard" %></td>
+                          <td><%= image_tag "/tourism_levels/hard_icon.png", :alt => "Hard" %></td>
                         <% else @spot.tourism_level == "VeryHard" %>
-                          <td><%= image_tag "/tourism_levels/veryhard_icon.png", :size => "70x70", :alt => "VeryHard" %></td>
+                          <td><%= image_tag "/tourism_levels/veryhard_icon.png", :alt => "VeryHard" %></td>
                         <% end %>
                       </tr>
                       <tr>
