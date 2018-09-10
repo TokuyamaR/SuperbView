@@ -8,6 +8,7 @@ ja:
       send_paranoid_instructions: "ご登録のメールアドレスが保存されている場合、アカウントの確認方法をメールでご連絡します。"
     failure:
       already_authenticated: "既にログインしています。"
+      deleted_account: "退会済みのアカウントのためログインできません"
       inactive: "Your account is not activated yet."
       invalid: "メールアドレスまたはパスワードが無効です。"
       locked: "アカウントがロックされています。"

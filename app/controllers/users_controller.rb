@@ -39,15 +39,10 @@ class UsersController < ApplicationController
   def destroy
     @user = User.find(params[:id])
     @user.soft_delete
-    if user_signed_in?
-      sign_out(@user)
-      redirect_to new_user_session_path
-      flash[:notice] = "退会しました"
-    else
-      redirect_to root_path
-      flash[:alert] = "エラーが発生しました"
-    end
+    sign_out(@user)
+    flash[:notice] = "退会しました"
   end
+
 
   # 管理者用アクション
   def admin_index
@@ -61,7 +56,7 @@ class UsersController < ApplicationController
   def admin_destroy
     @user = User.find(params[:id])
     @user.soft_delete
-    flash[:notice] = "削除されました"
+    flash[:notice] = "ユーザーを退会させました"
     redirect_to admin_users_path
   end
 
