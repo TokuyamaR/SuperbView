@@ -61,8 +61,9 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-# 新規追加
-gem "devise" #ログイン認証機能
+# 新規追加s
+gem 'carrierwave' #今回は未使用
+gem 'devise' #ログイン認証機能
 gem 'jquery-rails' #jqueryを導入
 gem 'refile',require: 'refile/rails',github: 'manfe/refile' #画像をアップロード
 gem 'refile-mini_magick' #画像をリサイズ
