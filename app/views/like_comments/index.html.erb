@@ -32,9 +32,13 @@
                 <ul>
                   <% @like_comments.first(5).each do |like_comment| %>
                     <li class="likecomments-container">
-                      <% @user = User.find(like_comment.user_id) %>
+                      <% @user = User.find_by(id: like_comment.user_id) %>
                     	<div class="left-contents">
-                    		<div class="user-image"><%= attachment_image_tag @user, :user_image, fallback: "/anything/no_user_image.png", alt: "ユーザー画像" %></div>
+                    		<div class="user-image">
+                          <%= link_to user_show_likes_path(@user.id) do %>
+                          <%= attachment_image_tag @user, :user_image, fallback: "/anything/no_user_image.png", alt: "ユーザー画像" %>
+                          <% end %>
+                          </div>
                         <div class="user-name"><%= @user.name %></div>
                     	</div>
                     	<div class="right-contents">

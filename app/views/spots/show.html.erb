@@ -50,17 +50,17 @@
                   <% end %>
                 </div>
                 <div class="twitter icon"> <!-- 具体的なspotを投稿後に、仮保存記事「Twitterの投稿機能を連携する」を参照しながら実装 -->
-                  <%= link_to "http://twitter.com/share?url=https:ここに共有したいURLの中身を入れる&text=#{@spot.spot_name}の絶景がすごい！", :target =>"_blank", :rel => "nofollow" do %>
+                  <%= link_to "http://twitter.com/share?url=https://superbview.work/spots/#{@spot.id}&text=#{@spot.spot_name}の絶景がすごい！", :target =>"_blank", :rel => "nofollow" do %>
                     <i class="fa fa-twitter-square fa-3x" aria-hidden="true"></i>
                   <% end %>
                 </div>
                 <div class="facebook icon">
-                  <%= link_to "http://www.facebook.com/share.php?u=「共有したいURL」&t=#{@spot.spot_name}の絶景がすごい！", :target => "_blank", :rel => "nofollow" do %>
+                  <%= link_to "http://www.facebook.com/share.php?u=「https://superbview.work/spots/#{@spot.id}」&t=#{@spot.spot_name}の絶景がすごい！", :target => "_blank", :rel => "nofollow" do %>
                     <i class="fa fa-facebook-square fa-3x"aria-hidden="true"></i>
                   <% end %>
                 </div>
                 <div class="instagram icon">
-                  <%= link_to "https://plus.google.com/share?url=「シェアするページのURL」", :target => "_blank", :rel => "nofollow" do %>
+                  <%= link_to "https://plus.google.com/share?url=「https://superbview.work/spots/#{@spot.id}」", :target => "_blank", :rel => "nofollow" do %>
                     <i class="fa fa-google-plus-square fa-3x" aria-hidden="true"></i>
                   <% end %>
                 </div>

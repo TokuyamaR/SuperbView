@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   end
 
   def show_likes
-    @user = User.find(current_user.id)
+    @user = User.find(params[:id])
     @likes = Like.where(user_id: @user.id).page(params[:page]).per(5) # ユーザーがいいねしたスポットだけを抽出する
   end
 
